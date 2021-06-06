@@ -1,0 +1,14 @@
+> Terminar site/index.html.
+> Fazer pagina inicial PHP.
+> Fazer uma pagina para agendamentos (depois do banco de dados estiver pronto)
+> Terminar o dashboard completo
+
+
+> Opcao para ver todos os agendamentos de consultas e seus status (pendente, atrasada, realizada);
+> Opcao para realizar as acoes (pendente, atrasada, realizada); 
+> 
+
+> Para que o busca CEP funcione, precisa que o method seja POST ou GET?
+> Tabela do dashboard mais que 6 colunas.
+> Como faz para esconder paginas que o usuario comum nao podera entrar?
+> 
