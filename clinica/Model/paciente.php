@@ -4,6 +4,7 @@
         private $nome;
         private $cpf;
         private $email;
+        private $senha;
         private $telefone;
         private $rg;
         private $dataNascimento;
@@ -11,12 +12,14 @@
         private $cidade;
         private $bairro;
         private $estado;
+        private $cep;
 
-        public function __construct($id, $nome, $cpf, $email, $telefone, $rg, $dataNascimento, $logradouro, $cidade, $bairro, $estado){
+        public function __construct($id, $nome, $cpf, $email, $senha, $telefone, $rg, $dataNascimento, $logradouro, $cidade, $bairro, $estado, $cep){
             $this->id = $id;
             $this->nome = $nome;
             $this->cpf = $cpf;
             $this->email = $email;
+            $this->senha = $senha;
             $this->telefone = $telefone;
             $this->rg = $rg;
             $this->dataNascimento = $dataNascimento;
@@ -24,6 +27,7 @@
             $this->cidade = $cidade;
             $this->bairro = $bairro;
             $this->estado = $estado;
+            $this->cep = $cep;
         }
         // ===========id=============
 
@@ -63,6 +67,17 @@
 
         public function setEmail($email)
             $this->email = $email;
+        }
+
+        // ================senha=============
+
+
+        public function getSenha() {
+            return $this->senha;
+        }
+
+        public function setSenha($senha) {
+            $this->senha = $senha;
         }
 
         // ============telefone===========
@@ -135,4 +150,13 @@
             $this->estado = $estado;
         }
         
+        //====================cep==================
+
+        public function getCep() {
+            return $this->cep;
+        }
+
+        public function setCep($cep) {
+            $this->cep = $cep;
+        }
 ?>
