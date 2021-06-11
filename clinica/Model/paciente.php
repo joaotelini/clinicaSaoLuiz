@@ -14,8 +14,7 @@
         private $estado;
         private $cep;
 
-        public function __construct($id, $nome, $cpf, $email, $senha, $telefone, $rg, $dataNascimento, $logradouro, $cidade, $bairro, $estado, $cep){
-            $this->id = $id;
+        public function __construct($nome, $cpf, $email, $senha, $telefone, $rg, $dataNascimento, $logradouro, $cidade, $bairro, $estado, $cep){
             $this->nome = $nome;
             $this->cpf = $cpf;
             $this->email = $email;
@@ -65,7 +64,7 @@
             return $this->email;
         }
 
-        public function setEmail($email)
+        public function setEmail($email) {
             $this->email = $email;
         }
 
@@ -159,4 +158,6 @@
         public function setCep($cep) {
             $this->cep = $cep;
         }
+    }
+
 ?>

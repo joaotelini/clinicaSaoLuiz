@@ -78,7 +78,7 @@
     </section><!-- End Breadcrumbs Section -->
 
     <div class="container">
-    <form method="GET" action="." class="row g-3">
+    <form method="post" action="./Controller/pacienteCadastrar.php" class="row g-3">
 
       <div class="col-md-6">
         <label for="nome" class="form-label">Nome Completo:</label>
@@ -115,14 +115,9 @@
         <input type="date" name="dataNascimento" class="form-control" id="inputPassword4">
       </div>
 
-      <div class="col-md-6">
-        <label for="cep" class="form-label">CEP:</label>
-        <input type="number" name="cep" class="form-control" id="cep" name="cep" value="" maxlength="9" onblur="pesquisacep(this.value);">
-      </div>
-
       <div class="col-6">
-        <label for="endereco" class="form-label">Endereço</label>
-        <input type="text" name="endereco" class="form-control" id="rua" name="rua">
+        <label for="logradouro" class="form-label">Endereço</label>
+        <input type="text" name="logradouro" class="form-control" id="rua" name="rua">
       </div>
 
       <div class="col-6">
@@ -138,6 +133,11 @@
       <div class="col-md-6">
         <label for="estado" class="form-label">Estado</label>
         <input type="text" name="estado" class="form-control" id="uf" name="uf">
+      </div>
+
+      <div class="col-md-6">
+        <label for="cep" class="form-label">CEP:</label>
+        <input type="number" name="cep" class="form-control" id="cep" name="cep" value="" maxlength="9" onblur="pesquisacep(this.value);">
       </div>
 
       <div class="col-12">

@@ -1,24 +1,28 @@
 <?php
-	#Controller\usuarioObj.php
+	
 	include_once '..\Model\paciente.php';
 	include_once '..\Conexao\pacienteDAO.php';
 	
 	$nome = $_POST['nome'];
-	$cpf = $_POST['cpf']
+	$cpf = $_POST['cpf'];
 	$email = $_POST['email'];
 	$senha = $_POST['senha'];
 	$telefone = $_POST['telefone'];
 	$rg = $_POST['rg'];
-	$dataNascimento = $POST['dataNascimento'];
+	$dataNascimento = $_POST['dataNascimento'];
+	$logradouro = $_POST['logradouro'];	
+	$cidade = $_POST['cidade'];
+	$bairro = $_POST['bairro'];
+	$estado = $_POST['estado'];
 	$cep = $_POST['cep'];
 	
 	
 	//Instanciar o objeto
-	$usu = new Usuario($id, $n, $e, $s, "S");
-	$usuDAO = new UsuarioDAO();
+	$pac = new Paciente($nome, $cpf, $email, $senha, $telefone, $rg, $dataNascimento, $logradouro, $cidade, $bairro, $estado, $cep);
+	$pacDAO = new PacienteDAO();
 	
 	//Chamar o método
-	//echo $usu->Listar();
-	$usuDAO->Inserir($usu);
-	header("location: ..\View\administrativo.php?link=1");
+	$pacDAO->Inserir($pac);
+	// header("location: ../agendamento.php");
+
 ?>
