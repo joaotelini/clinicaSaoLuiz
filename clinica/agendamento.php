@@ -79,53 +79,69 @@
 
     <div class="container">
     <form method="GET" action="." class="row g-3">
+
       <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Nome Completo:</label>
-        <input type="text" class="form-control" id="inputEmail4">
-      </div><div class="col-md-6">
-        <label for="inputEmail4" class="form-label">CPF:</label>
-        <input type="text" class="form-control" id="inputEmail4">
-      </div><div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="inputEmail4">
-      </div><div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Senha:</label>
-        <input type="password" class="form-control" id="inputEmail4">
-      </div><div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Telefone/Celular:</label>
-        <input type="number" class="form-control" id="inputEmail4">
+        <label for="nome" class="form-label">Nome Completo:</label>
+        <input type="text" name="nome" class="form-control" id="inputEmail4">
+      </div>
+
+      <div class="col-md-6">
+        <label for="cpf" class="form-label">CPF:</label>
+        <input type="text" name="cpf" class="form-control" id="inputEmail4">
+      </div>
+
+      <div class="col-md-6">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" name="email" class="form-control" id="inputEmail4">
+      </div>
+
+      <div class="col-md-6">
+        <label for="senha" class="form-label">Senha:</label>
+        <input type="password" name="senha" class="form-control" id="inputEmail4">
       </div>
       
       <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">RG:</label>
-        <input type="text" class="form-control" id="inputEmail4">
+        <label for="telefone" class="form-label">Telefone/Celular:</label>
+        <input type="number" name="telefone" class="form-control" id="inputEmail4">
       </div>
+      
       <div class="col-md-6">
-        <label for="inputPassword4" class="form-label">Data de Nascimento:</label>
-        <input type="date" class="form-control" id="inputPassword4">
+        <label for="rg" class="form-label">RG:</label>
+        <input type="text" name="rg" class="form-control" id="inputEmail4">
       </div>
+
       <div class="col-md-6">
-        <label for="inputAddress" class="form-label">CEP:</label>
-        <input type="number" class="form-control" id="cep" name="cep" value="" maxlength="9" onblur="pesquisacep(this.value);">
+        <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
+        <input type="date" name="dataNascimento" class="form-control" id="inputPassword4">
       </div>
+
+      <div class="col-md-6">
+        <label for="cep" class="form-label">CEP:</label>
+        <input type="number" name="cep" class="form-control" id="cep" name="cep" value="" maxlength="9" onblur="pesquisacep(this.value);">
+      </div>
+
       <div class="col-6">
-        <label for="inputAddress2" class="form-label">Endereço</label>
-        <input type="text" class="form-control" id="rua" name="rua">
+        <label for="endereco" class="form-label">Endereço</label>
+        <input type="text" name="endereco" class="form-control" id="rua" name="rua">
       </div>
+
       <div class="col-6">
-        <label for="inputAddress2" class="form-label">Bairro</label>
-        <input type="text" class="form-control" id="bairro" name="bairro">
+        <label for="bairro" class="form-label">Bairro</label>
+        <input type="text" name="bairro" class="form-control" id="bairro" name="bairro">
       </div>
+
       <div class="col-md-6">
-        <label for="inputCity" class="form-label">Cidade</label>
-        <input type="text" class="form-control" id="cidade" name="cidade">
+        <label for="cidade" class="form-label">Cidade</label>
+        <input type="text" name="cidade" class="form-control" id="cidade" name="cidade">
       </div>
+
       <div class="col-md-6">
-        <label for="inputState" class="form-label">Estado</label>
-        <input type="text" class="form-control" id="uf" name="uf">
+        <label for="estado" class="form-label">Estado</label>
+        <input type="text" name="estado" class="form-control" id="uf" name="uf">
       </div>
+
       <div class="col-12">
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" name="action" class="btn btn-primary">Cadastrar</button>
         <p class="pCadastro">Já tem uma conta? Clique <a href="login.html">aqui</a> para fazer o Login.</p>
       </div>
     </form>

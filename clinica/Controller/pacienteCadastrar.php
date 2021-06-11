@@ -3,10 +3,15 @@
 	include_once '..\Model\paciente.php';
 	include_once '..\Conexao\pacienteDAO.php';
 	
-	$id = $_POST['id'];
-	$n = $_POST['nome'];
-	$e = $_POST['mail'];
-	$s = $_POST['pas'];
+	$nome = $_POST['nome'];
+	$cpf = $_POST['cpf']
+	$email = $_POST['email'];
+	// $senha = $_POST['senha'];
+	$telefone = $_POST['telefone'];
+	$rg = $_POST['rg'];
+	$dataNascimento = $POST['dataNascimento'];
+	$cep = $_POST['cep'];
+	
 	
 	//Instanciar o objeto
 	$usu = new Usuario($id, $n, $e, $s, "S");
