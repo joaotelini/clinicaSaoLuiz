@@ -22,6 +22,7 @@
 	$pacDAO = new PacienteDAO();
 	
 	//Chamar o método
+	print_r($pac);
 	$pacDAO->Inserir($pac);
 	// header("location: ../agendamento.php");
 

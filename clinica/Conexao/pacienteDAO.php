@@ -28,7 +28,7 @@
 					return $sp_sql->execute();
 				}
 				else{
-					return false;
+					return "bom dia";
 				}				
 
             } catch (Exception $e) {
