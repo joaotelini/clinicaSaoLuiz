@@ -28,14 +28,30 @@
 					return $sp_sql->execute();
 				}
 				else{
-					return "bom dia";
+					return false;
 				}				
 
             } catch (Exception $e) {
                 print $e->getMessage();
-                echo "ola";
             }
         }
+
+        public function Acessar($email, $senha) {
+            try {
+
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("SELECT email, senha FROM paciente WHERE email = ? and senha = md5(?)");
+                $sql->execute(array($email, $senha));
+
+                $info = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+                return $info;
+
+            } catch (Exception $e) {
+                print $e->getMessage();
+            }
+        }
+
     }
 
 ?>
