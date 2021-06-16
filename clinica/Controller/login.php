@@ -16,7 +16,11 @@
     $pacDAO = new PacienteDAO();
     $info = ($pacDAO->Acessar($email, $senha));
 
-    $row = mysql_num_rows($info);
+    if ($info == false) {
+        header('location: ../login.html');
+    } else  {
+        header('location: ../index.php');
+    }
     // header('location: ../conexao/.php');
 
 ?>
