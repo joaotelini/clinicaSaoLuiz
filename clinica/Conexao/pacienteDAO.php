@@ -46,7 +46,6 @@
                 $info = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                 return $info;
-                // return $sql;
 
             } catch (Exception $e) {
                 print $e->getMessage();
