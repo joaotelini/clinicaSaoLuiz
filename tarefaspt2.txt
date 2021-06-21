@@ -1,0 +1,19 @@
+> dashboard
+> departamento
+> cadastrar, gerenciar (apagar, editar)
+
+> dashboard
+> agendamentos
+> gerenciar
+
+> dashboard
+> especialista
+> cadastrar, gerenciar (apagar, editar), listar
+
+> dashboard
+> pacientes
+> cadastrar, gerenciar (apagar, edtiar)
+
+> dashboard
+> serviços
+> cadastrar, gerenciar (apagar, listar)
