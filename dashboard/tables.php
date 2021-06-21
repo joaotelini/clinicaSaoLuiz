@@ -62,7 +62,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Cadastrar Departamentos</span></a>
+                    <span>Departamentos</span></a>
             </li>
 
             <li class="nav-item">
