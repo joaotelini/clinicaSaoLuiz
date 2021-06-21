@@ -122,8 +122,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Administrador(a)</span>
-                                <img class="assets/img-profile rounded-circle"
-                                    src="assets/img/undraw_profile.svg">
+                                <img class="assets/img-profile rounded-circle" src="assets/img/undraw_profile.svg">
                         </a>
                         
                     <!-- Dropdown - User Information -->
@@ -147,32 +146,72 @@
                 
                 <div class="container">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h2>Cadastro de Departamento</h2>
+                        <h2>Gerenciamento dos Departamentos</h2>
                     </div>
                 </div>
                 </section><!-- End Breadcrumbs Section -->
 
                 <div class="container">
 
-                    <form method="GET" action="." class="row g-3">
-
-                        <div class="col-md-6">
-                            <label class="form-label">Nome do Departamento:</label>
-                            <input type="text" class="form-control">
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Descrição:</label>
-                            <textarea class="form-control"v cols="15" rows="1"></textarea>
-                        </div>
-
-                        <br><br>
-
-                        <div class="col-12 espaco">
-                            <button type="submit" class="btn btn-primary">Cadastrar</button>
-                        </div>
-
-                    </form>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nome do Departamento</th>
+                                    <th>Descrição</th>
+                                    <th>Ações</th>                                           
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Nome do Departamento</th>
+                                    <th>Descrição</th>
+                                    <th>Ações</th>    
+                                </tr>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <tr>
+                                    <td>Cardiologia</td>
+                                    <td>A cardiologia em si é definida como um ramo da medicina responsável por estudar, cuidar e tratar o coração e os vasos sanguíneos. Ou seja, é uma das especialidades da medicina que cuida do coração e do sistema circulatório. A cardiologia é principalmente dividida em duas grandes áreas, assim como toda a medicina: a preventiva e a curativa. </td>
+                                    <td>Editar, Apagar</td>
+                                </tr>
+                                <tr>
+                                    <td>Odontologia</td>
+                                    <td>O profissional formado em Odontologia é responsável pela saúde bucal das pessoas. Ele atua na prevenção, diagnóstico e tratamento de problemas relacionados à mordida, gengiva e dentes. O dentista realiza tratamentos estéticos e também intervenções relacionada à saúde bucal. Ele está apto a identificar doenças através de exames clínicos, radiográficos e laboratoriais e, a partir do diagnóstico, propor o tratamento mais adequado e receitar medicamentos.</td> 
+                                    <td>Editar, Apagar</td>
+                                </tr>
+                                <tr>
+                                    <td>Ortopedia</td>
+                                    <td>A ortopedia ou traumato-ortopedia é a especialidade médica encarregada de tratar lesões, traumas e algumas deformidades que refletem no aparelho locomotor de um indivíduo, como tendões, ossos, ligamentos e articulações. Esta área também está relacionada à traumatologia, que trata contusões causadas por pancadas, como as fraturas ósseas.</td>
+                                    <td>Editar, Apagar</td>                                            
+                                </tr>
+                                <tr>
+                                    <td>Nutricionista</td>
+                                    <td>De forma resumida, o nutricionista elabora planos alimentares para indivíduos ou grupos de indivíduos a partir de um diagnóstico nutricional. </td>
+                                    <td>Editar, Apagar</td>
+                                </tr>
+                                <tr>
+                                  <td>Otorrinolaringologia</td>
+                                  <td>A otorrinolaringologia é a especialidade médica responsável pelos cuidados dedicados ao nariz, ouvidos, seios da face e garganta de um indivíduo. Como as três áreas são relativamente próximas uma das outras e interligadas por dutos e canais, é possível que certas condições médicas afetem uma ou mais cavidades e é de responsabilidade do médico com esse tipo de especialização realizar avaliações, diagnósticos e tratamentos para devolver ou aprimorar a qualidade de vida de um paciente.</td>
+                                  <td>Editar, Apagar</td>
+                                </tr>
+                                <tr>
+                                  <td>Dermatologista</td>
+                                  <td>A Dermatologia é uma especialidade médica cuja área de conhecimento se concentra no diagnóstico, prevenção e tratamento de doenças e afecções relacionadas à pele, pelos, mucosas, cabelo e unhas. É também especialidade indicada para atuação em procedimentos médicos estéticos, cirúrgicos, oncológicos.</td>
+                                  <td>Editar, Apagar</td>
+                                </tr>
+                                <tr>
+                                  <td>Gerontologia</td>
+                                  <td>A palavra Gerontologia deriva da língua grega e significa estudo do envelhecimento. O aluno do curso de Gerontologia estuda as mudanças ocorridas no processo de envelhecimento do ser humano e procura adaptar essas mudanças para que o idoso tenha uma vida mais tranquila nos aspectos físicos, psicológicos e biológicos.</td>
+                                  <td>Editar, Apagar</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
                 </div>
 
