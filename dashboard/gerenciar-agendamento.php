@@ -66,7 +66,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="especialista.html">
+                <a class="nav-link" href="especialistas.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Especialistas</span></a>
             </li>
