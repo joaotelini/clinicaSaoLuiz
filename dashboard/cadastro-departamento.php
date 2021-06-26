@@ -87,6 +87,18 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="pacientes.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Pacientes</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="servicos.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Serviços</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
