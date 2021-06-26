@@ -12,7 +12,7 @@
 
 > dashboard
 > pacientes
-> cadastrar, gerenciar (apagar, edtiar)
+> gerenciar (apagar, edtiar)
 
 > dashboard
 > serviços
