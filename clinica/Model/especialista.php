@@ -1,32 +1,25 @@
 <?php
 
     class Especialista {
+        
         private $id;
         private $nome;
-        private $especialidade;
-        private $email;
         private $conselhoRegional;
+        private $email;
+        private $idDepartamento;
         private $telefone;
         private $cpf;
-        private $rg;
-        private $logradouro;
-        private $cidade;
-        private $bairro;
-        private $estado;
 
-        public function __construct($id, $nome, $especialidade, $email, $conselhoRegional, $telefone, $cpf, $rg, $logradouro, $cidade, $bairro, $estado) {
+        public function __construct($id, $nome, $cr, $email, $idd, $tele, $cpf) {
+
             $this->id = $id;
             $this->nome = $nome;
-            $this->especialidade = $especialidade;
+            $this->conselhoRegional = $cr;
             $this->email = $email;
-            $this->conselhoRegional = $conselhoRegional;
-            $this->telefone = $telefone;
+            $this->idDepartamento = $idd;
+            $this->telefone = $tele;
             $this->cpf = $cpf;
-            $this->rg = $rg;
-            $this->logradouro = $logradouro;
-            $this->cidade = $cidade;
-            $this->bairro = $bairro;
-            $this->estado = $estado;
+
         }
 
         // =============id================
@@ -48,16 +41,6 @@
         public function setNome($nome) {
             $this->nome = $nome;
         }
-
-        // ====================especialidade==================
-
-        public function getEspecialidade() {
-            return $this->especialidade;
-        }
-
-        public function setEspecialidade($especialidade) {
-            $this->especialidade = $especialidade;
-        } 
 
         // ======================email=================
 
@@ -98,54 +81,12 @@
             $this->cpf = $cpf;
         }
 
-        // =======================rg=================
-
-        public function getRg() {
-            return $this->rg;
+        public function getIdDepartamento() {
+            return $this->idDepartamento;
         }
 
-        public function setRg($rg) {
-            $this->rg = $rg;
-        }
-
-        //================logradouro=====================
-
-        public function getLogradouro() {
-            return $this->logradouro;
-        }
-
-        public function setLogradouuro($logradouro) {
-            $this->logradouro = $logradouro;
-        }
-
-       //=====================cidade======================
-       
-        public function getCidade() {
-           return $this->cidade;
-        }
-
-        public function setCidade($cidade) {
-            $this->cidade = $cidade;
-        }
-
-        //========================bairro========================
-
-        public function getBairro() {
-            return $this->bairro;
-        }
-
-        public function setBairro($bairro) {
-            $this->bairro = $bairro;
-        }
-        
-        //===================estado=================
-
-        public function getEstado() {
-            return $this->estado;
-        }
-
-        public function setEstado($estado) {
-            $this->estado = $estado;
+        public function setIdDepartamento($idd) {
+            $this->getIdDepartamento = $idd;
         }
 
     }
