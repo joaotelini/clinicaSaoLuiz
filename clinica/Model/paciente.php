@@ -2,19 +2,17 @@
     class Paciente {
         private $id;
         private $nome;
+        private $rg;
         private $cpf;
         private $email;
         private $senha;
         private $telefone;
-        private $rg;
         private $dataNascimento;
         private $logradouro;
-        private $cidade;
-        private $bairro;
-        private $estado;
+        private $numero;
         private $cep;
 
-        public function __construct($nome, $cpf, $email, $senha, $telefone, $rg, $dataNascimento, $logradouro, $cidade, $bairro, $estado, $cep){
+        public function __construct($nome, $cpf, $email, $senha, $telefone, $rg, $dataNascimento, $logradouro, $numero, $cep){
             $this->nome = $nome;
             $this->cpf = $cpf;
             $this->email = $email;
@@ -23,9 +21,7 @@
             $this->rg = $rg;
             $this->dataNascimento = $dataNascimento;
             $this->logradouro = $logradouro;
-            $this->cidade = $cidade;
-            $this->bairro = $bairro;
-            $this->estado = $estado;
+            $this->numero = $numero;
             $this->cep = $cep;
         }
         // ===========id=============
@@ -118,35 +114,14 @@
         public function setLogradouuro($logradouro) {
             $this->logradouro = $logradouro;
         }
+        //========================numero==================
 
-       //=====================cidade======================
-       
-        public function getCidade() {
-           return $this->cidade;
+        public function getNumero(){
+            return $this->numero;
         }
 
-        public function setCidade($cidade) {
-            $this->cidade = $cidade;
-        }
-
-        //========================bairro========================
-
-        public function getBairro() {
-            return $this->bairro;
-        }
-
-        public function setBairro($bairro) {
-            $this->bairro = $bairro;
-        }
-        
-        //===================estado=================
-
-        public function getEstado() {
-            return $this->estado;
-        }
-
-        public function setEstado($estado) {
-            $this->estado = $estado;
+        public function setNumero($numero) {
+            $this->numero = $numero;
         }
         
         //====================cep==================
