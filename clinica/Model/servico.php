@@ -2,60 +2,70 @@
 
     class Servico {
 
-        private $id;
-        private $area;
-        private $tipoServico;
-        private $duracaoMedia;
-        private $preco;
+        private $idServico;
+        private $idDepartamento;
+        private $nomeServico;
+        private $descricao;
+        private $valor;
+        private $duracao;
 
-        public function __construct($id, $area, $tipoServico, $duracaoMedia, $preco) {
+        public function __construct($ids, $idd, $ns, $des, $val, $dura) {
 
-            $this->id = $id;
-            $this->area = $area;
-            $this->tipoServico = $tipoServico;
-            $this->duracaoMedia = $duracaoMedia;
-            $this->preco = $preco;
+            $this->idServico = $ids;
+            $this->idDepartamento = $idd;
+            $this->nomeServico = $ns;
+            $this->descricao = $des;
+            $this->valor = $val;
+            $this->duracao = $dura;
 
         }
 
-        public function getId() {
-            return $this->id;
+        public function getIdServico() {
+            return $this->idServico;
         }
 
-        public function setId($id) {
-            $this->id = $id;
+        public function setIdServico($ids) {
+            $this->idServico = $ids;
         }
 
-        public function getArea() {
-            return $this->area;
+        public function getIdDepartamento() {
+            return $this->idDepartamento;
         }
 
-        public function setArea($area) {
-            $this->area = $area;
+        public function setIdDepartamento($idd) {
+            $this->idDepartamento = $idd;
+        } 
+
+        public function getNomeServico() {
+            return $this->nomeServico;
         }
 
-        public function getTipoServico() {
-            return $this->TipoServico;
+        public function setNomeServico($ns) {
+            $this->nomeServico = $ns;
         }
 
-        public function setTipoServico($tipoServico) {
-            $this->tipoServico = $tipoServico;
+        public function getDescricao() {
+            return $this->descricao;
         }
 
-        public function getDuracaoMedia() {
-            return $this->duracaoMedia
+        public function setDescricao($des) {
+            $this->descricao = $des;
         }
 
-        public function setDuracaoMedia($duracaoMedia) {
-            $this->duracaoMedia = $duracaoMedia;
+        public function getValor() {
+            return $this->valor;
         }
 
-        public function getPreco() {
-            return $this->preco;
+        public function setValor($val) {
+            $this->valor = $valor;
         }
 
-        public function setPreco($preco) {
-            $this->preco - $preco;
+        public function getDuracao() {
+            return $this->duracao;
+        }
+
+        public function setDuracao($dura) {
+            $this->duracao = $dura;
         }
 
     }
