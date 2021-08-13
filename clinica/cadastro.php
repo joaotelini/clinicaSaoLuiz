@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -175,47 +179,120 @@
     </section><!-- End Breadcrumbs Section -->
 
     <div class="container">
-    <form method="GET" action="." class="row g-3">
+    <form method="post" action="../Controller/pacienteCadastrar.php" class="row g-3">
+
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Nome Completo:</label>
-        <input type="text" class="form-control" id="inputEmail4">
-      </div><div class="col-md-6">
+        <input type="text" name="nome" class="form-control" id="inputEmail4">
+        <?php
+          if(!empty($_SESSION['vazio_nome'])){
+            echo " <p style='color: red;'>". $_SESSION['vazio_nome']."</p>";
+            unset($_SESSION['vazio_nome']);
+          }
+        ?>
+      </div>
+
+      <div class="col-md-6">
         <label for="inputEmail4" class="form-label">CPF:</label>
-        <input type="text" data-id="NrCpf" class="form-control" id="NrCpf" maxlength="14">
-        <!-- <input type="text" id="input" /><span id="resposta"></span> -->
-      </div><div class="col-md-6">
+        <input type="text" name="cpf" data-id="NrCpf" class="form-control" id="NrCpf" maxlength="14">
+        <?php
+          if (!empty($_SESSION['vazio_cpf'])) {
+            echo "<p style='color: red;'>". $_SESSION['vazio_cpf']."</p>";
+            unset($_SESSION['vazio_cpf']);
+          }
+        ?>
+      </div>
+
+      <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Email:</label>
-        <input type="email" class="form-control" id="inputEmail4">
-      </div><div class="col-md-6">
+        <input type="text" name="email" class="form-control" id="inputEmail4">
+        <?php
+          if (!empty($_SESSION['vazio_email'])) {
+            echo "<p style='color: red;'>". $_SESSION['vazio_email']."</p>";
+            unset($_SESSION['vazio_email']);
+          }
+        ?>
+      </div>
+
+      <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Senha:</label>
-        <input type="password" class="form-control" id="inputEmail4">
-      </div><div class="col-md-6">
+        <input type="password" name="senha" class="form-control" id="inputEmail4">
+        <?php
+          if (!empty($_SESSION['vazio_senha'])) {
+            echo "<p style='color: red;'>". $_SESSION['vazio_senha']."</p>";
+            unset($_SESSION['vazio_senha']);
+          }
+        ?>
+      </div>
+
+      <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Telefone/Celular:</label>
-        <input type="number" class="form-control" id="inputEmail4">
+        <input type="number" name="telefone" class="form-control" id="inputEmail4">
+        <?php
+          if (!empty($_SESSION['vazio_telefone'])) {
+            echo "<p style='color: red;'>". $_SESSION['vazio_telefone']."</p>";
+            unset($_SESSION['vazio_telefone']);
+          }
+        ?>
       </div>
       
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">RG:</label>
-        <input type="text" class="form-control" id="inputEmail4">
+        <input type="text" name="rg" class="form-control" id="inputEmail4">
+        <?php
+          if (!empty($_SESSION['vazio_rg'])) {
+            echo "<p style='color: red;'>". $_SESSION['vazio_rg']."</p>";
+            unset($_SESSION['vazio_rg']);
+          }
+        ?>
       </div>
+
       <div class="col-md-6">
         <label for="inputPassword4" class="form-label">Data de Nascimento:</label>
-        <input type="date" class="form-control" id="inputPassword4">
+        <input type="date" name="dataNascimento" class="form-control" id="inputPassword4">
+        <?php
+          if (!empty($_SESSION['vazio_dataNascimento'])) {
+            echo "<p style='color: red;'>". $_SESSION['vazio_dataNascimento']."</p>";
+            unset($_SESSION['vazio_dataNascimento']);
+          }
+        ?>
       </div>
+
       <div class="col-md-6">
         <label for="inputAddress" class="form-label">CEP:</label>
-        <input type="number" class="form-control" id="cep" name="cep">
+        <input type="number" name="cep" class="form-control" id="cep" name="cep">
+        <?php
+          if (!empty($_SESSION['vazio_cep'])) {
+            echo "<p style='color: red;'>". $_SESSION['vazio_cep']."</p>";
+            unset($_SESSION['vazio_cep']);
+          }
+        ?>
       </div>
+
       <div class="col-6">
         <label for="inputAddress2" class="form-label">Logradouro</label>
-        <input type="text" class="form-control" name="lograduro">
+        <input type="text" name="logradouro" class="form-control" name="lograduro">
+        <?php
+          if (!empty($_SESSION['vazio_logradouro'])) {
+            echo "<p style='color: red;'>". $_SESSION['vazio_logradouro']."</p>";
+            unset($_SESSION['vazio_logradouro']);
+          }
+        ?>
       </div>
+
       <div class="col-md-6">
         <label for="inputState" class="form-label">Número</label>
-        <input type="number" class="form-control" name="numero">
+        <input type="number" name="numero" class="form-control" name="numero">
+        <?php
+          if (!empty($_SESSION['vazio_numero'])) {
+            echo "<p style='color: red;'>". $_SESSION['vazio_numero']."</p>";
+            unset($_SESSION['vazio_numero']);
+          }
+        ?>
       </div>
+
       <div class="col-12">
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" name="action" class="btn btn-primary">Cadastrar</button>
         <p class="pCadastro">Já tem uma conta? Clique <a href="login.html">aqui</a> para fazer o Login.</p>
       </div>
     </form>

@@ -6,15 +6,7 @@
         public function Inserir(Paciente $pac) {
             try{
 
-
-
-                $pdo = Conexao::getIntance();
-					
-					return $sp_sql->execute();
-				}
-				else{
-					return false;
-				}				
+                
 
             } catch (Exception $e) {
                 print $e->getMessage();
