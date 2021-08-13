@@ -183,7 +183,13 @@
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Nome Completo:</label>
-        <input type="text" name="nome" class="form-control" id="inputEmail4">
+        <input type="text" name="nome" class="form-control" id="inputEmail4"
+         <?php
+          if(!empty($_SESSION['value_nome'])){
+            echo "value='". $_SESSION['value_nome']."'";
+            unset($_SESSION['value_nome']);
+          }
+        ?>>
         <?php
           if(!empty($_SESSION['vazio_nome'])){
             echo " <p style='color: red;'>". $_SESSION['vazio_nome']."</p>";
@@ -194,7 +200,14 @@
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">CPF:</label>
-        <input type="text" name="cpf" data-id="NrCpf" class="form-control" id="NrCpf" maxlength="14">
+        <input type="text" name="cpf" data-id="NrCpf" class="form-control" id="NrCpf" maxlength="14"
+        <?php
+          if(!empty($_SESSION['value_cpf'])){
+            echo "value='". $_SESSION['value_cpf']."'";
+            unset($_SESSION['value_cpf']);
+          }
+        ?>
+        >
         <?php
           if (!empty($_SESSION['vazio_cpf'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_cpf']."</p>";
@@ -205,7 +218,14 @@
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Email:</label>
-        <input type="text" name="email" class="form-control" id="inputEmail4">
+        <input type="text" name="email" class="form-control" id="inputEmail4"
+        <?php
+          if(!empty($_SESSION['value_email'])){
+            echo "value='". $_SESSION['value_email']."'";
+            unset($_SESSION['value_email']);
+          }
+        ?>
+        >
         <?php
           if (!empty($_SESSION['vazio_email'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_email']."</p>";
@@ -216,7 +236,14 @@
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Senha:</label>
-        <input type="password" name="senha" class="form-control" id="inputEmail4">
+        <input type="password" name="senha" class="form-control" id="inputEmail4"
+        <?php
+          if(!empty($_SESSION['value_senha'])){
+            echo "value='". $_SESSION['value_senha']."'";
+            unset($_SESSION['value_senha']);
+          }
+        ?>
+        >
         <?php
           if (!empty($_SESSION['vazio_senha'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_senha']."</p>";
@@ -227,7 +254,14 @@
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Telefone/Celular:</label>
-        <input type="number" name="telefone" class="form-control" id="inputEmail4">
+        <input type="number" name="telefone" class="form-control" id="inputEmail4"
+        <?php
+          if(!empty($_SESSION['value_telefone'])){
+            echo "value='". $_SESSION['value_telefone']."'";
+            unset($_SESSION['value_telefone']);
+          }
+        ?>
+        >
         <?php
           if (!empty($_SESSION['vazio_telefone'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_telefone']."</p>";
@@ -238,7 +272,14 @@
       
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">RG:</label>
-        <input type="text" name="rg" class="form-control" id="inputEmail4">
+        <input type="text" name="rg" class="form-control" id="inputEmail4"
+        <?php
+          if(!empty($_SESSION['value_rg'])){
+            echo "value='". $_SESSION['value_rg']."'";
+            unset($_SESSION['value_rg']);
+          }
+        ?>
+        >
         <?php
           if (!empty($_SESSION['vazio_rg'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_rg']."</p>";
@@ -249,7 +290,14 @@
 
       <div class="col-md-6">
         <label for="inputPassword4" class="form-label">Data de Nascimento:</label>
-        <input type="date" name="dataNascimento" class="form-control" id="inputPassword4">
+        <input type="date" name="dataNascimento" class="form-control" id="inputPassword4"
+        <?php
+          if(!empty($_SESSION['value_dataNascimento'])){
+            echo "value='". $_SESSION['value_dataNascimento']."'";
+            unset($_SESSION['value_dataNascimento']);
+          }
+        ?>
+        >
         <?php
           if (!empty($_SESSION['vazio_dataNascimento'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_dataNascimento']."</p>";
@@ -260,7 +308,14 @@
 
       <div class="col-md-6">
         <label for="inputAddress" class="form-label">CEP:</label>
-        <input type="number" name="cep" class="form-control" id="cep" name="cep">
+        <input type="" name="cep" class="form-control" id="cep"
+        <?php
+          if (!empty($_SESSION['value_cep'])) {
+            echo "value='". $_SESSION['value_cep']."'";
+            unset($_SESSION['value_cep']);
+          }
+        ?>
+        >
         <?php
           if (!empty($_SESSION['vazio_cep'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_cep']."</p>";
@@ -271,7 +326,14 @@
 
       <div class="col-6">
         <label for="inputAddress2" class="form-label">Logradouro</label>
-        <input type="text" name="logradouro" class="form-control" name="lograduro">
+        <input type="text" name="logradouro" class="form-control"
+        <?php
+          if(!empty($_SESSION['value_logradouro'])){
+            echo "value='". $_SESSION['value_logradouro']."'";
+            unset($_SESSION['value_logradouro']);
+          }
+        ?>
+        >
         <?php
           if (!empty($_SESSION['vazio_logradouro'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_logradouro']."</p>";
@@ -282,7 +344,14 @@
 
       <div class="col-md-6">
         <label for="inputState" class="form-label">Número</label>
-        <input type="number" name="numero" class="form-control" name="numero">
+        <input type="number" name="numero" class="form-control"
+        <?php
+          if(!empty($_SESSION['value_numero'])){
+            echo "value='". $_SESSION['value_numero']."'";
+            unset($_SESSION['value_numero']);
+          }
+        ?>
+        >
         <?php
           if (!empty($_SESSION['vazio_numero'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_numero']."</p>";
