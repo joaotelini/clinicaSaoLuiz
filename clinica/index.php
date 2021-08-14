@@ -72,7 +72,9 @@
           <li><a class="nav-link scrollto" href="#departments">Departamentos</a></li>
           <li><a class="nav-link scrollto" href="#doctors">Funcionários</a></li>  
           <li><a class="nav-link scrollto" href="#contact">Contato</a></li>
-          <li><a class="nav-link scrollto" href="cadastro.php">Realizar Agendamento</a></li> <!--Deixei sem destaque pq nao ficava responsivo-->
+          <li><a class="nav-link scrollto" href="cadastro.php">Cadastre-se</a></li>
+          <li><a class="nav-link scrollto" href="#">Realizar Agendamento</a></li>
+           <!--Deixei sem destaque pq nao ficava responsivo-->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
