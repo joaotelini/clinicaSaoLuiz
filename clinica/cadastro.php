@@ -200,7 +200,7 @@
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">CPF:</label>
-        <input type="text" name="cpf" data-id="NrCpf" class="form-control" id="NrCpf" maxlength="14"
+        <input type="number" name="cpf" data-id="NrCpf" class="form-control" id="NrCpf" maxlength="14"
         <?php
           if(!empty($_SESSION['value_cpf'])){
             echo "value='". $_SESSION['value_cpf']."'";
@@ -212,6 +212,12 @@
           if (!empty($_SESSION['vazio_cpf'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_cpf']."</p>";
             unset($_SESSION['vazio_cpf']);
+          }
+        ?>
+        <?php
+          if (!empty($_SESSION['invalido_cpf'])) {
+            echo "<p style='color: red;'>". $_SESSION['invalido_cpf']."</p>";
+            unset($_SESSION['invalido_cpf']);
           }
         ?>
       </div>
@@ -320,6 +326,12 @@
           if (!empty($_SESSION['vazio_cep'])) {
             echo "<p style='color: red;'>". $_SESSION['vazio_cep']."</p>";
             unset($_SESSION['vazio_cep']);
+          }
+        ?>
+        <?php
+          if (!empty($_SESSION['invalido_cep'])) {
+            echo "<p style='color: red;'>". $_SESSION['invalido_cep']."</p>";
+            unset($_SESSION['invalido_cep']);
           }
         ?>
       </div>
