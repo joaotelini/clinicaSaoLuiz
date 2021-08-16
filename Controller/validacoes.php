@@ -30,8 +30,27 @@ function validaCPF($cpf) {
 }
 
 function validaCep($cep) {
+    
+    if (preg_match('/[0-9]{5,5}([-]?[0-9]{3})?$/', $cep)){
+        return true;
+    }
+    else{
+        return false;
+    }
 
-    if(!preg_match('/^[0-9]{5,5}([- ]?[0-9]{3,3})?$/', $cep)) {
+// Saída CEP válido 
+
+}
+
+function validaTelefone($telefone){
+    $telefone= trim(str_replace('/', '', str_replace(' ', '', str_replace('-', '', str_replace(')', '', str_replace('(', '', $telefone))))));
+
+    $regexTelefone = "^[0-9]{11}$";
+
+    $regexCel = '/[0-9]{2}[6789][0-9]{3,4}[0-9]{4}/';
+    if (preg_match($regexCel, $telefone)) {
+        return true;
+    }else{
         return false;
     }
 }

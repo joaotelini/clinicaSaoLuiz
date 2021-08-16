@@ -16,7 +16,7 @@
 		$_SESSION['value_nome'] = $_POST['nome'];
 	}
 
-	$cpf = $_POST['cpf'];
+	$cpf = preg_replace( '/[^0-9]/is', '', $_POST['cpf']);  
 
 	if (empty($_POST['cpf'])) {
 
@@ -60,6 +60,12 @@
 	if (empty($_POST['telefone'])) {
 
 		$_SESSION['vazio_telefone'] = "Campo Telefone é Obrigatório";
+		header('location: ../clinica/cadastro.php');
+
+	} else if (validaTelefone($telefone) == false) {
+
+		$_SESSION['invalido_telefone'] = "Telefone Inválido";
+		$_SESSION['value_telefone'] = $_POST['telefone'];
 		header('location: ../clinica/cadastro.php');
 
 	} else {
@@ -127,15 +133,16 @@
 		$_SESSION['value_cep'] = $_POST['cep'];
 	}
 	
+	echo $cpf;
 	
 	//Instanciar o objeto
-	$pac = new Paciente($nome, $cpf, $email, $senha, $telefone, $rg, $dataNascimento, $logradouro, $numero, $cep);
+	$pac = new Paciente($nome, $rg, $cpf, $email, $senha, $telefone, $dataNascimento, $logradouro, $numero, $cep);
 	$pacDAO = new PacienteDAO();
 	
 	//Chamar o método
 	
 	$pacDAO->Inserir($pac);
 	// header("location: ../login.php");
-	}
+}
 
 ?>

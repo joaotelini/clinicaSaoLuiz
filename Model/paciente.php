@@ -1,4 +1,6 @@
 <?php
+    include_once '..\Controller\validacoes.php';
+
     class Paciente {
         private $id;
         private $nome;
@@ -12,17 +14,17 @@
         private $numero;
         private $cep;
 
-        public function __construct($nome, $cpf, $email, $senha, $telefone, $rg, $dataNascimento, $logradouro, $numero, $cep){
-            $this->nome = $nome;
-            $this->cpf = $cpf;
-            $this->email = $email;
-            $this->senha = $senha;
-            $this->telefone = $telefone;
-            $this->rg = $rg;
-            $this->dataNascimento = $dataNascimento;
-            $this->logradouro = $logradouro;
-            $this->numero = $numero;
-            $this->cep = $cep;
+        public function __construct($nome, $rg, $cpf, $email, $senha, $telefone, $dataNascimento, $logradouro, $numero, $cep){
+            $this->setNome($nome);
+            $this->setRg($rg);
+            $this->setCpf($cpf);
+            $this->setEmail($email);
+            $this->setSenha($senha);
+            $this->setTelefone($telefone);
+            $this->setDataNascimento($dataNascimento);
+            $this->setLogradouro($logradouro);
+            $this->setNumero($numero);
+            $this->setCep($cep);
         }
         // ===========id=============
 
@@ -51,7 +53,11 @@
         }
 
         public function setCpf($cpf) {
-            $this->cpf = $cpf;
+            if (validaCPF($cpf) == true) {
+                $this->cpf = $cpf;
+            } else {
+                return false;
+            }
         }
 
         // ===========email==============
@@ -82,7 +88,11 @@
         }
 
         public function setTelefone($telefone) {
-            $this->telefone = $telefone;
+            if (validaTelefone($telefone) == true) {
+                $this->telefone = $telefone;
+            } else {
+                return false;
+            }
         } 
 
         // ===============rg=====================
@@ -111,7 +121,7 @@
             return $this->logradouro;
         }
 
-        public function setLogradouuro($logradouro) {
+        public function setLogradouro($logradouro) {
             $this->logradouro = $logradouro;
         }
         //========================numero==================
@@ -131,7 +141,10 @@
         }
 
         public function setCep($cep) {
-            $this->cep = $cep;
+            if (validaCep($cep) == true) {
+                $this->cep = $cep;
+            }
+            return false;
         }
 
     }

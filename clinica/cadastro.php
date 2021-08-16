@@ -200,7 +200,7 @@
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">CPF:</label>
-        <input type="number" name="cpf" data-id="NrCpf" class="form-control" id="NrCpf" maxlength="14"
+        <input type="text" name="cpf" data-id="NrCpf" class="form-control" id="NrCpf" maxlength="14"
         <?php
           if(!empty($_SESSION['value_cpf'])){
             echo "value='". $_SESSION['value_cpf']."'";
@@ -260,7 +260,7 @@
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Telefone/Celular:</label>
-        <input type="number" name="telefone" class="form-control" id="inputEmail4"
+        <input type="text" name="telefone" class="form-control" id="inputEmail4"
         <?php
           if(!empty($_SESSION['value_telefone'])){
             echo "value='". $_SESSION['value_telefone']."'";
@@ -273,7 +273,13 @@
             echo "<p style='color: red;'>". $_SESSION['vazio_telefone']."</p>";
             unset($_SESSION['vazio_telefone']);
           }
+
+          if (!empty($_SESSION['invalido_telefone'])) {
+            echo "<p style='color: red;'>". $_SESSION['invalido_telefone']."</p>";
+            unset($_SESSION['invalido_telefone']);
+          }
         ?>
+
       </div>
       
       <div class="col-md-6">
@@ -314,7 +320,7 @@
 
       <div class="col-md-6">
         <label for="inputAddress" class="form-label">CEP:</label>
-        <input type="" name="cep" class="form-control" id="cep"
+        <input type="text" name="cep" class="form-control" id="cep"
         <?php
           if (!empty($_SESSION['value_cep'])) {
             echo "value='". $_SESSION['value_cep']."'";

@@ -6,7 +6,19 @@
         public function Inserir(Paciente $pac) {
             try{
 
-                
+                if ((!empty($pac->getNome())) && (!empty($pac->getRg())) && (!empty($pac->getCpf())) && (!empty($pac->getEmail())) && (!empty($pac->getSenha())) && (!empty($pac->getTelefone())) && (!empty($pac->getDataNascimento())) && (!empty($pac->getLogradouro())) && (!empty($pac->getNumero())) && (!empty($pac->getCep()))) {
+
+                    $pdo = Conexao::getInstance();
+    
+                    $sql = $pdo->prepare("INSERT INTO `paciente` VALUE (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $sql->execute(array($pac->getNome(), $pac->getRg(), $pac->getCpf(), $pac->getEmail(), $pac->getSenha(), $pac->getTelefone(), $pac->getDataNascimento(), $pac->getLogradouro(), $pac->getNumero(), $pac->getCep()));
+
+                    return true;
+
+                } else {
+                    return false;
+                }
+
 
             } catch (Exception $e) {
                 print $e->getMessage();
