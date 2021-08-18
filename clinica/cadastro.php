@@ -432,9 +432,10 @@
     <script src="assets/js/main.js"></script>
     <?php
       if (!empty($_SESSION['cadastro_sucesso'])) {
-        echo "<script>alert('".$_SESSION['cadastro_sucesso']."')</script>";
+        echo "<script>alert('".$_SESSION['cadastro_sucesso']."');
+          location.reload();
+        </script>";
         unset($_SESSION['cadastro_sucesso']);
-        header('Refresh:0');
       }
     ?>
     
