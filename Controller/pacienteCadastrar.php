@@ -133,15 +133,19 @@
 		$_SESSION['value_cep'] = $_POST['cep'];
 	}
 	
-	echo $cpf;
-	
 	//Instanciar o objeto
 	$pac = new Paciente($nome, $rg, $cpf, $email, $senha, $telefone, $dataNascimento, $logradouro, $numero, $cep);
 	$pacDAO = new PacienteDAO();
 	
 	//Chamar o método
 	
-	$pacDAO->Inserir($pac);
+	if ($pacDAO->Inserir($pac) == true) {
+		$_SESSION['cadastro_sucesso'] = "Você foi cadastrado com sucesso";
+		header('location: ../clinica/cadastro.php');
+		// echo $_SESSION['cadastro_sucesso'];
+	}
+
+
 	// header("location: ../login.php");
 }
 

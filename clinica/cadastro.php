@@ -430,6 +430,13 @@
   
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <?php
+      if (!empty($_SESSION['cadastro_sucesso'])) {
+        echo "<script>alert('".$_SESSION['cadastro_sucesso']."')</script>";
+        unset($_SESSION['cadastro_sucesso']);
+        header('Refresh:0');
+      }
+    ?>
     
   </body>
   </html>
