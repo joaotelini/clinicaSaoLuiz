@@ -11,7 +11,7 @@
                     $pdo = Conexao::getInstance();
     
                     $sql = $pdo->prepare("INSERT INTO `paciente` VALUE (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                    $sql->execute(array($pac->getNome(), $pac->getRg(), $pac->getCpf(), $pac->getEmail(), $pac->getSenha(), $pac->getTelefone(), $pac->getDataNascimento(), $pac->getLogradouro(), $pac->getNumero(), $pac->getCep()));
+                    $sql->execute(array($pac->getNome(), $pac->getRg(), $pac->getCpf(), $pac->getEmail(), md5($pac->getSenha()), $pac->getTelefone(), $pac->getDataNascimento(), $pac->getLogradouro(), $pac->getNumero(), $pac->getCep()));
 
                     return true;
 
