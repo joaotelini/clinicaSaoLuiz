@@ -100,7 +100,7 @@
 <!-- ======= Breadcrumbs Section ======= -->
             <section class="breadcrumbs">
 
-            <div class="container">
+            <div class="container mt-5">
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Cadastro de Especialista</h2>
                 </div>
@@ -143,6 +143,64 @@
                             <option value="p">Pedro</option>
                             <option value="c">Carlos</option>
                         </select>
+                    </div>
+
+                    <section class="breadcrumbs">
+
+                        <div class="container mt-5">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h2>Selecione os dias e horários</h2>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="form-check container ml-2 mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Domingo
+                        </label>
+                    </div>
+                    
+                    <div class="form-check container ml-2 mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Segunda-Feira
+                        </label>
+                    </div>
+
+                    <div class="form-check container ml-2 mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Terça-Feira
+                        </label>
+                    </div>
+
+                    <div class="form-check container ml-2 mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Quarta-Feira
+                        </label>
+                    </div>
+
+                    <div class="form-check container ml-2 mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Quinta-Feira
+                        </label>
+                    </div>
+
+                    <div class="form-check container ml-2 mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Sexta-Feira
+                        </label>
+                    </div>
+
+                    <div class="form-check container ml-2 mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Sábado
+                        </label>
                     </div>
 
                     <br><br>
