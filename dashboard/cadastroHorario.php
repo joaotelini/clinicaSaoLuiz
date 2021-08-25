@@ -108,7 +108,7 @@
 
             <div class="container mt-5">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Cadastro de Especialista</h2>
+                    <h2>Cadastro de Horário</h2>
                 </div>
             </div>
             </section><!-- End Breadcrumbs Section -->
@@ -118,38 +118,33 @@
                 <form method="GET" action="." class="row g-3">
 
                     <div class="col-md-6">
-                        <label class="form-label">Nome:</label>
+                        <label class="form-label">Nome do Especialista</label>
                         <input type="text" class="form-control">
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label">Conselho Regional</label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                    <div class="col-md-6 mt-3">
-                        <label class="form-label">CPF:</label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                    <div class="col-md-6 mt-3">
-                        <label class="form-label">E-mail:</label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                    <div class="col-md-6 mt-3">
-                        <label class="form-label">Telefone:</label>
-                        <input type="text" class="form-control">
-                    </div>
-
-                    <div class="col-md-6 mt-3">
-                        <label class="form-label" for="departamento">Departamento</label>
+                        <label class="form-label" for="departamento">Dia da Semana</label>
                         <select class="form-control" name="departamento" id="departamento">
-                            <option value="m">Maria</option>
-                            <option value="p">Pedro</option>
-                            <option value="c">Carlos</option>
+                            <option value="m">Domingo</option>
+                            <option value="p">Segunda-Feira</option>
+                            <option value="c">Terça-Feira</option>
+                            <option value="c">Quarta-Feira</option>
+                            <option value="c">Quinta-Feira</option>
+                            <option value="c">Sexta-Feira</option>
+                            <option value="c">Sábado</option>
                         </select>
                     </div>
+
+                    <div class="col-md-6 mt-3">
+                        <label class="form-label">Começo de Espediente</label>
+                        <input type="time" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 mt-3">
+                        <label class="form-label">Fim de Espediente</label>
+                        <input type="time" class="form-control">
+                    </div>
+
                     <br><br>
 
                     <div class="col-12 espaco mt-3">
