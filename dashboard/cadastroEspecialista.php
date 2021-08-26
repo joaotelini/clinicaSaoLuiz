@@ -1,3 +1,14 @@
+<?php
+    include_once '..\Conexao\conexao.php';
+    $pdo = Conexao::getInstance();
+    $sql = $pdo->prepare("SELECT * FROM `departamento`");
+    $sql->execute();
+
+    $info = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+    // print_r($info);
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -115,45 +126,48 @@
 
             <div class="container">
 
-                <form method="GET" action="." class="row g-3">
+                <form method="post" action="../Controller/especialistaCadastrar.php" class="row g-3">
 
                     <div class="col-md-6">
                         <label class="form-label">Nome:</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="nome" class="form-control">
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label">Conselho Regional</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="cr" class="form-control">
                     </div>
 
                     <div class="col-md-6 mt-3">
                         <label class="form-label">CPF:</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="cpf" class="form-control">
                     </div>
 
                     <div class="col-md-6 mt-3">
                         <label class="form-label">E-mail:</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="email" class="form-control">
                     </div>
 
                     <div class="col-md-6 mt-3">
                         <label class="form-label">Telefone:</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="telefone" class="form-control">
                     </div>
 
                     <div class="col-md-6 mt-3">
                         <label class="form-label" for="departamento">Departamento</label>
                         <select class="form-control" name="departamento" id="departamento">
-                            <option value="m">Maria</option>
-                            <option value="p">Pedro</option>
-                            <option value="c">Carlos</option>
+                            <option value="0"></option>
+                            <?php
+                                foreach($info as $departamento){
+                                    echo "<option value='".$departamento['id_departamento']."'>".$departamento['nome']."</option>";
+                                }
+                            ?>
                         </select>
                     </div>
                     <br><br>
 
                     <div class="col-12 espaco mt-3">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="submit" name="action" class="btn btn-primary">Cadastrar</button>
                     </div>
 
                 </form>
