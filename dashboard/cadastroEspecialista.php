@@ -7,6 +7,7 @@
     $info = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     // print_r($info);
+    session_start();
 
 ?>
 <!DOCTYPE html>
@@ -130,27 +131,92 @@
 
                     <div class="col-md-6">
                         <label class="form-label">Nome:</label>
-                        <input type="text" name="nome" class="form-control">
+                        <input type="text" size="15" name="nome" class="form-control"
+                        <?php
+                            if (!empty($_SESSION['value_nome'])) {
+                                echo "value='".$_SESSION['value_nome']."'";
+                                unset($_SESSION['value_nome']);
+                            }
+                        ?>
+                        >
+                        <?php
+                            if (!empty($_SESSION['vazio_nome'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_nome']."</p>";
+                                unset($_SESSION['vazio_nome']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label">Conselho Regional</label>
-                        <input type="text" name="cr" class="form-control">
+                        <input type="text" name="cr" class="form-control"
+                        <?php
+                            if (!empty($_SEESION['value_cr'])) {
+                                echo "value='".$_SESSION['value_cr']."'";
+                                unset($_SESSION['value_cr']);
+                            }
+                        ?>
+                        >
+                        <?php
+                            if (!empty($_SESSION['vazio_cr'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_cr']."</p>";
+                                unset($_SESSION['vazio_cr']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6 mt-3">
                         <label class="form-label">CPF:</label>
-                        <input type="text" name="cpf" class="form-control">
+                        <input type="text" name="cpf" class="form-control"
+                        <?php
+                            if (!empty($_SESSION['value_cpf'])) {
+                                echo "value='".$_SESSION['value_cpf']."'";
+                                unset($_SESSION['value_cpf']);
+                            }
+                        ?>
+                        >
+                        <?php
+                            if (!empty($_SESSION['vazio_cpf'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_cpf']."</p>";
+                                unset($_SESSION['vazio_cpf']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6 mt-3">
                         <label class="form-label">E-mail:</label>
-                        <input type="text" name="email" class="form-control">
+                        <input type="text" name="email" class="form-control"
+                        <?php
+                            if (!empty($_SESSION['value_email'])) {
+                                echo "value='".$_SESSION['value_email']."'";
+                                unset($_SESSION['value_email']);
+                            }
+                        ?>
+                        >
+                        <?php
+                            if (!empty($_SESSION['vazio_email'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_email']."</p>";
+                                unset($_SESSION['vazio_email']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6 mt-3">
                         <label class="form-label">Telefone:</label>
-                        <input type="text" name="telefone" class="form-control">
+                        <input type="text" name="telefone" class="form-control"
+                        <?php
+                            if (!empty($_SESSION['value_telefone'])) {
+                                echo "value='".$_SESSION['value_telefone']."'";
+                                unset($_SESSION['value_telefone']);
+                            }
+                        ?>
+                        >
+                        <?php
+                            if (!empty($_SESSION['vazio_telefone'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_telefone']."</p>";
+                                unset($_SESSION['vazio_telefone']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6 mt-3">
@@ -158,11 +224,28 @@
                         <select class="form-control" name="departamento" id="departamento">
                             <option value="0"></option>
                             <?php
-                                foreach($info as $departamento){
-                                    echo "<option value='".$departamento['id_departamento']."'>".$departamento['nome']."</option>";
+
+                                if (!empty($_SESSION['value_departamento'])) {
+                                    foreach ($indo as $departamento) {
+                                        if ($departamento['id_departamento'] == $_SESSION['value_departamento']) {
+                                        echo "<option value='".$departamento['id_departamento']."'>".$departamento['nome']."</option>";
+                                            
+                                        }
+                                    }
+                                } else {
+   
+                                    foreach($info as $departamento){
+                                        echo "<option value='".$departamento['id_departamento']."'>".$departamento['nome']."</option>";
+                                    }
                                 }
                             ?>
                         </select>
+                        <?php
+                            if (!empty($_SESSION['vazio_departamento'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_departamento']."</p?";
+                                unset($_SESSION['vazio_departamento']);
+                            }
+                        ?>
                     </div>
                     <br><br>
 
