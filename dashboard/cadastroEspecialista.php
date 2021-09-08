@@ -151,7 +151,7 @@
                         <label class="form-label">Conselho Regional</label>
                         <input type="text" name="cr" class="form-control"
                         <?php
-                            if (!empty($_SEESION['value_cr'])) {
+                            if (!empty($_SESSION['value_cr'])) {
                                 echo "value='".$_SESSION['value_cr']."'";
                                 unset($_SESSION['value_cr']);
                             }
@@ -224,20 +224,11 @@
                         <select class="form-control" name="departamento" id="departamento">
                             <option value="0"></option>
                             <?php
-
-                                if (!empty($_SESSION['value_departamento'])) {
-                                    foreach ($indo as $departamento) {
-                                        if ($departamento['id_departamento'] == $_SESSION['value_departamento']) {
-                                        echo "<option value='".$departamento['id_departamento']."'>".$departamento['nome']."</option>";
-                                            
-                                        }
-                                    }
-                                } else {
    
-                                    foreach($info as $departamento){
-                                        echo "<option value='".$departamento['id_departamento']."'>".$departamento['nome']."</option>";
-                                    }
+                                foreach($info as $departamento){
+                                    echo "<option value='".$departamento['id_departamento']."'>".$departamento['nome']."</option>";
                                 }
+                                
                             ?>
                         </select>
                         <?php

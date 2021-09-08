@@ -10,9 +10,8 @@
         private $telefone;
         private $cpf;
 
-        public function __construct($id, $nome, $cr, $email, $idd, $tele, $cpf) {
+        public function __construct($nome, $cr, $email, $idd, $tele, $cpf) {
 
-            $this->id = $id;
             $this->nome = $nome;
             $this->conselhoRegional = $cr;
             $this->email = $email;
@@ -55,10 +54,10 @@
         // ============conselhoRegional==================
 
         public function getConselhoRegional() {
-            return $this->conselhoREgional;
+            return $this->conselhoRegional;
         }
         
-        public function setConselhoRegional($conselhoREgional) {
+        public function setConselhoRegional($conselhoRegional) {
             $this->conselhoRegional = $conselhoRegional;
         }
 

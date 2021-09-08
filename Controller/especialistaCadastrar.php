@@ -73,6 +73,13 @@
             $_SESSION['value_departamento'] = $_POST['departamento'];
         }
 
+        $esp = new Especialista($nome, $conselhoRegional, $email, $id_departamento, $telefone, $cpf);
+
+        $espDao = new EspecialistaDAO();
+        $espDao->Inserir($esp);
+
+
+
     }
 
 ?>
