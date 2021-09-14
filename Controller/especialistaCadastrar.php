@@ -1,5 +1,6 @@
 <?php
 
+    include_once '.\validacoes.php';
     include_once '..\Conexao\especialistaDAO.php';
     include_once '..\Model\especialista.php';
 
@@ -29,11 +30,17 @@
             $_SESSION['value_cr'] = $_POST['cr'];
         }
 
-        $cpf = $_POST['cpf'];
+        $cpf = preg_replace( '/[^0-9]/is', '', $_POST['cpf']);
 
         if (empty($_POST['cpf'])) {
 
             $_SESSION['vazio_cpf'] = "O Campo CPF é Obrigatório!";
+            header('location: ../dashboard/cadastroEspecialista.php');
+
+        } else if (validaCPF($cpf) == false) {
+
+            $_SESSION['invalido_cpf'] = "CPF Inválido!";
+            $_SESSION['value_cpf'] = $_POST['cpf'];
             header('location: ../dashboard/cadastroEspecialista.php');
 
         }  else {
@@ -58,6 +65,12 @@
             $_SESSION['vazio_telefone'] = "O Campo Telefone é Obrigatório!";
             header('location: ../dashboard/cadastroEspecialista.php');
 
+        } else if (validaTelefone($telefone) == false) {
+
+            $_SESSION['invalido_telefone'] = "Telefone Inválido";
+            $_SESSION['value_telefone'] = $_POST['telefone'];
+            header('location: ../dashboard/cadastroEspecialista.php');
+            
         } else {
             $_SESSION['value_telefone'] = $_POST['telefone'];
         }
@@ -76,8 +89,13 @@
         $esp = new Especialista($nome, $conselhoRegional, $email, $id_departamento, $telefone, $cpf);
 
         $espDao = new EspecialistaDAO();
-        $espDao->Inserir($esp);
 
+        if ($espDao->Inserir($esp) == true) {
+            $_SESSION['cadastro_sucesso'] = "Especialista Cadastrado com Sucesso!";
+            header('location: ../dashboard/cadastroEspecialista.php');
+        }
+
+        // $espDao->Inserir($esp);
 
 
     }

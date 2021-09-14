@@ -1,5 +1,7 @@
 <?php
 
+    include_once '../Controller/validacoes.php';
+
     class Especialista {
         
         private $id;
@@ -12,12 +14,12 @@
 
         public function __construct($nome, $cr, $email, $idd, $tele, $cpf) {
 
-            $this->nome = $nome;
-            $this->conselhoRegional = $cr;
-            $this->email = $email;
-            $this->idDepartamento = $idd;
-            $this->telefone = $tele;
-            $this->cpf = $cpf;
+            $this->setNome($nome);
+            $this->setConselhoRegional($cr);
+            $this->setEmail($email);
+            $this->setIdDepartamento($idd);
+            $this->setTelefone($tele);
+            $this->setCpf($cpf);
 
         }
 
@@ -67,7 +69,11 @@
             return $this->telefone;
         }
         public function setTelefone($telefone) {
-            $this->telefone = $telefone;
+            if (validaTelefone($telefone) == true) {
+                $this->telefone = $telefone;
+            } else {
+                return false;
+            }
         }
 
         // ==================cpf====================
@@ -77,7 +83,11 @@
         }
 
         public function setCpf($cpf) {
-            $this->cpf = $cpf;
+            if (validaCPF($cpf) == true){
+                $this->cpf = $cpf;
+            } else {
+                return false;
+            }
         }
 
         public function getIdDepartamento() {
@@ -85,7 +95,7 @@
         }
 
         public function setIdDepartamento($idd) {
-            $this->getIdDepartamento = $idd;
+            $this->idDepartamento = $idd;
         }
 
     }

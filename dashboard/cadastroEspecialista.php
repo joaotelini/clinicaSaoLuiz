@@ -180,6 +180,10 @@
                                 echo "<p style='color: red;'>".$_SESSION['vazio_cpf']."</p>";
                                 unset($_SESSION['vazio_cpf']);
                             }
+                            if (!empty($_SESSION['invalido_cpf'])) {
+                                echo "<p style='color: red;'>".$_SESSION['invalido_cpf']."</p>";
+                                unset($_SESSION['invalido_cpf']);
+                            }
                         ?>
                     </div>
 
@@ -215,6 +219,10 @@
                             if (!empty($_SESSION['vazio_telefone'])) {
                                 echo "<p style='color: red;'>".$_SESSION['vazio_telefone']."</p>";
                                 unset($_SESSION['vazio_telefone']);
+                            }
+                            if (!empty($_SESSION['invalido_telefone'])) {
+                                echo "<p style='color: red;'>".$_SESSION['invalido_telefone']."</p>";
+                                unset($_SESSION['invalido_telefone']);
                             }
                         ?>
                     </div>
@@ -296,6 +304,14 @@
 
     <!-- Page level custom scripts -->
     <script src="assets/js/demo/datatables-demo.js"></script>
+    <?php
+      if (!empty($_SESSION['cadastro_sucesso'])) {
+        echo "<script>alert('".$_SESSION['cadastro_sucesso']."');
+          location.reload();
+        </script>";
+        unset($_SESSION['cadastro_sucesso']);
+      }
+    ?>
 
 </body>
 
