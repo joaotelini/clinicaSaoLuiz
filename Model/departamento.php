@@ -6,11 +6,10 @@
         private $nome;
         private $descricao;
 
-        public function __construct($idD, $nome, $des) {
+        public function __construct($nome, $des) {
 
-            $this->idDepartamento = $idD;
-            $this->nome = $nome;
-            $this->descricao = $des;
+            $this->setNome($nome);
+            $this->setDescricao($des);
 
         }
 
