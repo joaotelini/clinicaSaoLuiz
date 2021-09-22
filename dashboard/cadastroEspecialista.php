@@ -1,5 +1,6 @@
 <?php
     include_once '..\Conexao\conexao.php';
+    
     $pdo = Conexao::getInstance();
     $sql = $pdo->prepare("SELECT * FROM `departamento`");
     $sql->execute();

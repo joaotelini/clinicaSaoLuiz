@@ -3,16 +3,17 @@
     class Horario {
 
         private $idHorario;
+        private $idEspecialista;
         private $diaSemana;
         private $comecoEspediente;
         private $fimEspediente;
 
-        public function __construct($idH, $diaS, $comEsp, $fimEsp) {
+        public function __construct($idEsp , $diaS, $comEsp, $fimEsp) {
 
-            $this->idHorario = $idH;
-            $this->diaSemana = $diaS;
-            $this->comecoEspediente = $comEsp;
-            $this->fimEspediente = $fimEsp;
+            $this->setIdEspecialista($idEsp);
+            $this->setDiaSemana($diaS);
+            $this->setComecoEspediente($comEsp);
+            $this->setFimEspediente($fimEsp);
 
         }
 
@@ -29,7 +30,7 @@
         }
 
         public function setDiaSemana($diaS) {
-            $this->diaSemana - $diaS;
+            $this->diaSemana = $diaS;
         }
 
         public function getComecoEspediente() {
@@ -46,6 +47,14 @@
 
         public function setFimEspediente($fimEsp) {
             $this->fimEspediente = $fimEsp;
+        }
+
+        public function getIdEspecialista() {
+            return $this->idEspecialista;
+        }
+
+        public function setIdEspecialista($idEsp) {
+            $this->idEspecialista = $idEsp;
         }
 
     }

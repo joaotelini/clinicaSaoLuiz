@@ -1,3 +1,13 @@
+<?php
+    include_once '..\Conexao\conexao.php';
+
+    $pdo = Conexao::getInstance();
+    $sql = $pdo->prepare("SELECT * FROM especialista");
+    $sql->execute();
+
+    $info = $sql->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -115,16 +125,23 @@
 
             <div class="container">
 
-                <form method="GET" action="." class="row g-3">
+                <form method="post" action="../Controller/horarioCadastrar.php" class="row g-3">
 
                     <div class="col-md-6">
                         <label class="form-label">Nome do Especialista</label>
-                        <input type="text" class="form-control">
+                        <select class="form-control" name="especialista">
+                            <option value="0"></option>
+                            <?php
+                                foreach ($info as $especialista) {
+                                    echo "<option value='".$especialista['id_especialista']."'>".$especialista['nome_completo']."</option>";
+                                }
+                            ?>
+                        </select>
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label" for="departamento">Dia da Semana</label>
-                        <select class="form-control" name="departamento" id="departamento">
+                        <label class="form-label" for="diasemana">Dia da Semana</label>
+                        <select class="form-control" name="diaSemana">
                             <option value="0">Domingo</option>
                             <option value="1">Segunda-Feira</option>
                             <option value="2">Terça-Feira</option>
@@ -137,18 +154,18 @@
 
                     <div class="col-md-6 mt-3">
                         <label class="form-label">Começo de Espediente</label>
-                        <input type="time"size="2" class="form-control">
+                        <input type="time"size="2" name="comecoEspediente" class="form-control">
                     </div>
 
                     <div class="col-md-6 mt-3">
                         <label class="form-label">Fim de Espediente</label>
-                        <input type="time"  class="form-control">
+                        <input type="time" name="fimEspediente"  class="form-control">
                     </div>
 
                     <br><br>
 
                     <div class="col-12 espaco mt-3">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <button type="submit" name="action" class="btn btn-primary">Cadastrar</button>
                     </div>
 
                 </form>
