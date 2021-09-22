@@ -155,11 +155,23 @@
                     <div class="col-md-6 mt-3">
                         <label class="form-label">Começo de Espediente</label>
                         <input type="time"size="2" name="comecoEspediente" class="form-control">
+                        <?php
+                            if (!empty($_SESSION['vazio_comecoEspediente'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_comecoEspediente']."</p>";
+                                unset($_SESSION['vazio_comecoEspediente']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6 mt-3">
                         <label class="form-label">Fim de Espediente</label>
                         <input type="time" name="fimEspediente"  class="form-control">
+                        <?php
+                            if (!empty($_SESSION['vazio_fimEspediente'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_fimEspediente']."</p>";
+                                unset($_SESSION['vazio_fimEspediente']);
+                            }
+                        ?>
                     </div>
 
                     <br><br>
