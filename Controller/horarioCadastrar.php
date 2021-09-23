@@ -11,7 +11,7 @@
 
         if (empty($_POST['especialista'])) {
 
-            $_SESSION['vazio_especielista'] = "O Campo Especialista é Obrigatório";
+            $_SESSION['vazio_especialista'] = "O Campo Especialista é Obrigatório";
             header('location: ../dashboard/cadastroHorario.php');
 
         } else {
@@ -20,7 +20,7 @@
 
         $diaSemana = $_POST['diaSemana'];
 
-        if (empty($_POST['disSemana'])) {
+        if (empty($_POST['diaSemana'])) {
 
             $_SESSION['vazio_diaSemana'] = "O Campo Dia da Semana é Obrigatório";
             header('location: ../dashboard/cadastroHorario.php');
@@ -55,12 +55,9 @@
         $horDao = new HorarioDAO();
 
         if ($horDao->Inserir($hor)) {
-            echo "Horário cadastrado com sucesso!";
-        } else {
-            echo "Erro!";
-        }
-
-        echo $diaSemana;
+            $_SESSION['cadastro_sucesso'] = "Horário cadastrado com sucesso";
+            header('location: ../dashboard/cadastroHorario.php');
+        } 
         // print_r($hor);
 
     }

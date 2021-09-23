@@ -6,6 +6,10 @@
     $sql->execute();
 
     $info = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+    $diaSemana = array("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
+
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -133,23 +137,54 @@
                             <option value="0"></option>
                             <?php
                                 foreach ($info as $especialista) {
-                                    echo "<option value='".$especialista['id_especialista']."'>".$especialista['nome_completo']."</option>";
+                                    
+                                    if ($especialista['id_especialista'] == $_SESSION['value_especialista']) {
+                                        echo "<option selected value='".$especialista['id_especialista']."'>".$especialista['nome_completo']."</option>";
+                                        unset($_SESSION['value_especialista']);
+                                    } else {
+                                        echo "<option value='".$especialista['id_especialista']."'>".$especialista['nome_completo']."</option>";
+                                    }
+
                                 }
+
                             ?>
-                        </select>
+                            </select>
+                        <?php
+                            if (!empty($_SESSION['vazio_especialista'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_especialista']."</p>";
+                                unset($_SESSION['vazio_especialista']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label" for="diasemana">Dia da Semana</label>
-                        <select class="form-control" name="diaSemana">
-                            <option value="0">Domingo</option>
-                            <option value="1">Segunda-Feira</option>
-                            <option value="2">Terça-Feira</option>
-                            <option value="3">Quarta-Feira</option>
-                            <option value="4">Quinta-Feira</option>
-                            <option value="5">Sexta-Feira</option>
-                            <option value="6">Sábado</option>
+                        <select class="form-control" name="diaSemana" value="2">
+                            <option value="0" selected></option>
+                            <?php
+                            
+                                for ($i = 0; $i <= 6; $i++) {
+
+                                    if ($_SESSION['value_diaSemana'] == $diaSemana[$i]) {
+
+                                        echo "<option selected value='".$diaSemana[$i]."'>".$diaSemana[$i]."</option>";
+                                        unset($_SESSION['value_diaSemana']);
+
+                                    } else {
+
+                                        echo "<option value='".$diaSemana[$i]."'>".$diaSemana[$i]."</option>";
+
+                                    }
+                                }
+                            
+                            ?>
                         </select>
+                        <?php
+                            if (!empty($_SESSION['vazio_diaSemana'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_diaSemana']."</p>";
+                                unset($_SESSION['vazio_diaSemana']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6 mt-3">
@@ -232,6 +267,16 @@
 
     <!-- Page level custom scripts -->
     <script src="assets/js/demo/datatables-demo.js"></script>
+    <?php
+        if (!empty($_SESSION['cadastro_sucesso'])) {
+            
+            echo "<script>alert('".$_SESSION['cadastro_sucesso']."');
+                    location.reload();    
+                </script>";
+                unset($_SESSION['cadastro_sucesso']);
+            
+        }
+    ?>
 
 </body>
 
