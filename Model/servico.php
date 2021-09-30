@@ -9,14 +9,13 @@
         private $valor;
         private $duracao;
 
-        public function __construct($ids, $idd, $ns, $des, $val, $dura) {
+        public function __construct($idd, $ns, $des, $val, $dura) {
 
-            $this->idServico = $ids;
-            $this->idDepartamento = $idd;
-            $this->nomeServico = $ns;
-            $this->descricao = $des;
-            $this->valor = $val;
-            $this->duracao = $dura;
+            $this->setIdDepartamento($idd);
+            $this->setNomeServico($ns);
+            $this->setDescricao($des);
+            $this->setValor($val);
+            $this->setDuracao($dura);
 
         }
 
@@ -57,7 +56,7 @@
         }
 
         public function setValor($val) {
-            $this->valor = $valor;
+            $this->valor = $val;
         }
 
         public function getDuracao() {

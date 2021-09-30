@@ -78,7 +78,7 @@
                     <span>Departamentos</span></a>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="especialistas.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Especialistas</span></a>
@@ -90,13 +90,13 @@
                     <span>Pacientes</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="servicos.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Serviços</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link" href="horario.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horários</span></a>
@@ -128,26 +128,83 @@
 
             <div class="container">
 
-                <form method="post" action="../Controller/especialistaCadastrar.php" class="row g-3">
+                <form method="post" action="../Controller/servicoCadastrar.php" class="row g-3">
 
                     <div class="col-md-6">
                         <label class="form-label">Nome:</label>
-                        <input type="text" size="15" name="nome" class="form-control">
+                        <input type="text" size="15" name="nome" class="form-control"
+                        <?php
+                            if (!empty($_SESSION['value_nome'])) {
+                                echo "value='".$_SESSION['value_nome']."'";
+                                unset($_SESSION['value_nome']);
+                            }
+                        ?>
+                        >
+                        <?php
+                            if (!empty($_SESSION['vazio_nome'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_nome']."</p>";
+                                unset($_SESSION['vazio_nome']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label">Duração:</label>
-                        <input type="number" size="15" name="nome" class="form-control">
+                        <input type="number" size="15" name="duracao" class="form-control"
+                        <?php
+                            if (!empty($_SESSION['value_duracao'])) {
+                                echo "value='".$_SESSION['value_duracao']."'";
+                                unset($_SESSION['value_duracao']);
+                            }
+                        ?>
+                        >
+                        <?php
+                            if (!empty($_SESSION['vazio_duracao'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_duracao']."</p>";
+                                unset($_SESSION['vazio_duracao']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6 mt-2">
                         <label class="form-label">Valor em R$:</label>
-                        <input type="number" size="15" name="nome" class="form-control">
+                        <input type="number" size="15" name="valor" class="form-control"
+                        <?php
+                            if (!empty($_SESSION['value_valor'])) {
+                                echo "value='".$_SESSION['value_valor']."'";
+                                unset($_SESSION['value_valor']);
+                            }
+                        ?>
+                        >
+                        <?php
+                            if (!empty($_SESSION['vazio_valor'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_valor']."</p>";
+                                unset($_SESSION['vazio_valor']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6 mt-2">
                         <label class="form-label">Departamento:</label>
-                        <select class="form-control" name="Departamento" id=""></select>
+                        <select class="form-control" name="departamento" id="">
+                            <option value="0"></option>
+                            <?php
+                                foreach ($info as $departamento) {
+                                    if ($_SESSION['value_departamento'] == $departamento['id_departamento']) {
+                                        echo "<option selected value='".$departamento['id_departamento']."'>".$departamento['nome']."</option>";
+                                        unset($_SESSION['value_departamento']);
+                                    } else {
+                                        echo "<option value='".$departamento['id_departamento']."'>".$departamento['nome']."</option>";
+                                    }
+                                }
+                            ?>
+                        </select>
+                        <?php
+                            if (!empty($_SESSION['vazio_departamento'])) {
+                                echo "<p style='color: red;'>".$_SESSION['vazio_departamento']."</p>";
+                                unset($_SESSION['vazio_departamento']);
+                            }
+                        ?>
                     </div>
 
                     <div class="col-md-6 mt-2">
