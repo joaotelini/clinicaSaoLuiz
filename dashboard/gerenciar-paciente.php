@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Paciente</title>
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -54,25 +54,25 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="agendamentos.html">
+                <a class="nav-link" href="gerenciar-agendamento.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Agendamentos</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="departamentos.html">
+                <a class="nav-link" href="gerenciar-departamento.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Departamentos</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="especialistas.html">
+                <a class="nav-link" href="gerenciar-especialista.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Especialistas</span></a>
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="pacientes.html">
+                <a class="nav-link" href="gerenciar-paciente.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Pacientes</span></a>
             </li>
@@ -125,47 +125,68 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gerenciar os Pacientes</h1>
 
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                        <input type="text" id="search" placeholder="Pesquisar">
+                    </div>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
-
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="table" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Nome</th>
+                                            <th>RG</th>
                                             <th>CPF</th>
                                             <th>Email</th>
                                             <th>Telefone</th>
+                                            <th>Data de Nascimento</th>
+                                            <th>Logradouro</th>
+                                            <th>Numero</th>
+                                            <th>CEP</th>
                                             <th>Ações</th>                                           
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Nome</th>
+                                            <th>RG</th>
                                             <th>CPF</th>
                                             <th>Email</th>
                                             <th>Telefone</th>
-                                            <th>Ações</th>       
+                                            <th>Data de Nascimento</th>
+                                            <th>Logradouro</th>
+                                            <th>Numero</th>
+                                            <th>CEP</th>
+                                            <th>Ações</th>      
                                         </tr>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <tr>
-                                            <td>Jennifer Allana Mendes</td>
-                                            <td>116.812.508-10</td>
-                                            <td>ejenniferallanamendes__jenniferallanamendes@vilarreal.com.br</td>
-                                            <td>(19) 99387-8950</td>
+                                            <td>Martin Henrique Kauê da Costa</td>
+                                            <td>25.053.232-3</td>
+                                            <td>563.213.508-00</td>
+                                            <td>martinhenriquekauedacosta__martinhenriquekauedacosta@br.ibn.com</td>
+                                            <td>(19) 99774-2385</td>
+                                            <td>06/05/1950</td>
+                                            <td>Rua Abelardo Lauri</td>
+                                            <td>477</td>
+                                            <td>13976-213</td>
                                             <td>Editar, Apagar</td>
                                         </tr>
                                         <tr>
-                                            <td>Jennifer Allana Mendes</td>
-                                            <td>116.812.508-10</td>
-                                            <td>ejenniferallanamendes__jenniferallanamendes@vilarreal.com.br</td>
-                                            <td>(19) 99387-8950</td>
+                                            <td>Martin Henrique Kauê da Costa</td>
+                                            <td>25.053.232-3</td>
+                                            <td>563.213.508-00</td>
+                                            <td>martinhenriquekauedacosta__martinhenriquekauedacosta@br.ibn.com</td>
+                                            <td>(19) 99774-2385</td>
+                                            <td>06/05/1950</td>
+                                            <td>Rua Abelardo Lauri</td>
+                                            <td>477</td>
+                                            <td>13976-213</td>
                                             <td>Editar, Apagar</td>
                                         </tr>
                                     </tbody>
@@ -227,6 +248,18 @@
 
     <!-- Page level custom scripts -->
     <script src="assets/js/demo/datatables-demo.js"></script>
+
+    <script>
+         var $rows = $('#table tr ');
+            $('#search').keyup(function() {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+                
+                $rows.show().filter(function() {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            });
+        </script>
 
 </body>
 

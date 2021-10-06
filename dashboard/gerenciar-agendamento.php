@@ -53,25 +53,25 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="agendamentos.html">
+                <a class="nav-link" href="gerenciar-agendamento.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Agendamentos</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="departamentos.html">
+                <a class="nav-link" href="gerenciar-departamento.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Departamentos</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="especialistas.html">
+                <a class="nav-link" href="gerenciar-especialista.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Especialistas</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="pacientes.html">
+                <a class="nav-link" href="gerenciar-paciente.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Pacientes</span></a>
             </li>

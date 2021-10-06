@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Especialistas</title>
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -54,31 +54,31 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="agendamentos.html">
+                <a class="nav-link" href="gerenciar-agendamento.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Agendamentos</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="departamentos.html">
+                <a class="nav-link" href="gerenciar-departamento.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Departamentos</span></a>
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="especialistas.html">
+                <a class="nav-link" href="gerenciar-especialista.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Especialistas</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="pacientes.html">
+                <a class="nav-link" href="gerenciar-paciente.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Pacientes</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="servicos.html">
+                <a class="nav-link" href="gerenciar-servico.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Serviços</span></a>
             </li>
@@ -126,30 +126,39 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gerenciar os Especialistas</h1>
 
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p><a href="cadastroEspecialista.php">Cadastrar novo Especialista</a></p>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                        <input type="text" id="search" placeholder="Pesquisar">
+                    </div>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
-
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="table" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Profissional</th>
-                                            <th>Especialidade</th>
+                                            <th>Nome</th>
+                                            <th>Departamento</th>
                                             <th>Email</th>
                                             <th>Telefone</th>
+                                            <th>CPF</th>
+                                            <th>Conselho Regional</th>
                                             <th>Ações</th>                                           
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Profissional</th>
-                                            <th>Especialidade</th>
+                                            <th>Nome</th>
+                                            <th>Departamento</th>
                                             <th>Email</th>
                                             <th>Telefone</th>
+                                            <th>CPF</th>
+                                            <th>Conselho Regional</th>
                                             <th>Ações</th>       
                                         </tr>
                                         </tr>
@@ -160,6 +169,8 @@
                                             <td>Cardiologia</td>
                                             <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
                                             <td>(19) 98223-2027</td>
+                                            <td>428.774.000-93</td>
+                                            <td>-----------</td>
                                             <td>Editar, Apagar</td>
                                         </tr>
                                         <tr>
@@ -167,6 +178,8 @@
                                             <td>Cardiologia</td>
                                             <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
                                             <td>(19) 98223-2027</td>
+                                            <td>428.774.000-93</td>
+                                            <td>-----------</td>
                                             <td>Editar, Apagar</td>
                                         </tr>
                                         <tr>
@@ -174,6 +187,8 @@
                                             <td>Cardiologia</td>
                                             <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
                                             <td>(19) 98223-2027</td>
+                                            <td>428.774.000-93</td>
+                                            <td>-----------</td>
                                             <td>Editar, Apagar</td>                                         
                                             
                                         </tr>
@@ -182,12 +197,16 @@
                                             <td>Cardiologia</td>
                                             <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
                                             <td>(19) 98223-2027</td>
+                                            <td>428.774.000-93</td>
+                                            <td>-----------</td>
                                             <td>Editar, Apagar</td>
                                         </tr>
                                         <td>Raimunda Giovanna Rafaela dos Santos</td>
                                             <td>Cardiologia</td>
                                             <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
                                             <td>(19) 98223-2027</td>
+                                            <td>428.774.000-93</td>
+                                            <td>-----------</td>
                                             <td>Editar, Apagar</td>
                                         </tr>
                                         <tr>
@@ -195,6 +214,8 @@
                                             <td>Cardiologia</td>
                                             <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
                                             <td>(19) 98223-2027</td>
+                                            <td>428.774.000-93</td>
+                                            <td>-----------</td>
                                             <td>Editar, Apagar</td>
                                         </tr>
 
@@ -203,6 +224,8 @@
                                             <td>Cardiologia</td>
                                             <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
                                             <td>(19) 98223-2027</td>
+                                            <td>428.774.000-93</td>
+                                            <td>-----------</td>
                                             <td>Editar, Apagar</td>
                                         </tr>
                                     </tbody>
@@ -264,6 +287,18 @@
 
     <!-- Page level custom scripts -->
     <script src="assets/js/demo/datatables-demo.js"></script>
+
+    <script>
+         var $rows = $('#table tr ');
+            $('#search').keyup(function() {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+                
+                $rows.show().filter(function() {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            });
+     </script>
 
 </body>
 

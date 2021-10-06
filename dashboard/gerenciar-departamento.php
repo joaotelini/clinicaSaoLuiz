@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Departamentos</title>
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -63,7 +63,7 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item">
 
-                <a class="nav-link" href="agendamentos.html">
+                <a class="nav-link" href="gerenciar-agendamento.php">
 
                     <i class="fas fa-fw fa-table"></i>
 
@@ -74,27 +74,27 @@
             </li>
 
             <li class="nav-item active">
-                <a class="nav-link" href="departamentos.html">
+                <a class="nav-link" href="gerenciar-departamento.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Departamentos</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="especialistas.html">
+                <a class="nav-link" href="gerenciar-especialista.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Especialistas</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="pacientes.html">
+                <a class="nav-link" href="gerenciar-paciente.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Pacientes</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="servicos.html">
+                <a class="nav-link" href="gerenciar-servico.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Serviços</span></a>
             </li>
@@ -144,6 +144,13 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h2>Gerenciamento dos Departamentos</h2>
                     </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p><a href="cadastroDepartamento.php">Cadastrar novo Departamento</a></p>
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                        <input type="text" id="search" placeholder="Pesquisar">
+                    </div>
                 </div>
                 </section><!-- End Breadcrumbs Section -->
 
@@ -151,7 +158,7 @@
 
                   <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered" id="table" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>Nome do Departamento</th>
@@ -267,6 +274,18 @@
     
         <!-- Template Main JS File -->
         <script src="assets/js/main.js"></script>
+
+        <script>
+         var $rows = $('#table tr ');
+            $('#search').keyup(function() {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+                
+                $rows.show().filter(function() {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            });
+        </script>
     
   </body>
   </html>
