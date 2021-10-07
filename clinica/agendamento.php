@@ -208,7 +208,7 @@
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Departamento:</label>
-        <select name="departamento" onchange="cacete(this)" class="form-control" id="">
+        <select name="departamento" onchange="teste(this.value)" class="form-control" id="departamento">
           <option value="0"></option>
           <?php
             foreach ($depInfo as $depart) {
@@ -219,14 +219,9 @@
       </div>
 
       <div class="col-md-6" id="especialista">
-      <label for="inputEmail4" class="form-label">especialista:</label>
-        <select name="especialista" class="form-control" id="">
+      <label for="inputEmail4" class="form-label">Especialista:</label>
+        <select name="especialista" class="form-control" id="selectEspecialista">
           <option value="0"></option>
-          <?php
-            foreach ($espInfo as $esp) {
-              echo "<option value='".$esp['id_especialista']."'>".$esp['nome_completo']."</option>";
-            }
-          ?>
         </select>
       </div>
 
@@ -272,27 +267,22 @@
     <div id="preloader"></div>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-    <script src="./javascript/script.js">
-      // function cacete(d) {
-      //       console.log("asdf");
-      //       $.post("../Controller/query.php", {departamento:d}, function(x) { $("#especialista").html(x);});
-      // }
-
-     
-    </script>
   
     <!-- Vendor JS Files -->
+    <script src="./javascript/jQuery/jquery-3.6.0.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
     <script src="assets/vendor/purecounter/purecounter.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
-  
-    <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/script.js"></script>
+
+
+    
+
+    <!-- Template Main JS File -->
     
     <?php
       if (!empty($_SESSION['cadastro_sucesso'])) {
