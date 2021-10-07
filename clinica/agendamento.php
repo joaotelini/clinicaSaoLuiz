@@ -208,7 +208,7 @@
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Departamento:</label>
-        <select name="departamento" onchange="teste(this.value)" class="form-control" id="departamento">
+        <select name="departamento" onchange="verDepartamento(this.value), verServico(this.value)" class="form-control" id="departamento">
           <option value="0"></option>
           <?php
             foreach ($depInfo as $depart) {
@@ -225,8 +225,15 @@
         </select>
       </div>
 
+      <div class="col-md-6" id="servico">
+      <label for="inputEmail4" class="form-label">Serviço:</label>
+        <select name="servico"  class="form-control" id="selectServico">
+          <option value="0"></option>
+        </select>
+      </div>
+
       <div class="col-12">
-        <button type="submit" name="action" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" name="action" class="btn btn-success">Realizar Agendamento</button>
         <p class="pCadastro">Já tem uma conta? Clique <a href="login.html">aqui</a> para fazer o Login.</p>
       </div>
     </form>
