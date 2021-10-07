@@ -40,6 +40,16 @@
                 print $e->getMessage();
             }
         }
+        public function Listar() {
+            $pdo = Conexao::getInstance();
+            $sql = $pdo->prepare("SELECT * FROM paciente");
+            $sql->execute();
+            $pacienteInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
+            if ($pacienteInfo)
+                return $pacienteInfo;
+            else 
+                return "erro!";
+        }
 
     }
 

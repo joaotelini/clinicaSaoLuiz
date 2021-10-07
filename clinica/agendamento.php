@@ -1,4 +1,13 @@
 <?php
+  include_once '../Conexao/pacienteDAO.php';
+  include_once '../Conexao/departamentoDAO.php';
+
+  $pac = new PacienteDAO();
+  $pacienteInfo = $pac->Listar();
+
+  $dep = new DepartamentoDAO();
+  $depInfo = $dep->Listar();
+
   session_start();
 ?>
 
@@ -6,10 +15,11 @@
 <html lang="pt-br">
 
 <head>
+
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Cadastro - Clinica São Luiz</title>
+  <title>Agendamento - Clinica São Luiz</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -19,7 +29,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  <link href="https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbHlXMnJLa1lPVEMyZVV4SW9kRGkwOXBwUlVQQXxBQ3Jtc0tubnFCUEE4dE4xaUp3UzN0ZFZ6UXlBREtGNFg1NmpGVzVUQVA5TFdmRTJ0MVhaSHh0UkZpcTgwTmFPeVdiX2hDbzNfUktWajBkSVNvZUhvODdrcmE5RGlwdHFYa1QtdjJ1T3YzNGFXLXY4cXBNMFNmaw&q=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto" rel="stylesheet">
+  <!-- <link href="https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbHlXMnJLa1lPVEMyZVV4SW9kRGkwOXBwUlVQQXxBQ3Jtc0tubnFCUEE4dE4xaUp3UzN0ZFZ6UXlBREtGNFg1NmpGVzVUQVA5TFdmRTJ0MVhaSHh0UkZpcTgwTmFPeVdiX2hDbzNfUktWajBkSVNvZUhvODdrcmE5RGlwdHFYa1QtdjJ1T3YzNGFXLXY4cXBNMFNmaw&q=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto" rel="stylesheet"> -->
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -175,210 +185,49 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Cadastro</h2>
+          <h2>Agendamento</h2>
         </div>
 
       </div>
     </section><!-- End Breadcrumbs Section -->
 
     <div class="container">
-    <form method="post" action="../Controller/pacienteCadastrar.php" class="row g-3">
+    <form method="post" action="../Controller/realizaAgendamento.php" class="row g-3">
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Nome Completo:</label>
-        <input type="text" name="nome" class="form-control" id="inputEmail4"
-         <?php
-          if(!empty($_SESSION['value_nome'])){
-            echo "value='". $_SESSION['value_nome']."'";
-            unset($_SESSION['value_nome']);
-          }
-        ?>>
-        <?php
-          if(!empty($_SESSION['vazio_nome'])){
-            echo " <p style='color: red;'>". $_SESSION['vazio_nome']."</p>";
-            unset($_SESSION['vazio_nome']);
-          }
-        ?>
+        <select name="paciente" class="form-control" id="">
+          <option value="0"></option>
+          <?php
+            foreach ($pacienteInfo as $paciente) {
+              echo "<option value='".$paciente['id_paciente']."'>".$paciente['nome_completo']."</option>";
+            }
+          ?>
+        </select>
       </div>
 
       <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">CPF:</label>
-        <input type="text" name="cpf" data-id="NrCpf" class="form-control" id="NrCpf" maxlength="14"
-        <?php
-          if(!empty($_SESSION['value_cpf'])){
-            echo "value='". $_SESSION['value_cpf']."'";
-            unset($_SESSION['value_cpf']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_cpf'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_cpf']."</p>";
-            unset($_SESSION['vazio_cpf']);
-          }
-        ?>
-        <?php
-          if (!empty($_SESSION['invalido_cpf'])) {
-            echo "<p style='color: red;'>". $_SESSION['invalido_cpf']."</p>";
-            unset($_SESSION['invalido_cpf']);
-          }
-        ?>
+        <label for="inputEmail4" class="form-label">Departamento:</label>
+        <select name="departamento" onchange="cacete(this)" class="form-control" id="">
+          <option value="0"></option>
+          <?php
+            foreach ($depInfo as $depart) {
+              echo "<option value='".$depart['id_departamento']."'>".$depart['nome']."</option>";
+            }
+          ?>
+        </select>
       </div>
 
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Email:</label>
-        <input type="text" name="email" class="form-control" id="inputEmail4"
-        <?php
-          if(!empty($_SESSION['value_email'])){
-            echo "value='". $_SESSION['value_email']."'";
-            unset($_SESSION['value_email']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_email'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_email']."</p>";
-            unset($_SESSION['vazio_email']);
-          }
-        ?>
-      </div>
-
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Senha:</label>
-        <input type="password" name="senha" class="form-control" id="inputEmail4"
-        <?php
-          if(!empty($_SESSION['value_senha'])){
-            echo "value='". $_SESSION['value_senha']."'";
-            unset($_SESSION['value_senha']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_senha'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_senha']."</p>";
-            unset($_SESSION['vazio_senha']);
-          }
-        ?>
-      </div>
-
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Telefone/Celular:</label>
-        <input type="text" name="telefone" class="form-control" id="inputEmail4"
-        <?php
-          if(!empty($_SESSION['value_telefone'])){
-            echo "value='". $_SESSION['value_telefone']."'";
-            unset($_SESSION['value_telefone']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_telefone'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_telefone']."</p>";
-            unset($_SESSION['vazio_telefone']);
-          }
-
-          if (!empty($_SESSION['invalido_telefone'])) {
-            echo "<p style='color: red;'>". $_SESSION['invalido_telefone']."</p>";
-            unset($_SESSION['invalido_telefone']);
-          }
-        ?>
-
-      </div>
-      
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">RG:</label>
-        <input type="text" name="rg" class="form-control" id="inputEmail4"
-        <?php
-          if(!empty($_SESSION['value_rg'])){
-            echo "value='". $_SESSION['value_rg']."'";
-            unset($_SESSION['value_rg']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_rg'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_rg']."</p>";
-            unset($_SESSION['vazio_rg']);
-          }
-        ?>
-      </div>
-
-      <div class="col-md-6">
-        <label for="inputPassword4" class="form-label">Data de Nascimento:</label>
-        <input type="date" name="dataNascimento" class="form-control" id="inputPassword4"
-        <?php
-          if(!empty($_SESSION['value_dataNascimento'])){
-            echo "value='". $_SESSION['value_dataNascimento']."'";
-            unset($_SESSION['value_dataNascimento']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_dataNascimento'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_dataNascimento']."</p>";
-            unset($_SESSION['vazio_dataNascimento']);
-          }
-        ?>
-      </div>
-
-      <div class="col-md-6">
-        <label for="inputAddress" class="form-label">CEP:</label>
-        <input type="text" name="cep" class="form-control" id="cep"
-        <?php
-          if (!empty($_SESSION['value_cep'])) {
-            echo "value='". $_SESSION['value_cep']."'";
-            unset($_SESSION['value_cep']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_cep'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_cep']."</p>";
-            unset($_SESSION['vazio_cep']);
-          }
-        ?>
-        <?php
-          if (!empty($_SESSION['invalido_cep'])) {
-            echo "<p style='color: red;'>". $_SESSION['invalido_cep']."</p>";
-            unset($_SESSION['invalido_cep']);
-          }
-        ?>
-      </div>
-
-      <div class="col-6">
-        <label for="inputAddress2" class="form-label">Logradouro</label>
-        <input type="text" name="logradouro" class="form-control"
-        <?php
-          if(!empty($_SESSION['value_logradouro'])){
-            echo "value='". $_SESSION['value_logradouro']."'";
-            unset($_SESSION['value_logradouro']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_logradouro'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_logradouro']."</p>";
-            unset($_SESSION['vazio_logradouro']);
-          }
-        ?>
-      </div>
-
-      <div class="col-md-6">
-        <label for="inputState" class="form-label">Número</label>
-        <input type="number" name="numero" class="form-control"
-        <?php
-          if(!empty($_SESSION['value_numero'])){
-            echo "value='". $_SESSION['value_numero']."'";
-            unset($_SESSION['value_numero']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_numero'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_numero']."</p>";
-            unset($_SESSION['vazio_numero']);
-          }
-        ?>
+      <div class="col-md-6" id="especialista">
+      <label for="inputEmail4" class="form-label">especialista:</label>
+        <select name="especialista" class="form-control" id="">
+          <option value="0"></option>
+          <?php
+            foreach ($espInfo as $esp) {
+              echo "<option value='".$esp['id_especialista']."'>".$esp['nome_completo']."</option>";
+            }
+          ?>
+        </select>
       </div>
 
       <div class="col-12">
@@ -422,17 +271,29 @@
   
     <div id="preloader"></div>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <script src="./javascript/script.js">
+      // function cacete(d) {
+      //       console.log("asdf");
+      //       $.post("../Controller/query.php", {departamento:d}, function(x) { $("#especialista").html(x);});
+      // }
+
+     
+    </script>
   
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
     <script src="assets/vendor/purecounter/purecounter.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script  type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
   
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    
     <?php
       if (!empty($_SESSION['cadastro_sucesso'])) {
         echo "<script>alert('".$_SESSION['cadastro_sucesso']."');

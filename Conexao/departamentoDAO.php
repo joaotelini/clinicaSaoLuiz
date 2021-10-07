@@ -19,6 +19,17 @@
                 print $e->getMessage();
             }
         }
+
+        public function Listar() {
+            $pdo = Conexao::getInstance();
+            $sql = $pdo->prepare("SELECT * FROM departamento");
+            $sql->execute();
+            $depInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
+            if ($depInfo)
+                return $depInfo;
+            else 
+                return "erro!";
+        }
     }
 
 ?>
