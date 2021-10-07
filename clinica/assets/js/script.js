@@ -16,7 +16,7 @@ function teste(idD) {
 
         } else {
             $('#selectEspecialista').empty();
-            console.log(result);
+            // console.log(result);
         }
 
     });

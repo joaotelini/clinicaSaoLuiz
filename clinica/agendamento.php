@@ -220,7 +220,7 @@
 
       <div class="col-md-6" id="especialista">
       <label for="inputEmail4" class="form-label">Especialista:</label>
-        <select name="especialista" class="form-control" id="selectEspecialista">
+        <select name="especialista"  class="form-control" id="selectEspecialista">
           <option value="0"></option>
         </select>
       </div>
