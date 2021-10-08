@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23-Set-2021 às 03:19
+-- Tempo de geração: 08-Out-2021 às 02:11
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.4.11
 
@@ -43,12 +43,13 @@ CREATE TABLE `atendente` (
 
 CREATE TABLE `consulta` (
   `id_consulta` int(11) NOT NULL,
-  `id_serviço` int(11) NOT NULL,
-  `hora_inicio` datetime NOT NULL,
-  `hora_fim` datetime NOT NULL,
+  `id_departamento` int(11) NOT NULL,
+  `id_servico` int(11) NOT NULL,
   `id_especialista` int(11) NOT NULL,
   `id_paciente` int(11) NOT NULL,
-  `data_consulta` datetime(6) NOT NULL
+  `data_cusulta` date NOT NULL,
+  `hora_inicio` time NOT NULL,
+  `hora_fim` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -68,12 +69,12 @@ CREATE TABLE `departamento` (
 --
 
 INSERT INTO `departamento` (`id_departamento`, `nome`, `descricao`) VALUES
-(5, 'Pediatria', 'Cuida de criança'),
-(6, 'Ortopedi', 'cuida do pé'),
-(7, 'Cardiologia', 'cuida do meu amor por você'),
-(8, 'Otorrinolaringologista', 'Acho que cuida do ouvido, só acho, não tenho certeza'),
-(9, 'asdfasdf', 'asdfasdf'),
-(10, 'Patologia', 'Estudo dos patogenos');
+(11, 'Cardiologia', 'cuida do meu amor por você'),
+(12, 'Ortopedia', 'Cuida do pé na bunda que você me deu'),
+(13, 'Ginecologista', 'precisa de descrição?'),
+(14, 'Pediatria', 'cuida das criaça'),
+(15, 'Otorrinolaringologista', 'acho que cuida do ouvido'),
+(16, 'Odontologia', 'cuida desse seu sorriso lindo\r\n');
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,7 @@ CREATE TABLE `especialista` (
   `nome_completo` varchar(255) NOT NULL,
   `conselho_regional` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `id_departamento` varchar(255) NOT NULL,
+  `id_departamento` int(11) NOT NULL,
   `telefone` int(11) NOT NULL,
   `cpf` bigint(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -96,16 +97,20 @@ CREATE TABLE `especialista` (
 --
 
 INSERT INTO `especialista` (`id_especialista`, `nome_completo`, `conselho_regional`, `email`, `id_departamento`, `telefone`, `cpf`) VALUES
-(14, 'joao pedro', '234234', 'joasdfasfdao@gmail.com', '2', 2147483647, 84070630023),
-(15, 'joao pedro', '234234', 'joasdfasfdao@gmail.com', '2', 2147483647, 84070630023),
-(16, 'Maria', '1234234', 'joao@gmail.com', '2', 2147483647, 84070630023),
-(17, 'Maria', '234234', 'joasdfasfdao@gmail.com', '2', 2147483647, 84070630023),
-(18, 'Maria', '234234', 'joasdfasfdao@gmail.com', '2', 2147483647, 84070630023),
-(19, 'Maria', '234234', 'joasdfasfdao@gmail.com', '2', 2147483647, 84070630023),
-(20, 'Maria', '234234', 'joasdfasfdao@gmail.com', '2', 2147483647, 84070630023),
-(21, 'Julia', '120948', 'joao@gmail.com', '2', 2147483647, 84070630023),
-(22, 'Lucas', '234234', 'joasdfasfdao@gmail.com', '2', 2147483647, 74159626050),
-(23, 'joao pedro', '234234', 'joasdfasfdao@gmail.com', '1', 2147483647, 84070630023);
+(27, 'Juliana Cristina', '12341243', 'julia', 14, 2147483647, 37591162055),
+(28, 'Maria Eduarda de Carvalho', '0917234098', 'mariaed@gmail.com', 11, 1977448394, 13959218060),
+(29, 'João Pedro Domingues Telini', '12349087', 'joaodomingues@gmail.com', 15, 2147483647, 73965591037),
+(30, 'Pedro de Oliveira', '12341234', 'joao@gmail.com', 11, 2147483647, 84070630023),
+(31, 'Lucas Martins ', '1234234', 'joao@gmail.com', 12, 2147483647, 74159626050),
+(32, 'Carolina Machado Pinto', '1234234', 'joao@gmail.com', 14, 2147483647, 74159626050),
+(33, 'Jair Messias Bolsonaro', '1234234', 'souzzaleitte@gmail.com', 12, 0, 13959218060),
+(34, 'Luis Inacio Lula da Silva', '12341234', 'joao@gmail.com', 14, 2147483647, 74159626050),
+(35, 'Padre Fabio de Melo', '324123412', 'joasdfasfdao@gmail.com', 13, 0, 74159626050),
+(36, 'Gabriel de Oliveira Pinto', '1234234', 'souzzaleitte@gmail.com', 14, 2147483647, 74159626050),
+(37, 'Pedrinho do get', '45234244', 'joasdfasfdao@gmail.com', 12, 0, 73965591037),
+(38, 'Luccinha da Boca', '1234234', 'joao@gmail.com', 13, 2147483647, 74159626050),
+(39, 'Rafaela Zamarim', '1234124', 'rafa@gmail.com', 16, 2147483647, 84070630023),
+(40, 'Maria', '12341234', 'joao@gmail.com', 11, 0, 84070630023);
 
 -- --------------------------------------------------------
 
@@ -166,7 +171,11 @@ CREATE TABLE `paciente` (
 --
 
 INSERT INTO `paciente` (`id_paciente`, `nome_completo`, `rg`, `cpf`, `email`, `senha`, `telefone`, `data_nascimento`, `logradouro`, `numero`, `cep`) VALUES
-(54, 'joao pedro', 948339278, 74159626050, 'joasdfasfdao@gmail.com', '3a12d3cec7682462c057a5a6bd342137', 2147483647, '2021-08-11', 'R. carlinhos maia', 420, 1234123);
+(54, 'joao pedro', 948339278, 74159626050, 'joasdfasfdao@gmail.com', '3a12d3cec7682462c057a5a6bd342137', 2147483647, '2021-08-11', 'R. carlinhos maia', 420, 1234123),
+(55, 'Maria', 35564, 74159626050, 'joao@gmail.com', 'd553456d37de5308559af174396d34dc', 2147483647, '2021-10-05', 'R. Arrombado', 69, 77813250),
+(56, 'Carlos Calinhos Carlão', 1234543425, 73965591037, 'joasdfasfdao@gmail.com', 'ae5aea606774cede67f41c7ed7a61f0e', 2147483647, '2021-10-04', 'R. ABC', 123, 77813250),
+(57, 'Pedrinho de Oliveira', 12341234, 73965591037, 'joao@gmail.com', 'a9d035b4d49680817e23885817c96bc9', 0, '2021-10-13', 'R. dos Arrombadinhos', 420, 77813250),
+(58, 'Maria Zelia da Silva', 1234987, 73965591037, 'mariazelis@gmail.com', 'c0309be2ca245c9d090ad3a46fe592c4', 2147483647, '2021-10-13', 'R. Padre Ferraz', 420, 77813250);
 
 -- --------------------------------------------------------
 
@@ -184,6 +193,17 @@ CREATE TABLE `servico` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Extraindo dados da tabela `servico`
+--
+
+INSERT INTO `servico` (`id_servico`, `id_departamento`, `nome_servico`, `descricao`, `valor`, `duracao`) VALUES
+(2, 5, 'Geral', 'consulta geral', 50, 20),
+(3, 14, 'Consulta Geral', 'consulta geral', 50, 15),
+(4, 16, 'Manutenção do aparelho', 'manutenção...', 100, 15),
+(5, 16, 'limpeza geral', 'limpeza geral na boca, lingua e dentes', 75, 20),
+(6, 16, 'Reparo dental', 'repado dental', 150, 45);
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -197,7 +217,8 @@ ALTER TABLE `atendente`
 -- Índices para tabela `consulta`
 --
 ALTER TABLE `consulta`
-  ADD PRIMARY KEY (`id_consulta`);
+  ADD PRIMARY KEY (`id_consulta`),
+  ADD KEY `id_departamento` (`id_departamento`);
 
 --
 -- Índices para tabela `departamento`
@@ -243,19 +264,19 @@ ALTER TABLE `atendente`
 -- AUTO_INCREMENT de tabela `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `id_consulta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `especialista`
 --
 ALTER TABLE `especialista`
-  MODIFY `id_especialista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_especialista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de tabela `horario`
@@ -267,13 +288,23 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT de tabela `servico`
 --
 ALTER TABLE `servico`
-  MODIFY `id_servico` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_servico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Restrições para despejos de tabelas
+--
+
+--
+-- Limitadores para a tabela `consulta`
+--
+ALTER TABLE `consulta`
+  ADD CONSTRAINT `consulta_ibfk_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento` (`id_departamento`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
