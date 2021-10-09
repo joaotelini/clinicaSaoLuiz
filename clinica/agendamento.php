@@ -128,7 +128,7 @@
 
       <div class="col-md-6" id="data">
       <label for="data" class="form-label">Data:</label>
-        <input class="form-control" onchange="verData(this.value), verDataEspecialista()" type="date" name="data" id="inputData">
+        <input class="form-control" onchange="verData(this.value)" type="date" name="data" id="inputData">
         <span id="data_message"></span>
       </div>
 
@@ -194,23 +194,24 @@
 
     <script>
       function verData(d) {
-        $.ajax({
-          url: '../Controller/verData.php',
-          method: 'POST',
-          data: {value: d},
-          dataType: 'json'
-        }).done(function (result){
+
+          let esp = document.getElementById('selectEspecialista');
+
+          $.ajax({
+            url: '../Controller/verData.php',
+            method: 'POST',
+            data: {data: d, especialista: esp.value},
+            dataType: 'json'
+          }).done(function (result) {
             console.log(result);
-        }); 
-      }
-
-      function verDataEspecialista() {
-        let esp = document.getElementById('selectEspecialista');
-        console.log(esp.value);
-        $.post('../Controller/verData.php', {especialista: esp});
+          })
+        //   $.post("../Controller/verData.php", {value: d, especialista: esp.value}, function(result){
+        //   $("#data_message").html(result);
+        //   console.log(result)
+        // });
 
       }
-    
+
     </script>
     <!-- Template Main JS File -->
     
