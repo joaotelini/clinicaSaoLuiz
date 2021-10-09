@@ -129,7 +129,7 @@
       <div class="col-md-6" id="data">
       <label for="data" class="form-label">Data:</label>
         <input class="form-control" onchange="verData(this.value)" type="date" name="data" id="inputData">
-        <span id="data_message"></span>
+        <div id="message_date"></div>
       </div>
 
       <div class="col-md-6" id="horario">
@@ -203,7 +203,11 @@
             data: {data: d, especialista: esp.value},
             dataType: 'json'
           }).done(function (result) {
-            console.log(result);
+            if (result.length > 0) {
+              $('#message_date').prepend("<div class='alert alert-success mt-1' role='alert'>Data Disponivel</div>");
+            } else {
+              $('#message_date').prepend("<div class='alert alert-danger mt-1' role='alert'>Data Indisponivel</div>");
+            }
           })
         //   $.post("../Controller/verData.php", {value: d, especialista: esp.value}, function(result){
         //   $("#data_message").html(result);

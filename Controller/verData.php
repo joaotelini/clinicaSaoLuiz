@@ -15,7 +15,7 @@
     $sql = $pdo->prepare("SELECT * FROM horario INNER JOIN especialista ON horario.id_especialista = especialista.id_especialista WHERE horario.dia_semana = $diasemana_numero AND horario.id_especialista = $especialista");
     $sql->execute();
     $dataInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
-
+    
     echo json_encode($dataInfo);
 
 ?>
