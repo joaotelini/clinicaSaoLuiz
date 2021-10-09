@@ -44,112 +44,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- Busca CEP
-  <script>
-    
-    function limpa_formulário_cep() {
-            //Limpa valores do formulário de cep.
-            document.getElementById('rua').value=("");
-            document.getElementById('bairro').value=("");
-            document.getElementById('cidade').value=("");
-            document.getElementById('uf').value=("");
-            // document.getElementById('ibge').value=("");
-    }
-
-    function meu_callback(conteudo) {
-        if (!("erro" in conteudo)) {
-            //Atualiza os campos com os valores.
-            document.getElementById('rua').value=(conteudo.logradouro);
-            document.getElementById('bairro').value=(conteudo.bairro);
-            document.getElementById('cidade').value=(conteudo.localidade);
-            document.getElementById('uf').value=(conteudo.uf);
-            // document.getElementById('ibge').value=(conteudo.ibge);
-        } //end if.
-        else {
-            //CEP não Encontrado.
-            limpa_formulário_cep();
-            alert("CEP não encontrado.");
-        }
-    }
-        
-    function pesquisacep(valor) {
-
-        //Nova variável "cep" somente com dígitos.
-        var cep = valor.replace(/\D/g, '');
-
-        //Verifica se campo cep possui valor informado.
-        if (cep != "") {
-
-            //Expressão regular para validar o CEP.
-            var validacep = /^[0-9]{8}$/;
-
-            //Valida o formato do CEP.
-            if(validacep.test(cep)) {
-
-                //Preenche os campos com "..." enquanto consulta webservice.
-                document.getElementById('rua').value="...";
-                document.getElementById('bairro').value="...";
-                document.getElementById('cidade').value="...";
-                document.getElementById('uf').value="...";
-                // document.getElementById('ibge').value="...";
-
-                //Cria um elemento javascript.
-                var script = document.createElement('script');
-
-                //Sincroniza com o callback.
-                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
-
-                //Insere script no documento e carrega o conteúdo.
-                document.body.appendChild(script);
-
-            } //end if.
-            else {
-                //cep é inválido.
-                limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
-            }
-        } //end if.
-        else {
-            //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
-        }
-    };
-
-    </script> -->
-
-    <!-- /*!
-      *	Gerador e Validador de CPF v1.0.0
-      *	https://github.com/tiagoporto/gerador-validador-cpf
-      *	Copyright (c) 2014-2015 Tiago Porto (http://www.tiagoporto.com)
-      *	Released under the MIT license
-    */
-  //   function CPF(){"user_strict";function r(r){for(var t=null,n=0;9>n;++n)t+=r.toString().charAt(n)*(10-n);var i=t%11;return i=2>i?0:11-i}function t(r){for(var t=null,n=0;10>n;++n)t+=r.toString().charAt(n)*(11-n);var i=t%11;return i=2>i?0:11-i}var n="CPF Inválido",i="CPF Válido";this.gera=function(){for(var n="",i=0;9>i;++i)n+=Math.floor(9*Math.random())+"";var o=r(n),a=n+"-"+o+t(n+""+o);return a},this.valida=function(o){for(var a=o.replace(/\D/g,""),u=a.substring(0,9),f=a.substring(9,11),v=0;10>v;v++)if(""+u+f==""+v+v+v+v+v+v+v+v+v+v+v)return n;var c=r(u),e=t(u+""+c);return f.toString()===c.toString()+e.toString()?i:n}}
-
-
-
-  //   var CPF = new CPF();
-  //   document.write(CPF.valida("123.456.789-00"));
-
-  //   document.write("<br> Utilizando o proprio gerador da lib<br><br><br>");
-  //   for(var i =0;i<40;i++) {
-  //     var temp_cpf = CPF.gera();
-  //     document.write(temp_cpf+" = "+CPF.valida(temp_cpf)+"<br>");
-  //   }
-
-  //   $("#input").keypress(function(){
-  //   $("#resposta").html(CPF.valida($(this).val()));
-  //   });
-
-  //   $("#input").blur(function(){
-  //     $("#resposta").html(CPF.valida($(this).val()));
-  //   }); -->
-
-  <!-- =======================================================
-  * Template Name: Medilab - v4.1.0
-  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -195,7 +89,7 @@
     <form method="post" action="../Controller/realizaAgendamento.php" class="row g-3">
 
       <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Nome Completo:</label>
+        <label for="paciente" class="form-label">Nome Completo:</label>
         <select name="paciente" class="form-control" id="">
           <option value="0"></option>
           <?php
@@ -207,7 +101,7 @@
       </div>
 
       <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Departamento:</label>
+        <label for="departamento" class="form-label">Departamento:</label>
         <select name="departamento" onchange="verDepartamento(this.value), verServico(this.value)" class="form-control" id="departamento">
           <option value="0"></option>
           <?php
@@ -219,22 +113,34 @@
       </div>
 
       <div class="col-md-6" id="especialista">
-      <label for="inputEmail4" class="form-label">Especialista:</label>
-        <select name="especialista"  class="form-control" id="selectEspecialista">
+      <label for="especialista" class="form-label">Especialista:</label>
+        <select name="especialista" class="form-control" id="selectEspecialista">
           <option value="0"></option>
         </select>
       </div>
 
       <div class="col-md-6" id="servico">
-      <label for="inputEmail4" class="form-label">Serviço:</label>
+      <label for="servico" class="form-label">Serviço:</label>
         <select name="servico"  class="form-control" id="selectServico">
+          <option value="0"></option>
+        </select>
+      </div>
+
+      <div class="col-md-6" id="data">
+      <label for="data" class="form-label">Data:</label>
+        <input class="form-control" onchange="verData(this.value), verDataEspecialista()" type="date" name="data" id="inputData">
+        <span id="data_message"></span>
+      </div>
+
+      <div class="col-md-6" id="horario">
+      <label for="horario" class="form-label">Horario:</label>
+        <select name="horario" class="form-control" id="selectHorario">
           <option value="0"></option>
         </select>
       </div>
 
       <div class="col-12">
         <button type="submit" name="action" class="btn btn-success">Realizar Agendamento</button>
-        <p class="pCadastro">Já tem uma conta? Clique <a href="login.html">aqui</a> para fazer o Login.</p>
       </div>
     </form>
   </div>
@@ -276,19 +182,36 @@
 
   
     <!-- Vendor JS Files -->
-    <script src="./javascript/jQuery/jquery-3.6.0.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
     <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
     <script src="assets/vendor/purecounter/purecounter.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="./javascript/jQuery/jquery-3.6.0.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/script.js"></script>
 
+    <script>
+      function verData(d) {
+        $.ajax({
+          url: '../Controller/verData.php',
+          method: 'POST',
+          data: {value: d},
+          dataType: 'json'
+        }).done(function (result){
+            console.log(result);
+        }); 
+      }
 
+      function verDataEspecialista() {
+        let esp = document.getElementById('selectEspecialista');
+        console.log(esp.value);
+        $.post('../Controller/verData.php', {especialista: esp});
+
+      }
     
-
+    </script>
     <!-- Template Main JS File -->
     
     <?php

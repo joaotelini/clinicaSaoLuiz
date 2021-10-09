@@ -9,6 +9,7 @@ function verDepartamento(idD) {
         if (result) {
 
             $('#selectEspecialista').empty();
+            $('#selectEspecialista').prepend("<option value='0'></option");
             for (let i = 0; i < result.length; i++) {
                 
                 $('#selectEspecialista').prepend("<option value='"+ result[i].id_especialista +"'>"+ result[i].nome_completo +"</option");
@@ -19,10 +20,9 @@ function verDepartamento(idD) {
         }
 
     });
-  }
+}
 
 function verServico(idD){
-    console.log("funcionando");
     $.ajax({
         url: '../Controller/verServico.php',
         method: 'POST',
@@ -42,15 +42,7 @@ function verServico(idD){
         }
 
     });
+
 }
 
-// function verEspecialista(idE) {
-//     $.ajax({
-//         url: '../Controller/verEspecialista.php',
-//         method: 'POST',
-//         data: {especialista: idE},
-//         dataType: 'json'
-//     }).done(function(result) {
-//         console.log(result);
-//     }
-// }
+
