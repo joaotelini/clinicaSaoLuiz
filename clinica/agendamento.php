@@ -204,8 +204,10 @@
             dataType: 'json'
           }).done(function (result) {
             if (result.length > 0) {
+              $('#message_date').empty();
               $('#message_date').prepend("<div class='alert alert-success mt-1' role='alert'>Data Disponível</div>");
             } else {
+              $('#message_date').empty();
               $('#message_date').prepend("<div class='alert alert-danger mt-1' role='alert'>Data Indisponível</div>");
             }
           })
