@@ -77,13 +77,13 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="servicos.html">
+                <a class="nav-link" href="gerenciar-servico.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Serviços</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="horario.html">
+                <a class="nav-link" href="gerenciar-horario.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horários</span></a>
             </li>

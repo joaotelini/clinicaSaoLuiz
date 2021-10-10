@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Paciente</title>
+    <title>Serviço</title>
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -71,13 +71,13 @@
                     <span>Especialistas</span></a>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="gerenciar-paciente.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Pacientes</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="gerenciar-servico.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Serviços</span></a>
@@ -123,7 +123,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Gerenciar os Pacientes</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Gerenciar os Serviços</h1>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p><a href="cadastroServico.php">Cadastrar novo Serviço</a></p>
+                    </div>
 
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
@@ -138,57 +142,39 @@
                                     <thead>
                                         <tr>
                                             <th>Nome</th>
-                                            <th>RG</th>
-                                            <th>CPF</th>
-                                            <th>Email</th>
-                                            <th>Telefone</th>
-                                            <th>Data de Nascimento</th>
-                                            <th>Logradouro</th>
-                                            <th>Numero</th>
-                                            <th>CEP</th>
-                                            <th>Ações</th>                                           
+                                            <th>Duração (minutos)</th>
+                                            <th>Valor</th>
+                                            <th>Departamento</th>
+                                            <th>Descrição</th>                                        
+                                            <th>Ações</th>                                        
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Nome</th>
-                                            <th>RG</th>
-                                            <th>CPF</th>
-                                            <th>Email</th>
-                                            <th>Telefone</th>
-                                            <th>Data de Nascimento</th>
-                                            <th>Logradouro</th>
-                                            <th>Numero</th>
-                                            <th>CEP</th>
-                                            <th>Ações</th>      
+                                            <th>Duração (minutos)</th>
+                                            <th>Valor</th>
+                                            <th>Departamento</th>
+                                            <th>Descrição</th>    
+                                            <th>Ações</th>    
                                         </tr>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <tr>
-                                            <td>Martin Henrique Kauê da Costa</td>
-                                            <td>25.053.232-3</td>
-                                            <td>563.213.508-00</td>
-                                            <td>martinhenriquekauedacosta__martinhenriquekauedacosta@br.ibn.com</td>
-                                            <td>(19) 99774-2385</td>
-                                            <td>06/05/1950</td>
-                                            <td>Rua Abelardo Lauri</td>
-                                            <td>477</td>
-                                            <td>13976-213</td>
+                                            <td>Limpeza bucal</td>
+                                            <td>30</td>
+                                            <td>50,00</td>
+                                            <td>Odontologia</td>
+                                            <td></td>
                                             <td>Editar, Apagar</td>
                                         </tr>
-                                        <tr>
-                                            <td>Martin Henrique Kauê da Costa</td>
-                                            <td>25.053.232-3</td>
-                                            <td>563.213.508-00</td>
-                                            <td>martinhenriquekauedacosta__martinhenriquekauedacosta@br.ibn.com</td>
-                                            <td>(19) 99774-2385</td>
-                                            <td>06/05/1950</td>
-                                            <td>Rua Abelardo Lauri</td>
-                                            <td>477</td>
-                                            <td>13976-213</td>
+                                            <td>Limpeza bucal</td>
+                                            <td>30</td>
+                                            <td>50,00</td>
+                                            <td>Odontologia</td>
+                                            <td></td>
                                             <td>Editar, Apagar</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

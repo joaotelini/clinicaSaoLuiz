@@ -84,7 +84,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="horario.html">
+                <a class="nav-link" href="gerenciar-horario.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horários</span></a>
             </li>

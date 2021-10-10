@@ -7,8 +7,7 @@
 
     $info = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-    $diaSemana = array("Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado", "Domingo");
-    $diaSemanaValue = array(1, 2, 3, 4, 5, 6, 7);
+    $diaSemana = array("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
 
     session_start();
 ?>
@@ -24,7 +23,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Cadastro de Horários</title>
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -69,37 +68,37 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="agendamentos.html">
+                <a class="nav-link" href="gerenciar-agendamento.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Agendamentos</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="departamentos.html">
+                <a class="nav-link" href="gerenciar-departamento.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Departamentos</span></a>
             </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" href="especialistas.html">
+            <li class="nav-item">
+                <a class="nav-link" href="gerenciar-especialista.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Especialistas</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="pacientes.html">
+                <a class="nav-link" href="gerenciar-paciente.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Pacientes</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="servicos.html">
+                <a class="nav-link" href="gerenciar-servico.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Serviços</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="horario.html">
+            <li class="nav-item active">
+                <a class="nav-link" href="gerenciar-horario.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Horários</span></a>
             </li>
@@ -168,12 +167,12 @@
 
                                     if ($_SESSION['value_diaSemana'] == $diaSemana[$i]) {
 
-                                        echo "<option selected value='".$diaSemanaValue[$i]."'>".$diaSemana[$i]."</option>";
+                                        echo "<option selected value='".$diaSemana[$i]."'>".$diaSemana[$i]."</option>";
                                         unset($_SESSION['value_diaSemana']);
 
                                     } else {
 
-                                        echo "<option value='".$diaSemanaValue[$i]."'>".$diaSemana[$i]."</option>";
+                                        echo "<option value='".$diaSemana[$i]."'>".$diaSemana[$i]."</option>";
 
                                     }
                                 }
