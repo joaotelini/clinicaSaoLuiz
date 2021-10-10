@@ -30,9 +30,10 @@ function verServico(idD){
         dataType: 'json'
     }).done(function(result){
 
-        if (result.length > 0) {
+        if (result) {
 
             $('#selectServico').empty();
+            $('#selectServico').prepend("<option value='0'></option");
             for (let i = 0; i < result.length; i++) {
                 $('#selectServico').prepend("<option value='"+ result[i].id_servico +"'>"+ result[i].nome_servico +"</option>");
             }

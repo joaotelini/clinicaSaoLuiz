@@ -210,13 +210,25 @@
               $('#message_date').empty();
               $('#message_date').prepend("<div class='alert alert-danger mt-1' role='alert'>Data Indisponível</div>");
             }
-          })
-        //   $.post("../Controller/verData.php", {value: d, especialista: esp.value}, function(result){
-        //   $("#data_message").html(result);
-        //   console.log(result)
-        // });
+          });
+
+          verHorario(d, esp.value);
 
       }
+
+      function verHorario(data, especialista){
+            $.ajax({
+              url: '../Controller/verHorario.php',
+              method: 'POST',
+              data: {data: data, especialista: especialista},
+              dataType: 'json'
+            }).done(function (result){
+                console.log(result);
+                for (let i = 0; i < result.length; i++) {
+                  $('#selectHorario').prepend("<option value='"+ result[i] +"'>"+ result[i] +"</option>");
+                }
+            });
+          }
 
     </script>
     <!-- Template Main JS File -->
