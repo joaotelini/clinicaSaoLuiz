@@ -51,6 +51,15 @@
                 return "erro!";
         }
 
+        public function verificaCpf($cpf) {
+            $pdo = Conexao::getInstance();
+            $sql = $pdo->prepare("SELECT * FROM paciente WHERE cpf = ?");
+            $sql->execute(array($cpf));
+            $pacInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $pacInfo;
+            
+        }
+
     }
 
 ?>
