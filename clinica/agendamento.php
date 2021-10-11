@@ -1,9 +1,6 @@
 <?php
-  include_once '../Conexao/pacienteDAO.php';
-  include_once '../Conexao/departamentoDAO.php';
 
-  $pac = new PacienteDAO();
-  $pacienteInfo = $pac->Listar();
+  include_once '../Conexao/departamentoDAO.php';
 
   $dep = new DepartamentoDAO();
   $depInfo = $dep->Listar();
@@ -89,15 +86,9 @@
     <form method="post" action="../Controller/realizaAgendamento.php" class="row g-3">
 
       <div class="col-md-6">
-        <label for="paciente" class="form-label">Nome Completo:</label>
-        <select name="paciente" class="form-control" id="">
-          <option value="0"></option>
-          <?php
-            foreach ($pacienteInfo as $paciente) {
-              echo "<option value='".$paciente['id_paciente']."'>".$paciente['nome_completo']."</option>";
-            }
-          ?>
-        </select>
+        <label for="paciente" class="form-label">CPF:</label>
+        <input type="text" onchange="verCPF(this.value)" class="form-control" name="cpf" id="cpf_paciente">
+        <div id="message_cpf"></div>
       </div>
 
       <div class="col-md-6">
@@ -212,11 +203,11 @@
             }
           });
 
-          verHorario(d, esp.value);
+          listHorario(d, esp.value);
 
       }
 
-      function verHorario(data, especialista){
+      function listHorario(data, especialista){
             $.ajax({
               url: '../Controller/verHorario.php',
               method: 'POST',
@@ -230,6 +221,22 @@
             });
           }
 
+          function verCPF(cpf){
+            $.ajax({
+              url: '../Controller/verCPF.php',
+              method: 'POST',
+              data: {cpf: cpf},
+              dataType: 'json'
+            }).done(function (result){
+              if (result == "CPF não cadastrado!") {
+                $('#message_cpf').empty();
+                $('#message_cpf').prepend("<div class='alert alert-danger mt-3'>"+ result +"</div>");
+
+              } else {
+                $('#message_cpf').empty();
+              }
+            });
+          }
     </script>
     <!-- Template Main JS File -->
     
