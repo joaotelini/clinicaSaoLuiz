@@ -1,4 +1,4 @@
-function verDepartamento(idD) {
+function listarDepartamento(idD) {
     $.ajax({
         url: '../Controller/query.php',
         method: 'POST',
@@ -22,7 +22,7 @@ function verDepartamento(idD) {
     });
 }
 
-function verServico(idD){
+function listarServico(idD){
     $.ajax({
         url: '../Controller/verServico.php',
         method: 'POST',

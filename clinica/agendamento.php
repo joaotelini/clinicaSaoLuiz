@@ -83,17 +83,18 @@
     </section><!-- End Breadcrumbs Section -->
 
     <div class="container">
-    <form method="post" action="../Controller/realizaAgendamento.php" class="row g-3">
+      <div id="message_erro"></div>
+    <form method="post" class="row g-3" id="insertAgend">
 
       <div class="col-md-6">
-        <label for="paciente" class="form-label">CPF:</label>
-        <input type="text" onchange="verCPF(this.value)" class="form-control" name="cpf" id="cpf_paciente">
+        <label for="cpf_paciente" class="form-label">CPF:</label>
+        <input type="text" onchange="verCpf(this.value)" class="form-control" name="cpf" id="cpf_paciente">
         <div id="message_cpf"></div>
       </div>
 
       <div class="col-md-6">
         <label for="departamento" class="form-label">Departamento:</label>
-        <select name="departamento" onchange="verDepartamento(this.value), verServico(this.value)" class="form-control" id="departamento">
+        <select name="departamento" onchange="listarDepartamento(this.value), listarServico(this.value)" class="form-control" id="departamento">
           <option value="0"></option>
           <?php
             foreach ($depInfo as $depart) {
@@ -101,6 +102,7 @@
             }
           ?>
         </select>
+        <div id="message_departamento"></div>
       </div>
 
       <div class="col-md-6" id="especialista">
@@ -108,6 +110,7 @@
         <select name="especialista" class="form-control" id="selectEspecialista">
           <option value="0"></option>
         </select>
+        <div id="message_especialista"></div>
       </div>
 
       <div class="col-md-6" id="servico">
@@ -115,6 +118,7 @@
         <select name="servico"  class="form-control" id="selectServico">
           <option value="0"></option>
         </select>
+        <div id="message_servico"></div>
       </div>
 
       <div class="col-md-6" id="data">
@@ -128,10 +132,11 @@
         <select name="horario" class="form-control" id="selectHorario">
           <option value="0"></option>
         </select>
+        <div id="message_horario"></div>
       </div>
 
       <div class="col-12">
-        <button type="submit" name="action" class="btn btn-success">Realizar Agendamento</button>
+        <button type="button" name="realAgend" class="btn btn-success" id="cadAgend">Realizar Agendamento</button>
       </div>
     </form>
   </div>
@@ -221,22 +226,98 @@
             });
           }
 
-          function verCPF(cpf){
-            $.ajax({
-              url: '../Controller/verCPF.php',
-              method: 'POST',
-              data: {cpf: cpf},
-              dataType: 'json'
-            }).done(function (result){
-              if (result == "CPF não cadastrado!") {
-                $('#message_cpf').empty();
-                $('#message_cpf').prepend("<div class='alert alert-danger mt-3'>"+ result +"</div>");
+          function verCpf(cpf){
+              $.ajax({
+                url: '../Controller/verCPF.php',
+                method: 'POST',
+                data: {cpf: cpf},
+                dataType: 'json'
+              }).done(function (result){
+                if (result == "CPF não cadastrado!") {
+                  $('#message_cpf').empty();
+                  $('#message_cpf').prepend("<div class='alert alert-danger mt-3'>"+ result +"</div>");
+  
+                } else {
+                  $('#message_cpf').empty();
+                }
+              });
+            } 
+          
 
-              } else {
-                $('#message_cpf').empty();
-              }
-            });
+          function validaCampos(cpf, dep, esp, ser, data, hora) {
+            if ((cpf == "") && (dep == "") && (esp == "") && (ser == "") && (data == "") && (hora == "") ) {
+              $('#message_erro').empty();
+              $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campo Obritório</div>");
+              
+              $('#message_erro').empty();
+              $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campo Obritório</div>");
+
+              $('#message_erro').empty();
+              $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campo Obritório</div>");
+                          
+              $('#message_erro').empty();
+              $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campo Obritório</div>");
+
+              $('#message_erro').empty();
+              $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campo Obritório</div>");
+
+              $('#message_erro').empty();
+              $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campo Obritório</div>");
+
+              return false;
+          } else {
+            return true;
           }
+        }
+
+         $('#cadAgend').click(function (){
+            let cpf = $('#cpf_paciente').val();       
+            let departamento = $('#departamento').val();       
+            let especialista = $('#selectEspecialista').val();       
+            let servico = $('#selectServico').val();       
+            let data = $('#inputData').val();       
+            let horario = $('#selectHorario').val();    
+
+            validaCampos(cpf, departamento, especialista, servico, data, horario);
+
+            // if (cpf == "") {
+            //   $('#message_erro').empty();
+            //   $('#message_erro').prepend("<div class='alert alert-danger mt-3'>CPF é um campo obritório</div>");
+            //   return false;
+            // }
+            // if (departamento == "") {
+            //   $('#message_erro').empty();
+            //   $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campoasdfasdf Obritório</div>");
+            //   return false;
+            // }
+
+            // if (especialista == "") {
+            //   $('#message_erro').empty();
+            //   $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campo Obritório</div>");
+            //   return false;
+            // }
+
+            // if (servico == "") {
+            //   $('#message_erro').empty();
+            //   $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campo Obritório</div>");
+            //   return false;
+            // }
+
+            // if (data == "") {
+            //   $('#message_erro').empty();
+            //   $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campo Obritório</div>");
+            //   return false;
+            // }
+
+            // if (horario == "") {
+            //   $('#message_erro').empty();
+            //   $('#message_erro').prepend("<div class='alert alert-danger mt-3'>Campo Obritório</div>");
+            //   return false;
+            // }
+
+            console.log(cpf, departamento);
+                        
+         })
     </script>
     <!-- Template Main JS File -->
     
