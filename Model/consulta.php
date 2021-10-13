@@ -9,16 +9,17 @@
         private $idEspecialista;
         private $idPaciente;
         private $dataConsulta;
+        private $idDepartamento;
 
-        public function __construct($idC, $idS, $horaI, $horaF, $idE, $idP, $dataC) {
+        public function __construct($idS, $horaI, $horaF, $idE, $idP, $dataC, $idD) {
 
-            $this->idConstulta = $idC;
-            $this->idServico = $idS;
-            $this->horaInicio = $horaI;
-            $this->horaFim = $horaF;
-            $this->idEspecialista = $idE;
-            $this->idPaciente = $idP;
-            $this->dataConsulta = $dataC;
+            $this->setIdServico($idS);
+            $this->setHoraInicio($horaI);
+            $this->setHoraFim($horaF);
+            $this->setIdEspecialista($idE);
+            $this->setIdPaciente($idP);
+            $this->setDataConsulta($dataC);
+            $this->setIdDepartamento($idD);
 
         }
 
@@ -76,6 +77,14 @@
 
         public function setDataConsulta($dataC) {
             $this->dataConsulta = $dataC;
+        }
+
+        public function getIdDepartamento() {
+            return $this->idDepartamento;
+        }
+
+        public function setIdDepartamento($idD) {
+            $this->idDepartamento = $idD;
         }
     }
 

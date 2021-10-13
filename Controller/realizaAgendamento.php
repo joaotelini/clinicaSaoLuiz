@@ -7,14 +7,32 @@
     $cpf = preg_replace( '/[^0-9]/is', '', $_POST['cpf']);
     $departamento = $_POST['departamento'];
     $especialista = $_POST['especialista'];
+    $servico = $_POST['servico'];
     $data = $_POST['data'];
     $horarioInicio = $_POST['horario'];
+
+    $timestamp = strtotime($horarioInicio) + 60*15;
+    $horarioFim = strftime('%H:%M:%S', $timestamp);
 
     $pacDao = new PacienteDAO();
     $pacInfo = $pacDao->verificaCpf($cpf);
 
+
     if ($pacInfo) {
+
+        foreach($pacInfo as $pac){
+            $paciente = $pac['id_paciente'];
+        }
+
+        $con = new Consulta($servico, $horarioInicio, $horarioFim, $especialista, $paciente, $data, $departamento);
+            
         echo json_encode($pacInfo);
+        // if ($conDao->Inserir($con) == true) {
+        //     echo json_encode("Consulta agendada com sucesso!");
+        // } else {
+        //     echo json_encode("Erro! Verifique se os dados foram digitados corretament");
+        // }
+
     } else {
         echo json_encode("cpf não cadastrado");
     }
