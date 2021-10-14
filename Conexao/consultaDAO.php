@@ -5,7 +5,7 @@
     class ConsultaDAO {
         public function Inserir(Consulta $con) {
             try{
-                if ((!empty($con-getIdServico())) && (!empty($con->getHoraInicio())) && (!empty($con->getHoraFim())) && (!empty($con->getIdEspecialista())) && (!empty($con->getIdPaciente())) && (!empty($con->getDataConsulta())) && (!empty($con->getIdDepartamento()))){
+                if ((!empty($con->getIdServico())) && (!empty($con->getHoraInicio())) && (!empty($con->getHoraFim())) && (!empty($con->getIdEspecialista())) && (!empty($con->getIdPaciente())) && (!empty($con->getDataConsulta())) && (!empty($con->getIdDepartamento()))){
 
                     $pdo = Conexao::getInstance();
                     $sql = $pdo->prepare("INSERT INTO consulta VALUES (default, ?, ?, ?, ?, ?, ?, ?)");
@@ -17,6 +17,14 @@
                     return false;
                 }
             }catch (PDOException $e){
+                print $e->getMessage();
+            }
+        }
+        public function Listar(){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("SELECT * FROM consulta");
+            }catch (PDOException $e) {
                 print $e->getMessage();
             }
         }

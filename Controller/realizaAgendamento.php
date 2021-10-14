@@ -3,6 +3,7 @@
     include_once '../Model/consulta.php';
     include_once '../Conexao/conexao.php';
     include_once '../Conexao/pacienteDAO.php';
+    include_once '../Conexao/consultaDAO.php';
 
     $cpf = preg_replace( '/[^0-9]/is', '', $_POST['cpf']);
     $departamento = $_POST['departamento'];
@@ -25,13 +26,14 @@
         }
 
         $con = new Consulta($servico, $horarioInicio, $horarioFim, $especialista, $paciente, $data, $departamento);
-            
-        echo json_encode($pacInfo);
-        // if ($conDao->Inserir($con) == true) {
-        //     echo json_encode("Consulta agendada com sucesso!");
-        // } else {
-        //     echo json_encode("Erro! Verifique se os dados foram digitados corretament");
-        // }
+        $conDao = new ConsultaDAO();
+
+        // echo json_encode($con->getIdDepartamento());
+        if ($conDao->Inserir($con) == true) {
+            echo json_encode("Consulta agendada com sucesso!");
+        } else {
+            echo json_encode("Erro! Verifique se os dados foram digitados corretament");
+        }
 
     } else {
         echo json_encode("cpf não cadastrado");
