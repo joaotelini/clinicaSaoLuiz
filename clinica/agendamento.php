@@ -223,7 +223,7 @@
               data: {data: data, especialista: especialista},
               dataType: 'json'
             }).done(function (result){
-                console.log(result);
+                // console.log(result);
                 $('#selectHorario').empty();
                 $('#selectHorario').prepend("<option value='0'></option>");
                 for (let i = 0; i < result.length; i++) {
@@ -286,13 +286,22 @@
                 data: {cpf: cpf, departamento: dep, especialista: esp, servico: ser, data: data, horario: hora},
                 dataType: 'json'
               }).done(function (result) {
-                console.log(result);
+                // console.log(result);
                 if (result == "Horário Indispovível"){
                   $('#message_horario').empty();
-                  $('#message_horario').prepend("<div class='alert alert-danger mt-3' role='alert'>Horário Indisponível</div>");
+                  $('#message_horario').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
                 } else if (result == "Erro! Verifique se os dados foram digitados corretamente") {
                   $('#message_erro').empty();
                   $('#message_erro').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
+                } else if (result = "Consulta agendada com sucesso!"){
+                  $('#message_erro').empty();
+                  $('#message_horario').empty();
+                  $('#message_date').empty();
+                  $('#cadAgend').trigger("reset");
+                  $('#message_erro').prepend("<div class='alert alert-success mt-3' role='alert'>"+ result +"</div>");
+                  setTimeout(() => {
+                    $('#message_erro').fadeOut('Slow');
+                  }, 3000);
                 }
               });
             } else {
