@@ -7,8 +7,8 @@
 
     $info = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-    $diaSemana = array("Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado");
-    $diaSemanaValue = array(1, 2, 3, 4, 5, 6, 7);
+    $diaSemana = array("", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado", "Domingo");
+    $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
 
     session_start();
 ?>
@@ -161,10 +161,10 @@
                     <div class="col-md-6">
                         <label class="form-label" for="diasemana">Dia da Semana</label>
                         <select class="form-control" name="diaSemana" value="2">
-                            <option value="0" selected></option>
+                            <!-- <option value="0" selected></option> -->
                             <?php
                             
-                                for ($i = 0; $i <= 6; $i++) {
+                                for ($i = 0; $i <= 7; $i++) {
 
                                     if ($_SESSION['value_diaSemana'] == $diaSemana[$i]) {
 
