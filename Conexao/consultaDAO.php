@@ -20,10 +20,18 @@
                 print $e->getMessage();
             }
         }
-        public function Listar(){
+        public function verificaHorario($data, $horario){
             try{
+
                 $pdo = Conexao::getInstance();
-                $sql = $pdo->prepare("SELECT * FROM consulta");
+                $sql = $pdo->prepare("SELECT * FROM consulta WHERE data_consulta = '$data' AND hora_inicio = '$horario'");
+                $sql->execute();
+
+                $conInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
+                if ($conInfo) {
+                    return "Horário Indispovível";
+                }
+
             }catch (PDOException $e) {
                 print $e->getMessage();
             }

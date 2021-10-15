@@ -17,26 +17,30 @@
 
     $pacDao = new PacienteDAO();
     $pacInfo = $pacDao->verificaCpf($cpf);
+    
+    foreach($pacInfo as $pac){
+        $paciente = $pac['id_paciente'];
+    }
 
+    $con = new Consulta($servico, $horarioInicio, $horarioFim, $especialista, $paciente, $data, $departamento);
+    $conDao = new ConsultaDAO();
 
-    if ($pacInfo) {
+    $horaIn = $conDao->verificaHorario($data, $horarioInicio);
 
-        foreach($pacInfo as $pac){
-            $paciente = $pac['id_paciente'];
-        }
-
-        $con = new Consulta($servico, $horarioInicio, $horarioFim, $especialista, $paciente, $data, $departamento);
-        $conDao = new ConsultaDAO();
-
-        // echo json_encode($con->getIdDepartamento());
-        if ($conDao->Inserir($con) == true) {
-            echo json_encode("Consulta agendada com sucesso!");
-        } else {
-            echo json_encode("Erro! Verifique se os dados foram digitados corretament");
+    // echo json_encode($horaIn);
+    if ($paciente) {
+        if ($horaIn) {
+            echo json_encode($horaIn);
+        } else {   
+            if ($conDao->Inserir($con) == true) {
+                echo json_encode("Consulta agendada com sucesso!");
+            } else {
+                echo json_encode("Erro! Verifique se os dados foram digitados corretamente");
+            }
         }
 
     } else {
-        echo json_encode("cpf não cadastrado");
+        echo json_encode("Cpf não cadastrado");
     }
 
     

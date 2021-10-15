@@ -207,7 +207,7 @@
               $('#message_date').empty();
               $('#message_date').prepend("<div class='alert alert-danger mt-3' role='alert'>Data Indisponível</div>");
               $('#selectHorario').empty();
-              $('#message_horario').prepend("<option value='0'></option>");
+              $('#selectHorario').prepend("<option value='0'></option>");
               // return false;
             }
           });
@@ -223,7 +223,7 @@
               data: {data: data, especialista: especialista},
               dataType: 'json'
             }).done(function (result){
-                // console.log(result);
+                console.log(result);
                 $('#selectHorario').empty();
                 $('#selectHorario').prepend("<option value='0'></option>");
                 for (let i = 0; i < result.length; i++) {
@@ -287,6 +287,13 @@
                 dataType: 'json'
               }).done(function (result) {
                 console.log(result);
+                if (result == "Horário Indispovível"){
+                  $('#message_horario').empty();
+                  $('#message_horario').prepend("<div class='alert alert-danger mt-3' role='alert'>Horário Indisponível</div>");
+                } else if (result == "Erro! Verifique se os dados foram digitados corretamente") {
+                  $('#message_erro').empty();
+                  $('#message_erro').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
+                }
               });
             } else {
               console.log("não funcionando");
