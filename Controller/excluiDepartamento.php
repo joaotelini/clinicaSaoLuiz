@@ -1,7 +1,7 @@
 <?php
 
     include_once '../Conexao/departamentoDAO.php';
-
+    
     $id = $_GET['id'];
 
     $depDao = new DepartamentoDAO();

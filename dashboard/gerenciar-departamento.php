@@ -3,6 +3,7 @@
 
     $depDao = new DepartamentoDAO();
     $depInfo = $depDao->listar();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -152,7 +153,12 @@
                                 <h2>Gerenciamento dos Departamentos</h2>
                             </div>
                             <div id="message_success">
-
+                                <?php
+                                    if (!empty($_SESSION['message'])){
+                                        echo "<p>".$_SESSION['message']."</p>";
+                                        unset($_SESSION['message']);
+                                    }
+                                ?>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <!-- <p><a class="btn btn-primary" href="cadastroDepartamento.php">Novo Departamento</a></p> -->
@@ -227,7 +233,7 @@
                                         <tr>
                                             <th><?php echo $dep['nome']?></th>
                                             <th><?php echo $dep['descricao']?></th>
-                                            <th><a href="../Controller/excluiDepartamento.php?id=<?php echo $dep['id_departamento']?>"><button class="btn btn-danger">Excluir</button></a>
+                                            <th><a href="../Controller/excluiDepartamento.php?id=<?php echo $dep['id_departamento']?>" data-confirm="Tem Certeza de que deseja excluir o item selecionado?" data-id="<?php echo $dep['id_departamento']?>" class="btn btn-danger">Excluir</a>
                                             </th>
                                         </tr>
                                     <?php endforeach ?>
@@ -270,6 +276,7 @@
                 </div>
 
                 <!-- Bootstrap core JavaScript-->
+
                 <script src="assets/vendor/jquery/jquery.min.js"></script>
                 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -307,6 +314,8 @@
                     }).hide();
                 });
                 </script>
+                <!-- <script src="assets/js/jquery-3.6.0.min.js"></script> -->
+
                 <script src="./assets/js/script.js"></script>
 
 </body>
