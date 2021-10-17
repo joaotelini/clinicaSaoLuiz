@@ -136,7 +136,7 @@
       </div>
 
       <div class="col-12">
-        <button type="button" name="realAgend" class="btn btn-success" id="cadAgend">Realizar Agendamento</button>
+        <button type="button" name="realAgend" class="btn btn-success" id="cadAgend">Agendar</button>
       </div>
     </form>
   </div>
@@ -315,11 +315,14 @@
                   $('#message_erro').empty();
                   $('#message_horario').empty();
                   $('#message_date').empty();
-                  $('#cadAgend').trigger("reset");
+                  $('#insertAgend').trigger("reset");
                   $('#message_erro').prepend("<div class='alert alert-success mt-3' role='alert'>"+ result +"</div>");
                   setTimeout(() => {
                     $('#message_erro').fadeOut('Slow');
-                  }, 3000);
+                  }, 2000);
+                  setTimeout(() => {
+                    location.reload();
+                  }, 2000);
                 }
               });
             } else {

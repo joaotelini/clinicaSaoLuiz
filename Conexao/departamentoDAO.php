@@ -22,7 +22,7 @@
 
         public function Listar() {
             $pdo = Conexao::getInstance();
-            $sql = $pdo->prepare("SELECT * FROM departamento");
+            $sql = $pdo->prepare("SELECT * FROM departamento ORDER BY id_departamento DESC");
             $sql->execute();
             $depInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
             if ($depInfo)

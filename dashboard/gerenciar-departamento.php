@@ -1,3 +1,9 @@
+<?php
+    include_once '../Conexao/departamentoDAO.php';
+
+    $depDao = new DepartamentoDAO();
+    $depInfo = $depDao->listar();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -22,6 +28,7 @@
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/main.css">
 
 </head>
 
@@ -137,100 +144,113 @@
 
                 <main id="main">
 
-                <!-- ======= Breadcrumbs Section ======= -->
-                <section class="breadcrumbs">
-                
-                <div class="container">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h2>Gerenciamento dos Departamentos</h2>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p><a href="cadastroDepartamento.php">Cadastrar novo Departamento</a></p>
-                    </div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                        <input type="text" id="search" placeholder="Pesquisar">
-                    </div>
-                </div>
-                </section><!-- End Breadcrumbs Section -->
+                    <!-- ======= Breadcrumbs Section ======= -->
+                    <section class="breadcrumbs">
 
-                <div class="container">
+                        <div class="container">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h2>Gerenciamento dos Departamentos</h2>
+                            </div>
+                            <div id="message_success">
 
-                  <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="table" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Nome do Departamento</th>
-                                    <th>Descrição</th>
-                                    <th>Ações</th>                                           
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Nome do Departamento</th>
-                                    <th>Descrição</th>
-                                    <th>Ações</th>    
-                                </tr>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                <tr>
-                                    <td>Cardiologia</td>
-                                    <td>A cardiologia em si é definida como um ramo da medicina responsável por estudar, cuidar e tratar o coração e os vasos sanguíneos. Ou seja, é uma das especialidades da medicina que cuida do coração e do sistema circulatório. A cardiologia é principalmente dividida em duas grandes áreas, assim como toda a medicina: a preventiva e a curativa. </td>
-                                    <td>Editar, Apagar</td>
-                                </tr>
-                                <tr>
-                                    <td>Odontologia</td>
-                                    <td>O profissional formado em Odontologia é responsável pela saúde bucal das pessoas. Ele atua na prevenção, diagnóstico e tratamento de problemas relacionados à mordida, gengiva e dentes. O dentista realiza tratamentos estéticos e também intervenções relacionada à saúde bucal. Ele está apto a identificar doenças através de exames clínicos, radiográficos e laboratoriais e, a partir do diagnóstico, propor o tratamento mais adequado e receitar medicamentos.</td> 
-                                    <td>Editar, Apagar</td>
-                                </tr>
-                                <tr>
-                                    <td>Ortopedia</td>
-                                    <td>A ortopedia ou traumato-ortopedia é a especialidade médica encarregada de tratar lesões, traumas e algumas deformidades que refletem no aparelho locomotor de um indivíduo, como tendões, ossos, ligamentos e articulações. Esta área também está relacionada à traumatologia, que trata contusões causadas por pancadas, como as fraturas ósseas.</td>
-                                    <td>Editar, Apagar</td>                                            
-                                </tr>
-                                <tr>
-                                    <td>Nutricionista</td>
-                                    <td>De forma resumida, o nutricionista elabora planos alimentares para indivíduos ou grupos de indivíduos a partir de um diagnóstico nutricional. </td>
-                                    <td>Editar, Apagar</td>
-                                </tr>
-                                <tr>
-                                  <td>Otorrinolaringologia</td>
-                                  <td>A otorrinolaringologia é a especialidade médica responsável pelos cuidados dedicados ao nariz, ouvidos, seios da face e garganta de um indivíduo. Como as três áreas são relativamente próximas uma das outras e interligadas por dutos e canais, é possível que certas condições médicas afetem uma ou mais cavidades e é de responsabilidade do médico com esse tipo de especialização realizar avaliações, diagnósticos e tratamentos para devolver ou aprimorar a qualidade de vida de um paciente.</td>
-                                  <td>Editar, Apagar</td>
-                                </tr>
-                                <tr>
-                                  <td>Dermatologista</td>
-                                  <td>A Dermatologia é uma especialidade médica cuja área de conhecimento se concentra no diagnóstico, prevenção e tratamento de doenças e afecções relacionadas à pele, pelos, mucosas, cabelo e unhas. É também especialidade indicada para atuação em procedimentos médicos estéticos, cirúrgicos, oncológicos.</td>
-                                  <td>Editar, Apagar</td>
-                                </tr>
-                                <tr>
-                                  <td>Gerontologia</td>
-                                  <td>A palavra Gerontologia deriva da língua grega e significa estudo do envelhecimento. O aluno do curso de Gerontologia estuda as mudanças ocorridas no processo de envelhecimento do ser humano e procura adaptar essas mudanças para que o idoso tenha uma vida mais tranquila nos aspectos físicos, psicológicos e biológicos.</td>
-                                  <td>Editar, Apagar</td>
-                                </tr>
-                                
-                            </tbody>
-                        </table>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- <p><a class="btn btn-primary" href="cadastroDepartamento.php">Novo Departamento</a></p> -->
+                                <button type="button" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal"
+                                    data-bs-target="#cadDepModal">
+                                    Novo Departamento +
+                                </button>
+
+                                <div class="modal fade" id="cadDepModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title form-style" id="exampleModalLabel">Novo
+                                                    Departamento</h5>
+                                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                            </div>
+                                            <div class="modal-body">
+                                                <form id="cadDepForm">
+                                                    <div id="message_result"></div>
+                                                    <div class="row mb-3">
+                                                        <label for="nome" class="col-sm-2 col-form-label form-style">Nome:</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="nome" class="form-control" id="departamento">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-3">
+                                                        <label for="descricao" class="col-sm-2 col-form-label form-style">Descrição:</label>
+                                                        <div class="col-sm-10">
+                                                        <textarea class="form-control" id="descricao"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="button" data-bs-dismiss="modal" id="cadDep" class="btn btn-success">Cadastrar</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                <input type="text" id="search" placeholder="Pesquisar">
+                            </div>
+                        </div>
+                    </section><!-- End Breadcrumbs Section -->
+
+                    <div class="container">
+
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="table" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome do Departamento</th>
+                                            <th>Descrição</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Nome do Departamento</th>
+                                            <th>Descrição</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <?php foreach($depInfo as $dep):?>
+                                        <tr>
+                                            <th><?php echo $dep['nome']?></th>
+                                            <th><?php echo $dep['descricao']?></th>
+                                            <th><a href="../Controller/modal.php?id=<?php echo $dep['id_departamento']?>"><button class="btn btn-danger">Excluir</button></a></th>
+                                        </tr>
+                                    <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
-
-                </div>
 
                 </main><!-- End #main -->
-            
-                <div id="preloader"></div>
-                    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-                        <i class="bi bi-arrow-up-short"></i>
-                    </a>
 
-                    <a class="scroll-to-top rounded" href="#page-top">
-                        <i class="fas fa-angle-up"></i>
-                    </a>
+                <div id="preloader"></div>
+                <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+                    <i class="bi bi-arrow-up-short"></i>
+                </a>
+
+                <a class="scroll-to-top rounded" href="#page-top">
+                    <i class="fas fa-angle-up"></i>
+                </a>
 
                 <!-- Logout Modal-->
-                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -248,44 +268,46 @@
                     </div>
                 </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="assets/vendor/jquery/jquery.min.js"></script>
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- Bootstrap core JavaScript-->
+                <script src="assets/vendor/jquery/jquery.min.js"></script>
+                <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- Core plugin JavaScript-->
+                <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="assets/js/sb-admin-2.min.js"></script>
+                <!-- Custom scripts for all pages-->
+                <script src="assets/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+                <!-- Page level plugins -->
+                <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
+                <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="assets/js/demo/datatables-demo.js"></script>
-                    
-        <!-- Vendor JS Files -->
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="assets/vendor/php-email-form/validate.js"></script>
-        <script src="assets/vendor/purecounter/purecounter.js"></script>
-        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    
-        <!-- Template Main JS File -->
-        <script src="assets/js/main.js"></script>
+                <!-- Page level custom scripts -->
+                <script src="assets/js/demo/datatables-demo.js"></script>
 
-        <script>
-         var $rows = $('#table tr ');
-            $('#search').keyup(function() {
-                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-                
-                $rows.show().filter(function() {
-                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                    return !~text.indexOf(val);
-                }).hide();
-            });
-        </script>
-    
-  </body>
-  </html>
+                <!-- Vendor JS Files -->
+                <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+                <script src="assets/vendor/php-email-form/validate.js"></script>
+                <script src="assets/vendor/purecounter/purecounter.js"></script>
+                <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+                <!-- Template Main JS File -->
+                <script src="assets/js/main.js"></script>
+
+                <script>
+                var $rows = $('#table tr ');
+                $('#search').keyup(function() {
+                    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+                    $rows.show().filter(function() {
+                        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                        return !~text.indexOf(val);
+                    }).hide();
+                });
+                </script>
+                <script src="./assets/js/script.js"></script>
+
+</body>
+
+</html>

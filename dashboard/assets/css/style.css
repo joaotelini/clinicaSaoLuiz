@@ -1114,7 +1114,9 @@ section {
 .departments .nav-link:hover {
   color: #1977cc;
 }
-
+.form-style{
+  color: #000;
+}
 .departments .nav-link.active {
   color: #1977cc;
   border-color: #1977cc;
