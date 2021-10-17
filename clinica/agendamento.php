@@ -129,7 +129,7 @@
 
       <div class="col-md-6" id="horario">
       <label for="horario" class="form-label">Horario:</label>
-        <select name="horario" class="form-control" id="selectHorario">
+        <select name="horario" onchange="verHorario(this.value)" class="form-control" id="selectHorario">
           <option value="0"></option>
         </select>
         <div id="message_horario"></div>
@@ -252,6 +252,24 @@
               });
               return valor;
             } 
+
+          function verHorario(horario) {
+              let data = document.getElementById('inputData');
+              $.ajax({
+                url: '../Controller/verificaHorario.php',
+                method: 'POST',
+                data: {horario: horario, data: data.value},
+                dataType: 'json'
+              }).done(function (result){
+                if (result == "Horário Indispovível") {
+                  $('#message_horario').empty();
+                  $('#message_horario').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
+                } else if (result == "Horário Disponível"){
+                  $('#message_horario').empty();
+                  $('#message_horario').prepend("<div class='alert alert-success mt-3' role='alert'>"+ result +"</div>");
+                }
+              });
+          }
           
 
           function validaCampos(cpf, dep, esp, ser, data, hora) {
