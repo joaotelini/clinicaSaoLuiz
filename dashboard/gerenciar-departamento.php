@@ -29,7 +29,7 @@
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/main.css">
-
+    <link rel="shortcut icon" href="#">
 </head>
 
 <body id="page-top">
@@ -227,7 +227,8 @@
                                         <tr>
                                             <th><?php echo $dep['nome']?></th>
                                             <th><?php echo $dep['descricao']?></th>
-                                            <th><a href="../Controller/modal.php?id=<?php echo $dep['id_departamento']?>"><button class="btn btn-danger">Excluir</button></a></th>
+                                            <th><a href="../Controller/excluiDepartamento.php?id=<?php echo $dep['id_departamento']?>"><button class="btn btn-danger">Excluir</button></a>
+                                            </th>
                                         </tr>
                                     <?php endforeach ?>
                                     </tbody>
