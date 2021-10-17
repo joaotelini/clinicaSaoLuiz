@@ -1,9 +1,9 @@
 <?php
-    include_once '../Conexao/departamentoDAO.php';
+include_once '../Conexao/departamentoDAO.php';
 
-    $depDao = new DepartamentoDAO();
-    $depInfo = $depDao->listar();
-    session_start();
+$depDao = new DepartamentoDAO();
+$depInfo = $depDao->listar();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -20,9 +20,7 @@
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
@@ -154,21 +152,19 @@
                             </div>
                             <div id="message_success">
                                 <?php
-                                    if (!empty($_SESSION['message'])){
-                                        echo "<p>".$_SESSION['message']."</p>";
-                                        unset($_SESSION['message']);
-                                    }
+                                if (!empty($_SESSION['message'])) {
+                                    echo "<p>" . $_SESSION['message'] . "</p>";
+                                    unset($_SESSION['message']);
+                                }
                                 ?>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <!-- <p><a class="btn btn-primary" href="cadastroDepartamento.php">Novo Departamento</a></p> -->
-                                <button type="button" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal"
-                                    data-bs-target="#cadDepModal">
+                                <button type="button" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#cadDepModal">
                                     Novo Departamento +
                                 </button>
 
-                                <div class="modal fade" id="cadDepModal" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="cadDepModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -188,14 +184,14 @@
                                                     <div class="row mb-3">
                                                         <label for="descricao" class="col-sm-2 col-form-label form-style">Descrição:</label>
                                                         <div class="col-sm-10">
-                                                        <textarea class="form-control" id="descricao"></textarea>
+                                                            <textarea class="form-control" id="descricao"></textarea>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                                                    <button type="button" data-bs-dismiss="modal" id="cadDep" class="btn btn-success">Cadastrar</button>
-                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="button" data-bs-dismiss="modal" id="cadDep" class="btn btn-success">Cadastrar</button>
+                                            </div>
                                             </form>
                                         </div>
                                     </div>
@@ -229,14 +225,14 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <?php foreach($depInfo as $dep):?>
-                                        <tr>
-                                            <th><?php echo $dep['nome']?></th>
-                                            <th><?php echo $dep['descricao']?></th>
-                                            <th><a href="../Controller/excluiDepartamento.php?id=<?php echo $dep['id_departamento']?>" data-confirm="Tem Certeza de que deseja excluir o item selecionado?" data-id="<?php echo $dep['id_departamento']?>" class="btn btn-danger">Excluir</a>
-                                            </th>
-                                        </tr>
-                                    <?php endforeach ?>
+                                        <?php foreach ($depInfo as $dep) : ?>
+                                            <tr>
+                                                <th><?php echo $dep['nome'] ?></th>
+                                                <th><?php echo $dep['descricao'] ?></th>
+                                                <th><a href="../Controller/excluiDepartamento.php?id=<?php echo $dep['id_departamento'] ?>" data-confirm="Tem Certeza de que deseja excluir o item selecionado?" data-id="<?php echo $dep['id_departamento'] ?>" class="btn btn-danger">Excluir</a>
+                                                </th>
+                                            </tr>
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -256,8 +252,7 @@
                 </a>
 
                 <!-- Logout Modal-->
-                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -270,6 +265,28 @@
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                 <a class="btn btn-primary" href="login.html">Sair</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- delete modal -->
+
+                <div class="modal fade" id="confirm-delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Excluir Departamento</h5>
+                                <button type="button" class="close" onclick="$('#confirm-delete').modal('hide')" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Tem certeza de que deseja excluir o departamento <?php echo $dep['nome']?>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onclick="$('#confirm-delete').modal('hide')" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button"  class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
@@ -304,15 +321,15 @@
                 <script src="assets/js/main.js"></script>
 
                 <script>
-                var $rows = $('#table tr ');
-                $('#search').keyup(function() {
-                    var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+                    var $rows = $('#table tr ');
+                    $('#search').keyup(function() {
+                        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
-                    $rows.show().filter(function() {
-                        var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                        return !~text.indexOf(val);
-                    }).hide();
-                });
+                        $rows.show().filter(function() {
+                            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                            return !~text.indexOf(val);
+                        }).hide();
+                    });
                 </script>
                 <!-- <script src="assets/js/jquery-3.6.0.min.js"></script> -->
 
