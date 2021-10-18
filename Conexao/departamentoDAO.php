@@ -37,11 +37,15 @@
                 $pdo = Conexao::getInstance();
                 $sql = $pdo->prepare("DELETE FROM departamento WHERE id_departamento = $id");
                 $sql->execute();    
-                return true;
+                
+                if ($sql->rowCount() == 1){
+                    return "Departamento excluido com sucesso";
+                } else {
+                    return "Erro!, existem dados ligados a esse departamento";
+                }
 
             }catch (PDOException $e){
                 print $e->getMessage();
-                return false;
             }
         }
     }

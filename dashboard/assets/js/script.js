@@ -11,17 +11,26 @@ $(document).ready(function() {
             data: {id: id},
             dataType: 'json'
           }).done(function (result) {
-            console.log(result);
-            $('#confirm-delete').modal("hide");
-            $("#message_success").prepend("<div class='alert alert-danger' role='alert'>" + result + "</div>");
-            setTimeout(() => {
-              $("#message_success").fadeOut("Slow");
-            }, 3000);
-            setTimeout(() => {
-              location.reload();
-            }, 3000);
+            // console.log(result);
+            if (result){
 
-          })
+              $('#message_success').empty();
+              $("#message_success").prepend("<div class='alert alert-danger' role='alert'>" + result + "</div>");
+              setTimeout(() => {
+                $("#message_success").fadeOut("Slow");
+              }, 1500);
+              setTimeout(() => {
+                location.reload();
+              }, 1500);
+            } else {
+              $('#message_success').empty();
+              $("#message_success").prepend("<div class='alert alert-danger' role='alert'>Erro!, existem dados ligados a esse departamento</div>");
+              setTimeout(() => {
+                $("#message_success").fadeOut("Slow");
+              }, 1500);
+            }
+
+          });
         });
         return false;
     });
@@ -44,10 +53,10 @@ $(document).ready(function() {
           $("#cadDepForm").trigger("reset");
           setTimeout(() => {
             $("#message_success").fadeOut("Slow");
-          }, 3000);
+          }, 1500);
           setTimeout(() => {
             location.reload();
-          }, 3000);
+          }, 1500);
         }
       });
     } else {

@@ -6,10 +6,9 @@
 
     $depDao = new DepartamentoDAO();
 
-    if ($depDao->Excluir($id)){
-        echo json_encode("Departamento excluido com sucesso!");
-    } else {
-        echo json_encode("Erro!");
-    }
+    $res = $depDao->Excluir($id);
+
+    echo json_encode($res);
+        
 
 ?>

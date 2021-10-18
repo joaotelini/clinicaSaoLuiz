@@ -146,7 +146,7 @@ session_start();
                     <!-- ======= Breadcrumbs Section ======= -->
                     <section class="breadcrumbs">
 
-                        <div class="container">
+                        <div class="container ml-4">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h2>Gerenciamento dos Departamentos</h2>
                             </div>
@@ -154,9 +154,7 @@ session_start();
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <!-- <p><a class="btn btn-primary" href="cadastroDepartamento.php">Novo Departamento</a></p> -->
-                                <button type="button" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#cadDepModal">
-                                    Novo Departamento +
-                                </button>
+
 
                                 <div class="modal fade" id="cadDepModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -196,13 +194,18 @@ session_start();
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                                <input type="text" id="search" placeholder="Pesquisar">
-                            </div>
+                            
                     </section><!-- End Breadcrumbs Section -->
 
                     <div class="container">
+                        <button type="button" class="btn btn-success ml-4 mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#cadDepModal">
+                            Novo Departamento +
+                        </button>
+
+                        <div class="form-group input-group ml-4">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                            <input type="text" id="search" placeholder="Pesquisar">
+                        </div>
 
                         <div class="card-body">
                             <div class="table-responsive">
@@ -227,7 +230,7 @@ session_start();
                                         <tr>
                                             <th><?php echo $dep['nome']?></th>
                                             <th><?php echo $dep['descricao']?></th>
-                                            <th><a href="../Controller/excluiDepartamento.php?id=<?php echo $dep['id_departamento']?>" data-confirm="Tem Certeza de que deseja excluir o item selecionado?" data-id="<?php echo $dep['id_departamento']?>" class="btn btn-danger">Excluir</a>
+                                            <th><a href="../Controller/excluiDepartamento.php?id=<?php echo $dep['id_departamento']?>" data-confirm="Tem Certeza de que deseja excluir o item selecionado?" data-id="<?php echo $dep['id_departamento']?>" class="btn btn-danger">Excluir</a> <a href="#" class="btn btn-warning">Alterar</a>
                                             </th>
                                         </tr>
                                         <?php endforeach ?>
@@ -283,7 +286,7 @@ session_start();
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-danger" id="dataConfirmOK">Excluir</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="dataConfirmOK">Excluir</button>
                         </div>
                     </div>
                 </div>
