@@ -2,10 +2,14 @@
 
     include_once '../Conexao/departamentoDAO.php';
     
-    $id = $_GET['id'];
+    $id = $_POST['id'];
 
     $depDao = new DepartamentoDAO();
-    $depDao->Excluir($id);
-    header('location: ../dashboard/gerenciar-departamento.php');
+
+    if ($depDao->Excluir($id)){
+        echo json_encode("Departamento excluido com sucesso!");
+    } else {
+        echo json_encode("Erro!");
+    }
 
 ?>
