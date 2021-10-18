@@ -20,7 +20,9 @@ session_start();
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
@@ -156,13 +158,15 @@ session_start();
                                 <!-- <p><a class="btn btn-primary" href="cadastroDepartamento.php">Novo Departamento</a></p> -->
 
 
-                                <div class="modal fade" id="cadDepModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="cadDepModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title form-style" id="exampleModalLabel">Novo
                                                     Departamento</h5>
-                                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close">&times;</button>
                                             </div>
                                             <div class="modal-body">
                                                 <form id="cadDepForm">
@@ -186,7 +190,7 @@ session_start();
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger"
                                                     data-bs-dismiss="modal">Cancelar</button>
-                                                <button type="button" data-bs-dismiss="modal" id="cadDep"
+                                                <button type="button" id="cadDep"
                                                     class="btn btn-success">Cadastrar</button>
                                             </div>
                                             </form>
@@ -194,11 +198,12 @@ session_start();
                                     </div>
                                 </div>
                             </div>
-                            
+
                     </section><!-- End Breadcrumbs Section -->
 
                     <div class="container">
-                        <button type="button" class="btn btn-success ml-4 mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#cadDepModal">
+                        <button type="button" class="btn btn-success ml-4 mt-2 mb-2" data-bs-toggle="modal"
+                            data-bs-target="#cadDepModal">
                             Novo Departamento +
                         </button>
 
@@ -230,7 +235,12 @@ session_start();
                                         <tr>
                                             <th><?php echo $dep['nome']?></th>
                                             <th><?php echo $dep['descricao']?></th>
-                                            <th><a href="../Controller/excluiDepartamento.php?id=<?php echo $dep['id_departamento']?>" data-confirm="Tem Certeza de que deseja excluir o item selecionado?" data-id="<?php echo $dep['id_departamento']?>" class="btn btn-danger">Excluir</a> <a href="#" class="btn btn-warning">Alterar</a>
+                                            <th><a href="../Controller/excluiDepartamento.php?id=<?php echo $dep['id_departamento']?>"
+                                                    data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
+                                                    data-id="<?php echo $dep['id_departamento']?>"
+                                                    class="btn btn-danger">Excluir</a> <button type="button"
+                                                    class="btn btn-warning" data-bs-toggle="modal"
+                                                    data-bs-target="#updateModal" data-bs-id="<?php echo $dep['id_departamento']?>" data-bs-nome="<?php echo $dep['nome']?>" data-bs-descricao="<?php echo $dep['descricao']?>">Alterar</button>
                                             </th>
                                         </tr>
                                         <?php endforeach ?>
@@ -279,14 +289,47 @@ session_start();
                     <div class="modal-content">
                         <div class="modal-header bg-danger text-white">
                             <h5 class="modal-title" id="exampleModalLabel">Excluir Departamento</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close">&times;</button>
                         </div>
                         <div class="modal-body">
                             Tem Certeza de que deseja excluir esse departamento?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="dataConfirmOK">Excluir</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                id="dataConfirmOK">Excluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- modal update  -->
+
+            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Alterar Departamento</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="message_update"></div>
+                            <form id="update-form">
+                                <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label">Nome:</label>
+                                    <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Descrição:</label>
+                                    <textarea class="form-control" id="descricao-text"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button"  id="alterar-departamento" class="btn btn-primary">Alterar</button>
                         </div>
                     </div>
                 </div>

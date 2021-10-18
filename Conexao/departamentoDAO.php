@@ -48,6 +48,24 @@
                 print $e->getMessage();
             }
         }
+
+        public function Alterar($id, $nome, $descricao){
+            try{
+                if ((!empty($id)) && (!empty($nome)) && (!empty($descricao))) {
+                    $pdo = Conexao::getInstance();
+                    $sql = $pdo->prepare("UPDATE departamento SET nome = ?, descricao = ? WHERE id_departamento = ? ");
+                    $sql->execute(array($nome, $descricao, $id));
+
+                    if ($sql->rowCount() >= 1){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }catch(PDOException $e){
+                print $e->getMessage();
+            }
+        }
     }
 
 ?>

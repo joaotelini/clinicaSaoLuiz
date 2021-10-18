@@ -13,11 +13,11 @@
 
         }
 
-        public function getIdDescricao() {
+        public function getIdDepartamento() {
             return $this->idDescricao;
         }
 
-        public function setIdDescricao($idD) {
+        public function setIdDepartamento($idD) {
             $this->idDescricao = $idD;
         } 
 
