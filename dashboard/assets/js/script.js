@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     $('a[data-confirm]').click(function(){
+<<<<<<< HEAD
         let id = $(this).attr('data-id');
 
         $('#confirm-delete').modal("show");
@@ -23,6 +24,9 @@ $(document).ready(function() {
 
           })
         });
+=======
+        $('#confirm-delete').modal("show");
+>>>>>>> refs/remotes/origin/main
         return false;
     });
 
