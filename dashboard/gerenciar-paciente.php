@@ -1,3 +1,10 @@
+<?php
+    include_once '../Conexao/pacienteDAO.php';
+
+    $pacDao = new PacienteDAO();
+    $pacInfo = $pacDao->Listar();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -165,30 +172,26 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>Martin Henrique Kauê da Costa</td>
-                                            <td>25.053.232-3</td>
-                                            <td>563.213.508-00</td>
-                                            <td>martinhenriquekauedacosta__martinhenriquekauedacosta@br.ibn.com</td>
-                                            <td>(19) 99774-2385</td>
-                                            <td>06/05/1950</td>
-                                            <td>Rua Abelardo Lauri</td>
-                                            <td>477</td>
-                                            <td>13976-213</td>
-                                            <td>Editar, Apagar</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Martin Henrique Kauê da Costa</td>
-                                            <td>25.053.232-3</td>
-                                            <td>563.213.508-00</td>
-                                            <td>martinhenriquekauedacosta__martinhenriquekauedacosta@br.ibn.com</td>
-                                            <td>(19) 99774-2385</td>
-                                            <td>06/05/1950</td>
-                                            <td>Rua Abelardo Lauri</td>
-                                            <td>477</td>
-                                            <td>13976-213</td>
-                                            <td>Editar, Apagar</td>
-                                        </tr>
+                                        <?php foreach($pacInfo as $dep):?>
+                                            <tr>
+                                                <th><?php echo $dep['nome_completo']?></th>
+                                                <th><?php echo $dep['rg']?></th> 
+                                                <th><?php echo $dep['cpf']?></th>
+                                                <th><?php echo $dep['email']?></th>
+                                                <th><?php echo $dep['telefone']?></th>
+                                                <th><?php echo $dep['data_nascimento']?></th>
+                                                <th><?php echo $dep['logradouro']?></th>
+                                                <th><?php echo $dep['numero']?></th>
+                                                <th><?php echo $dep['cep']?></th>
+                                                <th><a href="../Controller/excluiPaciente.php?id=<?php echo $dep['id_paciente']?>"
+                                                        data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
+                                                        data-id="<?php echo $dep['id_paciente']?>"
+                                                        class="btn btn-danger">Excluir</a> <button type="button"
+                                                        class="btn btn-warning" data-bs-toggle="modal"
+                                                        data-bs-target="#updateModal" data-bs-id="<?php echo $dep['id_paciente']?>" data-bs-nome="<?php echo $dep['nome_completo']?>" data-bs-descricao="<?php echo $dep['rg']?>" data-bs-nome="<?php echo $dep['cpf']?>" data-bs-nome="<?php echo $dep['email']?>" data-bs-nome="<?php echo $dep['telefone']?>" data-bs-nome="<?php echo $dep['data_nascimento']?>" data-bs-nome="<?php echo $dep['logradouro']?>" data-bs-nome="<?php echo $dep['numero']?>" data-bs-nome="<?php echo $dep['cep']?>">Alterar</button>
+                                                </th>
+                                            </tr>                                         
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
