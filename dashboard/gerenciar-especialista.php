@@ -1,3 +1,9 @@
+<?php
+    include_once '../Conexao/especialistaDAO.php';
+
+    $espDao = new EspecialistaDAO();
+    $espInfo = $espDao->Listar();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -164,7 +170,27 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
+                                        <?php foreach($espInfo as $dep):?>
+                                            <tr>
+                                                <th><?php echo $dep['nome_completo']?></th>
+                                                <th><?php echo $dep['nome   ']?></th> 
+                                                <!-- MUDA ISSO DAQUI PQ NAO TEM "departamento" no bd -->
+                                                <!-- MUDA ISSO DAQUI PQ NAO TEM "departamento" no bd -->
+                                                <!-- MUDA ISSO DAQUI PQ NAO TEM "departamento" no bd -->
+                                                <th><?php echo $dep['email']?></th>
+                                                <th><?php echo $dep['telefone']?></th>
+                                                <th><?php echo $dep['cpf']?></th>
+                                                <th><?php echo $dep['conselho_regional']?></th>
+                                                <th><a href="../Controller/excluiEspecialista.php?id=<?php echo $dep['id_especialista']?>"
+                                                        data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
+                                                        data-id="<?php echo $dep['id_especialista']?>"
+                                                        class="btn btn-danger">Excluir</a> <button type="button"
+                                                        class="btn btn-warning" data-bs-toggle="modal"
+                                                        data-bs-target="#updateModal" data-bs-id="<?php echo $dep['id_especialista']?>" data-bs-nome="<?php echo $dep['nome_completo']?>" data-bs-descricao="<?php echo $dep['conselho_regional']?>" data-bs-nome="<?php echo $dep['email']?>" data-bs-nome="<?php echo $dep['telefone']?>" data-bs-nome="<?php echo $dep['cpf']?>">Alterar</button>
+                                                </th>
+                                            </tr>    
+                                        <?php endforeach ?>
+                                        <!-- <tr>
                                             <td>Raimunda Giovanna Rafaela dos Santos</td>
                                             <td>Cardiologia</td>
                                             <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
@@ -227,7 +253,7 @@
                                             <td>428.774.000-93</td>
                                             <td>-----------</td>
                                             <td>Editar, Apagar</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
