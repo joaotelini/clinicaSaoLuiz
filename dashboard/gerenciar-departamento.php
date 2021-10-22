@@ -166,7 +166,7 @@ session_start();
                                                 <h5 class="modal-title form-style" id="exampleModalLabel">Novo
                                                     Departamento</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close">&times;</button>
+                                                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             </div>
                                             <div class="modal-body">
                                                 <form id="cadDepForm">
@@ -290,7 +290,7 @@ session_start();
                         <div class="modal-header bg-danger text-white">
                             <h5 class="modal-title" id="exampleModalLabel">Excluir Departamento</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close">&times;</button>
+                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
                             Tem Certeza de que deseja excluir esse departamento?
@@ -312,7 +312,7 @@ session_start();
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Alterar Departamento</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
                             <div id="message_update"></div>

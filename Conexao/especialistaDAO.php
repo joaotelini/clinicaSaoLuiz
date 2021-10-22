@@ -25,7 +25,7 @@
         }
         public function Listar() {
             $pdo = Conexao::getInstance();
-            $sql = $pdo->prepare("SELECT * FROM especialista INNER JOIN departamento ON especialista.id_departamento = departamento.id_departamento");
+            $sql = $pdo->prepare("SELECT * FROM especialista INNER JOIN departamento ON especialista.id_departamento = departamento.id_departamento ORDER BY especialista.id_especialista DESC");
             $sql->execute();
             $espInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $espInfo;

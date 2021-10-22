@@ -1,8 +1,12 @@
 <?php
     include_once '../Conexao/especialistaDAO.php';
+    include_once '../Conexao/departamentoDAO.php';
 
     $espDao = new EspecialistaDAO();
     $espInfo = $espDao->Listar();
+    
+    $depDao = new DepartamentoDAO();
+    $depInfo = $depDao->Listar();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,9 +29,12 @@
 
     <!-- Custom styles for this template -->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/main.css">
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="#">
+
 
 </head>
 
@@ -131,9 +138,11 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gerenciar os Especialistas</h1>
+                    <div id="message_success"></div>
 
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p><a href="cadastroEspecialista.php">Cadastrar novo Especialista</a></p>
+                    <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#insert-esp-modal">Novo Especialista +
+                        </button>
                     </div>
 
                     <div class="form-group input-group">
@@ -154,7 +163,7 @@
                                             <th>Telefone</th>
                                             <th>CPF</th>
                                             <th>Conselho Regional</th>
-                                            <th>Ações</th>                                           
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -165,95 +174,34 @@
                                             <th>Telefone</th>
                                             <th>CPF</th>
                                             <th>Conselho Regional</th>
-                                            <th>Ações</th>       
+                                            <th>Ações</th>
                                         </tr>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php foreach($espInfo as $dep):?>
-                                            <tr>
-                                                <th><?php echo $dep['nome_completo']?></th>
-                                                <th><?php echo $dep['nome   ']?></th> 
-                                                <!-- MUDA ISSO DAQUI PQ NAO TEM "departamento" no bd -->
-                                                <!-- MUDA ISSO DAQUI PQ NAO TEM "departamento" no bd -->
-                                                <!-- MUDA ISSO DAQUI PQ NAO TEM "departamento" no bd -->
-                                                <th><?php echo $dep['email']?></th>
-                                                <th><?php echo $dep['telefone']?></th>
-                                                <th><?php echo $dep['cpf']?></th>
-                                                <th><?php echo $dep['conselho_regional']?></th>
-                                                <th><a href="../Controller/excluiEspecialista.php?id=<?php echo $dep['id_especialista']?>"
-                                                        data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
-                                                        data-id="<?php echo $dep['id_especialista']?>"
-                                                        class="btn btn-danger">Excluir</a> <button type="button"
-                                                        class="btn btn-warning" data-bs-toggle="modal"
-                                                        data-bs-target="#updateModal" data-bs-id="<?php echo $dep['id_especialista']?>" data-bs-nome="<?php echo $dep['nome_completo']?>" data-bs-descricao="<?php echo $dep['conselho_regional']?>" data-bs-nome="<?php echo $dep['email']?>" data-bs-nome="<?php echo $dep['telefone']?>" data-bs-nome="<?php echo $dep['cpf']?>">Alterar</button>
-                                                </th>
-                                            </tr>    
+                                        <?php foreach($espInfo as $esp):?>
+                                        <tr>
+                                            <th><?php echo $esp['nome_completo']?></th>
+                                            <th><?php echo $esp['nome']?></th>
+                                            <th><?php echo $esp['email']?></th>
+                                            <th><?php echo $esp['telefone']?></th>
+                                            <th><?php echo $esp['cpf']?></th>
+                                            <th><?php echo $esp['conselho_regional']?></th>
+                                            <th><a href="../Controller/excluiEspecialista.php?id=<?php echo $esp['id_especialista']?>"
+                                                    data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
+                                                    data-id="<?php echo $esp['id_especialista']?>"
+                                                    class="btn btn-danger">Excluir</a> <button type="button"
+                                                    class="btn btn-warning" data-bs-toggle="modal"
+                                                    data-bs-target="#updateModal"
+                                                    data-bs-id="<?php echo $esp['id_especialista']?>"
+                                                    data-bs-nome="<?php echo $esp['nome_completo']?>"
+                                                    data-bs-descricao="<?php echo $esp['conselho_regional']?>"
+                                                    data-bs-nome="<?php echo $esp['email']?>"
+                                                    data-bs-nome="<?php echo $esp['telefone']?>"
+                                                    data-bs-nome="<?php echo $esp['cpf']?>">Alterar</button>
+                                            </th>
+                                        </tr>
                                         <?php endforeach ?>
-                                        <!-- <tr>
-                                            <td>Raimunda Giovanna Rafaela dos Santos</td>
-                                            <td>Cardiologia</td>
-                                            <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
-                                            <td>(19) 98223-2027</td>
-                                            <td>428.774.000-93</td>
-                                            <td>-----------</td>
-                                            <td>Editar, Apagar</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Raimunda Giovanna Rafaela dos Santos</td>
-                                            <td>Cardiologia</td>
-                                            <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
-                                            <td>(19) 98223-2027</td>
-                                            <td>428.774.000-93</td>
-                                            <td>-----------</td>
-                                            <td>Editar, Apagar</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Raimunda Giovanna Rafaela dos Santos</td>
-                                            <td>Cardiologia</td>
-                                            <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
-                                            <td>(19) 98223-2027</td>
-                                            <td>428.774.000-93</td>
-                                            <td>-----------</td>
-                                            <td>Editar, Apagar</td>                                         
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>Raimunda Giovanna Rafaela dos Santos</td>
-                                            <td>Cardiologia</td>
-                                            <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
-                                            <td>(19) 98223-2027</td>
-                                            <td>428.774.000-93</td>
-                                            <td>-----------</td>
-                                            <td>Editar, Apagar</td>
-                                        </tr>
-                                        <td>Raimunda Giovanna Rafaela dos Santos</td>
-                                            <td>Cardiologia</td>
-                                            <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
-                                            <td>(19) 98223-2027</td>
-                                            <td>428.774.000-93</td>
-                                            <td>-----------</td>
-                                            <td>Editar, Apagar</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Raimunda Giovanna Rafaela dos Santos</td>
-                                            <td>Cardiologia</td>
-                                            <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
-                                            <td>(19) 98223-2027</td>
-                                            <td>428.774.000-93</td>
-                                            <td>-----------</td>
-                                            <td>Editar, Apagar</td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Raimunda Giovanna Rafaela dos Santos</td>
-                                            <td>Cardiologia</td>
-                                            <td>raimundagiovannarafaeladossantos-92@unink.com.br</td>
-                                            <td>(19) 98223-2027</td>
-                                            <td>428.774.000-93</td>
-                                            <td>-----------</td>
-                                            <td>Editar, Apagar</td>
-                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -297,6 +245,73 @@
         </div>
     </div>
 
+    <!-- insertModal  -->
+
+    <div class="modal fade" id="insert-esp-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title form-style" id="exampleModalLabel">Novo Especialista</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-cad-especialista">
+                        <div id="message_result"></div>
+                        <div class="row mb-3">
+                            <label for="nome" class="col-sm-2 col-form-label form-style">Nome:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="nome" class="form-control" id="nome-especialista">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="conselho-regional" class="col-sm-2 col-form-label form-style">CRM:</label>
+                            <div class="col-sm-10">
+                                <input type="number" name="conselho-regional" class="form-control"
+                                    id="conselho-regional">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="cpf" class="col-sm-2 col-form-label form-style">CPF:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="cpf" class="form-control" id="cpf-especialista">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-sm-2 col-form-label form-style">E-mail:</label>
+                            <div class="col-sm-10">
+                                <input type="email" name="email" class="form-control" id="email-especialista">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="telefone-especialista"
+                                class="col-sm-2 col-form-label form-style">Telefone:</label>
+                            <div class="col-sm-10">
+                                <input type="number" name="telefone-especialista" class="form-control" id="telefone-especialista">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="departamento-especialista" class="col-sm-2 col-form-label form-style">Departamento:</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" name="departamento-especialista" id="departamento-especialista">
+                                    <option value="0"></option>
+                                    <?php
+                                        foreach($depInfo as $dep) {
+                                            echo "<option value='".$dep['id_departamento']."'>".$dep['nome']."</option>";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="insert-especialista" class="btn btn-success">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -315,16 +330,18 @@
     <script src="assets/js/demo/datatables-demo.js"></script>
 
     <script>
-         var $rows = $('#table tr ');
-            $('#search').keyup(function() {
-                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-                
-                $rows.show().filter(function() {
-                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                    return !~text.indexOf(val);
-                }).hide();
-            });
-     </script>
+    var $rows = $('#table tr ');
+    $('#search').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+    });
+    </script>
+    <!-- <script src="assets/js/jquery-3.6.0.min.js"></script> -->
+    <script src="./assets/js/especialista.js"></script>
 
 </body>
 
