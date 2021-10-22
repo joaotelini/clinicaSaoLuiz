@@ -30,6 +30,22 @@
             $espInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
             return $espInfo;
         }
+
+        public function Excluir($id){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("DELETE FROM especialista WHERE id_especialista = $id");
+                $sql->execute();
+
+                if ($sql->rowCount() >= 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }catch(PDOException $e) {
+                print $e->getMessage();
+            }
+        }
     }
 
         

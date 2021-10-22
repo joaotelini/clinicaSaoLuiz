@@ -141,7 +141,8 @@
                     <div id="message_success"></div>
 
                     <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#insert-esp-modal">Novo Especialista +
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#insert-esp-modal">Novo Especialista +
                         </button>
                     </div>
 
@@ -286,13 +287,16 @@
                             <label for="telefone-especialista"
                                 class="col-sm-2 col-form-label form-style">Telefone:</label>
                             <div class="col-sm-10">
-                                <input type="number" name="telefone-especialista" class="form-control" id="telefone-especialista">
+                                <input type="number" name="telefone-especialista" class="form-control"
+                                    id="telefone-especialista">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="departamento-especialista" class="col-sm-2 col-form-label form-style">Departamento:</label>
+                            <label for="departamento-especialista"
+                                class="col-sm-2 col-form-label form-style">Departamento:</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="departamento-especialista" id="departamento-especialista">
+                                <select class="form-control" name="departamento-especialista"
+                                    id="departamento-especialista">
                                     <option value="0"></option>
                                     <?php
                                         foreach($depInfo as $dep) {
@@ -307,6 +311,27 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" id="insert-especialista" class="btn btn-success">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- delete modal  -->
+    <div class="modal fade" id="confirm-delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir Especialista</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    Tem Certeza de que deseja excluir esse Especialista?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                        id="dataConfirmOK">Excluir</button>
                 </div>
             </div>
         </div>

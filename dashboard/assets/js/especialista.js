@@ -56,4 +56,39 @@ $(document).ready(function () {
         }
     }
 
+    $('a[data-confirm]').click(function(){
+        let id = $(this).attr('data-id');
+
+        $('#confirm-delete').modal("show");
+        $('#dataConfirmOK').click(function () {
+          $.ajax({
+            url: '../Controller/excluiEspecialista.php',
+            method: 'POST',
+            data: {id: id},
+            dataType: 'json'
+          }).done(function (result) {
+            console.log(result);
+            if (result){
+
+              $('#message_success').empty();
+              $("#message_success").prepend("<div class='alert alert-danger' role='alert'>Especialista Excluido com sucesso!</div>");
+              setTimeout(() => {
+                $("#message_success").fadeOut("Slow");
+              }, 1500);
+              setTimeout(() => {
+                location.reload();
+              }, 1500);
+            } else {
+              $('#message_success').empty();
+              $("#message_success").prepend("<div class='alert alert-danger' role='alert'>Erro!, existem dados ligados a esse Especialista</div>");
+              setTimeout(() => {
+                $("#message_success").fadeOut("Slow");
+              }, 1500);
+            }
+
+          });
+        });
+        return false;
+    });
+
 });
