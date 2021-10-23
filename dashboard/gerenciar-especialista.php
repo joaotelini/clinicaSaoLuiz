@@ -193,13 +193,13 @@
                                                     data-id="<?php echo $esp['id_especialista']?>"
                                                     class="btn btn-danger">Excluir</a> <button type="button"
                                                     class="btn btn-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#updateModal"
-                                                    data-bs-id="<?php echo $esp['id_especialista']?>"
-                                                    data-bs-nome="<?php echo $esp['nome_completo']?>"
-                                                    data-bs-descricao="<?php echo $esp['conselho_regional']?>"
-                                                    data-bs-nome="<?php echo $esp['email']?>"
-                                                    data-bs-nome="<?php echo $esp['telefone']?>"
-                                                    data-bs-nome="<?php echo $esp['cpf']?>">Alterar</button>
+                                                    data-bs-target="#exampleModal"
+                                                    data-bs-nome="<?php echo $esp['nome_completo']?>" 
+                                                    data-bs-crm="<?php echo $esp['conselho_regional']?>"
+                                                    data-bs-cpf="<?php echo $esp['cpf']?>"
+                                                    data-bs-email="<?php echo $esp['email']?>" 
+                                                    data-bs-telefone="<?php echo $esp['telefone']?>"
+                                                    data-bs-departamento="<?php echo $esp['id_departamento']?>">Alterar</button>
                                             </th>
                                         </tr>
                                         <?php endforeach ?>
@@ -337,6 +337,56 @@
         </div>
     </div>
 
+    <!-- modal update  -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Nome:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-crm" class="col-form-label">CRM:</label>
+                            <input type="number" class="form-control" id="recipient-crm">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-cpf" class="col-form-label">CPF:</label>
+                            <input type="text" class="form-control" id="recipient-cpf">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-email" class="col-form-label">E-mail:</label>
+                            <input type="email" class="form-control" id="recipient-email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-telefone" class="col-form-label">Telefone:</label>
+                            <input type="number" class="form-control" id="recipient-telefone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-departamento" class="col-form-label">Departamento:</label>
+                            <select class="form-control" id="recipient-departamento">
+                                <?php
+                                    foreach($depInfo as $dep){
+                                        echo "<option value='".$dep['id_departamento']."'>".$dep['nome']."</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Bootstrap core JavaScript-->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -367,6 +417,39 @@
     </script>
     <!-- <script src="assets/js/jquery-3.6.0.min.js"></script> -->
     <script src="./assets/js/especialista.js"></script>
+    <script>
+    let exampleModal = document.getElementById('exampleModal')
+    exampleModal.addEventListener('show.bs.modal', function(event) {
+        // Button that triggered the modal
+        let button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        let recipientNome = button.getAttribute('data-bs-nome');
+        let recipientCrm = button.getAttribute('data-bs-crm');
+        let recipientCpf = button.getAttribute('data-bs-cpf');
+        let recipientEmail = button.getAttribute('data-bs-email');
+        let recipientTelefone = button.getAttribute('data-bs-telefone');
+        let recipientDepartamento = button.getAttribute('data-bs-departamento');
+
+        let update = $(this);
+        update.find('#recipient-name').val(recipientNome);
+        update.find('#recipient-crm').val(recipientCrm);
+        update.find('#recipient-cpf').val(recipientCpf);
+        update.find('#recipient-email').val(recipientEmail);
+        update.find('#recipient-telefone').val(recipientTelefone);
+        update.find('#recipient-departamento').val(recipientDepartamento);
+
+
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+        // var modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+        // modalTitle.textContent = 'New message to ' + recipient
+        // modalBodyInput.value = recipient
+    })
+    </script>
+
 
 </body>
 
