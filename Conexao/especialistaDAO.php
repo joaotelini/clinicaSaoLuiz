@@ -46,6 +46,12 @@
                 print $e->getMessage();
             }
         }
+
+        public function Alterar($id, $nome, $crm, $cpf, $email, $telefone, $departamento){
+            try{
+                
+            }
+        } 
     }
 
         

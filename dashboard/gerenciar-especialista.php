@@ -343,10 +343,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Alterar Especialista</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div id="message-result-update"></div>
                     <form>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Nome:</label>
@@ -381,8 +382,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btn-update-esp" class="btn btn-success">Alterar</button>
                 </div>
             </div>
         </div>
@@ -429,6 +430,7 @@
         let recipientEmail = button.getAttribute('data-bs-email');
         let recipientTelefone = button.getAttribute('data-bs-telefone');
         let recipientDepartamento = button.getAttribute('data-bs-departamento');
+        let id = button.getAttribute('data-bs-id');
 
         let update = $(this);
         update.find('#recipient-name').val(recipientNome);
@@ -439,15 +441,37 @@
         update.find('#recipient-departamento').val(recipientDepartamento);
 
 
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
-        // var modalBodyInput = exampleModal.querySelector('.modal-body input')
+        $('#btn-update-esp').click(function () {
+            let nome = $('#recipient-nome').val();
+            let crm = $('#recipient-crm').val();
+            let cpf = $('#recipient-cpf').val();
+            let email = $('#recipient-email').val();
+            let telefone = $('#recipient-telefone').val();
+            let departamento = $('#recipient-departamento').val();
+            let res = verificaCampos(id, nome, crm, cpf, email, telefone, departamento);
+            if (res){
+                $.ajax({
+                    url: '../Controller/alterar-especialista.php',
+                    method: 'POST',
+                    data: {id: id, nome: nome, crm: crm, cpf: cpf, email: email, telefone: telefone, departamento: departamento },
+                    dataType: 'json'
+                }).done(function (result){
+                    console.log(result);
+                });
+            }
+        });
+    });
 
-        // modalTitle.textContent = 'New message to ' + recipient
-        // modalBodyInput.value = recipient
-    })
+    function verificaCampos(id, nome, crm, cpf, email, telefone, departamento){
+        if (id == "" || nome == "" || crm == "" || cpf == "" || email == "" || telefone == "" || departamento == "") {
+            $('#message-result-update').empty();
+            $('#message-result-update').prepend('<div class="alert alert-danger" role="alert">Preencha todos os campos!</div>');
+            return false;
+        } else {
+            $('#message_result').empty();
+            return true;
+        }
+    }
     </script>
 
 
