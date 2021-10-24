@@ -49,7 +49,17 @@
 
         public function Alterar($id, $nome, $crm, $cpf, $email, $telefone, $departamento){
             try{
-                
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("UPDATE especialista SET nome_completo = ?, conselho_regional = ?, cpf = ?, email = ?, telefone = ?, id_departamento = ? WHERE id_especialista = ?");
+                $sql->execute(array($nome, $crm, $cpf, $email, $telefone, $departamento, $id));
+
+                if ($sql->rowCount() >= 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }catch (PDOException $e){
+                print $e->getMessage();
             }
         } 
     }

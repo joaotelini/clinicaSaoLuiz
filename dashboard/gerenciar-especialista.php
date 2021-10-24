@@ -199,7 +199,8 @@
                                                     data-bs-cpf="<?php echo $esp['cpf']?>"
                                                     data-bs-email="<?php echo $esp['email']?>" 
                                                     data-bs-telefone="<?php echo $esp['telefone']?>"
-                                                    data-bs-departamento="<?php echo $esp['id_departamento']?>">Alterar</button>
+                                                    data-bs-departamento="<?php echo $esp['id_departamento']?>"
+                                                    data-bs-id="<?php echo $esp['id_especialista']?>">Alterar</button>
                                             </th>
                                         </tr>
                                         <?php endforeach ?>
@@ -348,7 +349,7 @@
                 </div>
                 <div class="modal-body">
                     <div id="message-result-update"></div>
-                    <form>
+                    <form id="form-update-especialista">
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Nome:</label>
                             <input type="text" class="form-control" id="recipient-name">
@@ -442,13 +443,14 @@
 
 
         $('#btn-update-esp').click(function () {
-            let nome = $('#recipient-nome').val();
+            let nome = $('#recipient-name').val();
             let crm = $('#recipient-crm').val();
             let cpf = $('#recipient-cpf').val();
             let email = $('#recipient-email').val();
             let telefone = $('#recipient-telefone').val();
             let departamento = $('#recipient-departamento').val();
             let res = verificaCampos(id, nome, crm, cpf, email, telefone, departamento);
+
             if (res){
                 $.ajax({
                     url: '../Controller/alterar-especialista.php',
@@ -456,7 +458,23 @@
                     data: {id: id, nome: nome, crm: crm, cpf: cpf, email: email, telefone: telefone, departamento: departamento },
                     dataType: 'json'
                 }).done(function (result){
-                    console.log(result);
+                    if (result == "CPF Inválido!") {
+                        $('#message-result-update').empty();
+                        $('#message-result-update').prepend('<div class="alert alert-danger" role="alert">CPF Inválido</div>');
+                    } else if (result == "Erro! Verifique os campos"){
+                        $('#message-result-update').empty();
+                        $('#message-result-update').prepend('<div class="alert alert-danger" role="alert">'+ result +'</div>');
+                    } else {
+                        $("#form-update-especialista").trigger("reset");
+                        $("#exampleModal").modal('hide');
+                        $("#message_success").prepend("<div class='alert alert-success' role='alert'>" + result + "</div>");
+                        setTimeout(() => {
+                            $("#message_success").fadeOut("Slow");
+                        }, 1500);
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1500);
+                    }
                 });
             }
         });
