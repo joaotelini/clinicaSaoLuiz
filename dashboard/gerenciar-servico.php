@@ -1,3 +1,13 @@
+<?php
+    include_once '../Conexao/servicoDAO.php';
+    include_once '../Conexao/departamentoDAO.php';
+
+    $serDao = new ServicoDAO();
+    $serInfo = $serDao->Listar();
+
+    $depDao = new DepartamentoDAO();
+    $depInfo = $depDao->Listar();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -19,6 +29,8 @@
 
     <!-- Custom styles for this template -->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/main.css">
+
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -124,9 +136,13 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gerenciar os Serviços</h1>
-                    
+                    <div id="message-success"></div>
+
                     <div class="d-flex justify-content-between align-items-center">
-                        <p><a href="cadastroServico.php">Cadastrar novo Serviço</a></p>
+                        <button type="button" class="btn btn-success mb-2 mt-2" data-bs-toggle="modal"
+                            data-bs-target="#insert-ser-modal">
+                            Novo Serviço +
+                        </button>
                     </div>
 
                     <div class="form-group input-group">
@@ -145,8 +161,8 @@
                                             <th>Duração (minutos)</th>
                                             <th>Valor</th>
                                             <th>Departamento</th>
-                                            <th>Descrição</th>                                        
-                                            <th>Ações</th>                                        
+                                            <th>Descrição</th>
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -155,26 +171,22 @@
                                             <th>Duração (minutos)</th>
                                             <th>Valor</th>
                                             <th>Departamento</th>
-                                            <th>Descrição</th>    
-                                            <th>Ações</th>    
+                                            <th>Descrição</th>
+                                            <th>Ações</th>
                                         </tr>
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <?php foreach($serInfo as $ser):?>
                                         <tr>
-                                            <td>Limpeza bucal</td>
-                                            <td>30</td>
-                                            <td>50,00</td>
-                                            <td>Odontologia</td>
-                                            <td></td>
-                                            <td>Editar, Apagar</td>
+                                            <td><?php echo $ser['nome_servico']?></td>
+                                            <td><?php echo $ser['duracao']?> minutos</td>
+                                            <td>R$<?php echo $ser['valor']?>,00</td>
+                                            <td><?php echo $ser['nome']?></td>
+                                            <td><?php echo $ser['descricao']?></td>
+                                            <td><a href="#"data-confirm="Tem Certeza de que deseja excluir o item selecionado?" class="btn btn-danger">Excluir</a> <button type="button"class="btn btn-warning">Alterar</button></td>
                                         </tr>
-                                            <td>Limpeza bucal</td>
-                                            <td>30</td>
-                                            <td>50,00</td>
-                                            <td>Odontologia</td>
-                                            <td></td>
-                                            <td>Editar, Apagar</td>
+                                        <?php endforeach?>
                                     </tbody>
                                 </table>
                             </div>
@@ -199,6 +211,55 @@
     </a>
 
     <!-- Logout Modal-->
+
+    <!-- insert modal  -->
+
+    <div class="modal fade" id="insert-ser-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title form-style" id="exampleModalLabel">Cadastrar Serviço</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body form-style">
+                    <div id="message-result"></div>
+                    <form id="form-cad-servico">
+                        <div class="mb-3">
+                            <label for="departamento" class="col-form-label">Departamento:</label>
+                            <select class="form-control" name="departamento" id="departamento">
+                                <option value="0"></option>
+                                <?php
+                                    foreach($depInfo as $dep) {
+                                        echo "<option value='".$dep['id_departamento']."'>".$dep['nome']."</option>";
+                                    }
+                                    ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nome" class="col-form-label">Nome:</label>
+                            <input type="text" name="nome" class="form-control" id="nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="duracao" class="col-form-label">Duração:</label>
+                            <input type="number" name="duracao" class="form-control" id="duracao">
+                        </div>
+                        <div class="mb-3">
+                            <label for="valor" class="col-form-label">Valor:</label>
+                            <input type="number" class="form-control" id="valor">
+                        </div>
+                        <div class="mb-3">
+                            <label for="descricao" class="col-form-label">Descrição:</label>
+                            <textarea class="form-control" name="descricao" id="descricao" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="btn-cad-servico">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -234,18 +295,19 @@
 
     <!-- Page level custom scripts -->
     <script src="assets/js/demo/datatables-demo.js"></script>
+    <script src="./assets/js/servico.js"></script>
 
     <script>
-         var $rows = $('#table tr ');
-            $('#search').keyup(function() {
-                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-                
-                $rows.show().filter(function() {
-                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                    return !~text.indexOf(val);
-                }).hide();
-            });
-        </script>
+    var $rows = $('#table tr ');
+    $('#search').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+    });
+    </script>
 
 </body>
 

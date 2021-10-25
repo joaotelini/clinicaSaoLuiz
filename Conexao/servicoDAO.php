@@ -22,6 +22,17 @@
                 print $e->getMessage();
             }
         }
+        public function Listar(){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("SELECT * FROM servico INNER JOIN departamento ON servico.id_departamento = departamento.id_departamento ORDER BY id_servico DESC");
+                $sql->execute();
+                $serInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
+                return $serInfo;
+            }catch (PDOException $e){
+                print $e->getMessage();
+            }
+        }
     }
 
 ?>
