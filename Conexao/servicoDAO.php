@@ -33,6 +33,20 @@
                 print $e->getMessage();
             }
         }
+        public function Excluir($id){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("DELETE FROM servico WHERE id_servico = ?");
+                $sql->execute(array($id));
+                if ($sql->rowCount() == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }catch(PDOException $e){
+                print $e->getMessage();
+            }
+        }
     }
 
 ?>

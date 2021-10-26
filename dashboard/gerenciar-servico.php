@@ -34,6 +34,8 @@
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="#">
+
 
 </head>
 
@@ -184,7 +186,7 @@
                                             <td>R$<?php echo $ser['valor']?>,00</td>
                                             <td><?php echo $ser['nome']?></td>
                                             <td><?php echo $ser['descricao']?></td>
-                                            <td><a href="#"data-confirm="Tem Certeza de que deseja excluir o item selecionado?" class="btn btn-danger">Excluir</a> <button type="button"class="btn btn-warning">Alterar</button></td>
+                                            <td><a data-id="<?php echo $ser['id_servico']?>" data-confirm="Tem Certeza de que deseja excluir o item selecionado?" class="btn btn-danger">Excluir</a> <button type="button"class="btn btn-warning">Alterar</button></td>
                                         </tr>
                                         <?php endforeach?>
                                     </tbody>
@@ -260,6 +262,29 @@
             </div>
         </div>
     </div>
+
+    <!-- delete modal  -->
+
+    <div class="modal fade" id="confirm-delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir Serviço</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    Tem Certeza de que deseja excluir esse serviço?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                        id="dataConfirmOK">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    console.log("hello world");
 
     function validaCampos(nome, dep, dura, val, desc){
         if (nome == "" || dep == "" || dura == "" || val == "" || desc == ""){
@@ -45,5 +44,39 @@ $(document).ready(function(){
             });
         }
         
+    });
+
+     $('a[data-confirm]').click(function(){
+        let id = $(this).attr('data-id');
+
+        $('#confirm-delete').modal("show");
+        $('#dataConfirmOK').click(function () {
+          $.ajax({
+            url: '../Controller/excluir-servico.php',
+            method: 'POST',
+            data: {id: id},
+            dataType: 'json'
+          }).done(function (result) {
+            if (result){
+
+              $('#message-success').empty();
+              $("#message-success").prepend("<div class='alert alert-danger' role='alert'>Serviço Excluido com sucesso!</div>");
+              setTimeout(() => {
+                $("#message-success").fadeOut("Slow");
+              }, 1500);
+              setTimeout(() => {
+                location.reload();
+              }, 1500);
+            } else {
+              $('#message-success').empty();
+              $("#message-success").prepend("<div class='alert alert-danger' role='alert'>Erro!, existem dados ligados a esse serviço</div>");
+              setTimeout(() => {
+                $("#message-success").fadeOut("Slow");
+              }, 1500);
+            }
+
+          });
+        });
+        return false;
     });
 });
