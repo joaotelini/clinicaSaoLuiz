@@ -47,6 +47,22 @@
                 print $e->getMessage();
             }
         }
+        public function Alterar($id, $nome, $dep, $dura, $val, $desc){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("UPDATE servico SET nome_servico = ?, id_departamento = ?, duracao = ?, valor = ?, descricao_servico = ? WHERE id_servico = ?");
+                $sql->execute(array($nome, $dep, $dura, $val, $desc, $id));
+
+                if ($sql->rowCount() == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+                
+            }catch(PDOException $e){
+                print $e->getMessage();
+            }
+        }
     }
 
 ?>

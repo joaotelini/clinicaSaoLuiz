@@ -185,8 +185,19 @@
                                             <td><?php echo $ser['duracao']?> minutos</td>
                                             <td>R$<?php echo $ser['valor']?>,00</td>
                                             <td><?php echo $ser['nome']?></td>
-                                            <td><?php echo $ser['descricao']?></td>
-                                            <td><a data-id="<?php echo $ser['id_servico']?>" data-confirm="Tem Certeza de que deseja excluir o item selecionado?" class="btn btn-danger">Excluir</a> <button type="button"class="btn btn-warning">Alterar</button></td>
+                                            <td><?php echo $ser['descricao_servico']?></td>
+                                            <td><a data-id="<?php echo $ser['id_servico']?>"
+                                                    data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
+                                                    class="btn btn-danger">Excluir</a>
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                    data-bs-target="#updateModal"
+                                                    data-bs-nome="<?php echo $ser['nome_servico']?>"
+                                                    data-bs-duracao="<?php echo $ser['duracao']?>"
+                                                    data-bs-valor="<?php echo $ser['valor']?>"
+                                                    data-bs-descricao="<?php echo $ser['descricao_servico']?>"
+                                                    data-bs-departamento="<?php echo $ser['id_departamento']?>"
+                                                    data-bs-id="<?php echo $ser['id_servico']?>">Alterar</button>
+                                            </td>
                                         </tr>
                                         <?php endforeach?>
                                     </tbody>
@@ -219,9 +230,9 @@
     <div class="modal fade" id="insert-ser-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-success">
                     <h5 class="modal-title form-style" id="exampleModalLabel">Cadastrar Serviço</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body form-style">
                     <div id="message-result"></div>
@@ -270,7 +281,7 @@
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Excluir Serviço</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
@@ -280,6 +291,54 @@
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
                         id="dataConfirmOK">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- update modal  -->
+
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-warning form-style">
+                    <h5 class="modal-title" id="exampleModalLabel">Alterar Serviço</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body form-style">
+                    <div id="message-result-update"></div>
+                    <form id="form-update-servico">
+                        <div class="mb-3">
+                            <label for="recipient-departamento" class="col-form-label">Departamento:</label>
+                            <select class="form-control" id="recipient-departamento">
+                                <?php
+                                    foreach($depInfo as $dep){
+                                        echo "<option value='".$dep['id_departamento']."'>".$dep['nome'].".</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-nome" class="col-form-label">Nome:</label>
+                            <input type="text" class="form-control" id="recipient-nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-nome" class="col-form-label">Duração:</label>
+                            <input type="number" class="form-control" id="recipient-duracao">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-nome" class="col-form-label">Valor:</label>
+                            <input type="number" class="form-control" id="recipient-valor">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-nome" class="col-form-label">Descrição:</label>
+                            <textarea class="form-control" id="recipient-descricao"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-warning" id="update-ser-confirm">Alterar</button>
                 </div>
             </div>
         </div>

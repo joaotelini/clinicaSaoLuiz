@@ -188,16 +188,15 @@
                                             <th><?php echo $esp['telefone']?></th>
                                             <th><?php echo $esp['cpf']?></th>
                                             <th><?php echo $esp['conselho_regional']?></th>
-                                            <th><a href="../Controller/excluiEspecialista.php?id=<?php echo $esp['id_especialista']?>"
-                                                    data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
+                                            <th><a data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
                                                     data-id="<?php echo $esp['id_especialista']?>"
-                                                    class="btn btn-danger">Excluir</a> <button type="button"
-                                                    class="btn btn-warning" data-bs-toggle="modal"
+                                                    class="btn btn-danger">Excluir</a>
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal"
-                                                    data-bs-nome="<?php echo $esp['nome_completo']?>" 
+                                                    data-bs-nome="<?php echo $esp['nome_completo']?>"
                                                     data-bs-crm="<?php echo $esp['conselho_regional']?>"
                                                     data-bs-cpf="<?php echo $esp['cpf']?>"
-                                                    data-bs-email="<?php echo $esp['email']?>" 
+                                                    data-bs-email="<?php echo $esp['email']?>"
                                                     data-bs-telefone="<?php echo $esp['telefone']?>"
                                                     data-bs-departamento="<?php echo $esp['id_departamento']?>"
                                                     data-bs-id="<?php echo $esp['id_especialista']?>">Alterar</button>
@@ -252,9 +251,9 @@
     <div class="modal fade" id="insert-esp-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-success">
                     <h5 class="modal-title form-style" id="exampleModalLabel">Novo Especialista</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body">
                     <form id="form-cad-especialista">
@@ -323,10 +322,10 @@
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="exampleModalLabel">Excluir Especialista</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body form-style">
                     Tem Certeza de que deseja excluir esse Especialista?
                 </div>
                 <div class="modal-footer">
@@ -343,11 +342,11 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-warning form-style">
                     <h5 class="modal-title" id="exampleModalLabel">Alterar Especialista</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body form-style">
                     <div id="message-result-update"></div>
                     <form id="form-update-especialista">
                         <div class="mb-3">
@@ -384,7 +383,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" id="btn-update-esp" class="btn btn-success">Alterar</button>
+                    <button type="button" id="btn-update-esp" class="btn btn-warning">Alterar</button>
                 </div>
             </div>
         </div>
@@ -442,7 +441,7 @@
         update.find('#recipient-departamento').val(recipientDepartamento);
 
 
-        $('#btn-update-esp').click(function () {
+        $('#btn-update-esp').click(function() {
             let nome = $('#recipient-name').val();
             let crm = $('#recipient-crm').val();
             let cpf = $('#recipient-cpf').val();
@@ -451,23 +450,37 @@
             let departamento = $('#recipient-departamento').val();
             let res = verificaCampos(id, nome, crm, cpf, email, telefone, departamento);
 
-            if (res){
+            if (res) {
                 $.ajax({
                     url: '../Controller/alterar-especialista.php',
                     method: 'POST',
-                    data: {id: id, nome: nome, crm: crm, cpf: cpf, email: email, telefone: telefone, departamento: departamento },
+                    data: {
+                        id: id,
+                        nome: nome,
+                        crm: crm,
+                        cpf: cpf,
+                        email: email,
+                        telefone: telefone,
+                        departamento: departamento
+                    },
                     dataType: 'json'
-                }).done(function (result){
+                }).done(function(result) {
                     if (result == "CPF Inválido!") {
                         $('#message-result-update').empty();
-                        $('#message-result-update').prepend('<div class="alert alert-danger" role="alert">CPF Inválido</div>');
-                    } else if (result == "Erro! Verifique os campos"){
+                        $('#message-result-update').prepend(
+                            '<div class="alert alert-danger" role="alert">CPF Inválido</div>'
+                        );
+                    } else if (result == "Erro! Verifique os campos") {
                         $('#message-result-update').empty();
-                        $('#message-result-update').prepend('<div class="alert alert-danger" role="alert">'+ result +'</div>');
+                        $('#message-result-update').prepend(
+                            '<div class="alert alert-danger" role="alert">' + result +
+                            '</div>');
                     } else {
                         $("#form-update-especialista").trigger("reset");
                         $("#exampleModal").modal('hide');
-                        $("#message_success").prepend("<div class='alert alert-success' role='alert'>" + result + "</div>");
+                        $("#message_success").prepend(
+                            "<div class='alert alert-success' role='alert'>" + result +
+                            "</div>");
                         setTimeout(() => {
                             $("#message_success").fadeOut("Slow");
                         }, 1500);
@@ -480,10 +493,11 @@
         });
     });
 
-    function verificaCampos(id, nome, crm, cpf, email, telefone, departamento){
+    function verificaCampos(id, nome, crm, cpf, email, telefone, departamento) {
         if (id == "" || nome == "" || crm == "" || cpf == "" || email == "" || telefone == "" || departamento == "") {
             $('#message-result-update').empty();
-            $('#message-result-update').prepend('<div class="alert alert-danger" role="alert">Preencha todos os campos!</div>');
+            $('#message-result-update').prepend(
+                '<div class="alert alert-danger" role="alert">Preencha todos os campos!</div>');
             return false;
         } else {
             $('#message_result').empty();

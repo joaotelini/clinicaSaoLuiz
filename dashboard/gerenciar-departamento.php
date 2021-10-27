@@ -162,10 +162,10 @@ session_start();
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <div class="modal-header">
+                                            <div class="modal-header bg-success">
                                                 <h5 class="modal-title form-style" id="exampleModalLabel">Novo
                                                     Departamento</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                <button type="button" class="close" data-bs-dismiss="modal"
                                                     aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                             </div>
                                             <div class="modal-body">
@@ -235,12 +235,14 @@ session_start();
                                         <tr>
                                             <th><?php echo $dep['nome']?></th>
                                             <th><?php echo $dep['descricao']?></th>
-                                            <th><a href="../Controller/excluiDepartamento.php?id=<?php echo $dep['id_departamento']?>"
-                                                    data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
+                                            <th><a data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
                                                     data-id="<?php echo $dep['id_departamento']?>"
-                                                    class="btn btn-danger">Excluir</a> <button type="button"
-                                                    class="btn btn-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#updateModal" data-bs-id="<?php echo $dep['id_departamento']?>" data-bs-nome="<?php echo $dep['nome']?>" data-bs-descricao="<?php echo $dep['descricao']?>">Alterar</button>
+                                                    class="btn btn-danger">Excluir</a>
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                                    data-bs-target="#updateModal"
+                                                    data-bs-id="<?php echo $dep['id_departamento']?>"
+                                                    data-bs-nome="<?php echo $dep['nome']?>"
+                                                    data-bs-descricao="<?php echo $dep['descricao']?>">Alterar</button>
                                             </th>
                                         </tr>
                                         <?php endforeach ?>
@@ -289,10 +291,10 @@ session_start();
                     <div class="modal-content">
                         <div class="modal-header bg-danger text-white">
                             <h5 class="modal-title" id="exampleModalLabel">Excluir Departamento</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body form-style">
                             Tem Certeza de que deseja excluir esse departamento?
                         </div>
                         <div class="modal-footer">
@@ -310,11 +312,12 @@ session_start();
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-warning form-style">
                             <h5 class="modal-title" id="exampleModalLabel">Alterar Departamento</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body form-style">
                             <div id="message_update"></div>
                             <form id="update-form">
                                 <div class="mb-3">
@@ -329,7 +332,7 @@ session_start();
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button"  id="alterar-departamento" class="btn btn-primary">Alterar</button>
+                            <button type="button" id="alterar-departamento" class="btn btn-warning">Alterar</button>
                         </div>
                     </div>
                 </div>

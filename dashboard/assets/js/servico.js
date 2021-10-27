@@ -58,7 +58,6 @@ $(document).ready(function(){
             dataType: 'json'
           }).done(function (result) {
             if (result){
-
               $('#message-success').empty();
               $("#message-success").prepend("<div class='alert alert-danger' role='alert'>Serviço Excluido com sucesso!</div>");
               setTimeout(() => {
@@ -79,4 +78,72 @@ $(document).ready(function(){
         });
         return false;
     });
+
+    let updateModal = document.getElementById('updateModal')
+      updateModal.addEventListener('show.bs.modal', function (event) {
+      let button = event.relatedTarget
+      let recipientNome = button.getAttribute('data-bs-nome');
+      let recipientDuracao = button.getAttribute('data-bs-duracao');
+      let recipientValor = button.getAttribute('data-bs-valor');
+      let recipientDescricao = button.getAttribute('data-bs-descricao');
+      let recipientDepartamento = button.getAttribute('data-bs-departamento');
+      let id = button.getAttribute('data-bs-id');
+
+      let update = $(this);
+
+      update.find('#recipient-nome').val(recipientNome);
+      update.find('#recipient-duracao').val(recipientDuracao);
+      update.find('#recipient-valor').val(recipientValor);
+      update.find('#recipient-descricao').val(recipientDescricao);
+      update.find('#recipient-departamento').val(recipientDepartamento);
+
+      $('#update-ser-confirm').click(function (){
+        let nome = $('#recipient-nome').val();
+        let dura = $('#recipient-duracao').val();
+        let valor = $('#recipient-valor').val();
+        let desc = $('#recipient-descricao').val();
+        let dep = $('#recipient-departamento').val();
+
+        let res = validaCamposUpdate(nome, dep, dura, valor, desc);
+
+        if (res){
+          $.ajax({
+            url: '../Controller/alterar-servico.php',
+            method: 'POST',
+            data: {id: id, nome: nome, departamento: dep, duracao: dura, valor: valor, descricao: desc},
+            dataType: 'json'
+          }).done(function (result){
+            console.log(result);
+            if (result == "Erro! Verifique os campos"){
+              $('#message-result-update').empty();
+              $('#message-result-update').prepend('<div class="alert alert-danger" role="alert">'+ result +'</div>');
+            } else {
+              $('#updateModal').modal('hide');
+              $('#message-success').empty();
+              $("#message-success").prepend("<div class='alert alert-success' role='alert'>"+ result +"</div>");
+              setTimeout(() => {
+                $("#message-success").fadeOut("Slow");
+              }, 1500);
+              setTimeout(() => {
+                location.reload();
+              }, 1500);
+            }
+          })
+        }
+      });
+
+      function validaCamposUpdate(nome, dep, dura, val, desc){
+        if (nome == "" || dep == "" || dura == "" || val == "" || desc == ""){
+            $('#message-result-update').empty();
+            $('#message-result-update').prepend('<div class="alert alert-danger" role="alert">Preencha todos os campos!</div>');
+            return false;
+        } else {
+            $('#message-result-update').empty();
+            return true;
+        }
+    }
+
+ 
+      
+});
 });
