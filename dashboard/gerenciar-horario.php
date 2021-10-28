@@ -1,8 +1,15 @@
 <?php
-    include_once '../Conexao/horarioDAO.php';
-    
-    $horaDao = new HorarioDAO();
-    $horaInfo = $horaDao->Listar();
+include_once '../Conexao/horarioDAO.php';
+include_once '../Conexao/especialistaDAO.php';
+
+$horaDao = new HorarioDAO();
+$horaInfo = $horaDao->Listar();
+
+$espDao = new EspecialistaDAO();
+$espInfo = $espDao->Listar();
+
+$diaSemana = array("", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado", "Domingo");
+$diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,15 +26,15 @@
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="shortcut icon" href="#">
 
 </head>
 
@@ -130,9 +137,11 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gerenciar os Horários</h1>
-                    
+
                     <div class="d-flex justify-content-between align-items-center">
-                        <p><a href="cadastroHorario.php">Cadastrar novo Horário</a></p>
+                        <button type="button" class="btn btn-success mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#cad-hora-modal">
+                            Novo Horário +
+                        </button>
                     </div>
 
                     <div class="form-group input-group">
@@ -151,7 +160,7 @@
                                             <th>Dia da Semana</th>
                                             <th>Começo Espediente</th>
                                             <th>Fim Espediente</th>
-                                            <th>Ações</th>                                       
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -160,19 +169,19 @@
                                             <th>Dia da Semana</th>
                                             <th>Começo Espediente</th>
                                             <th>Fim Espediente</th>
-                                            <th>Ações</th>   
+                                            <th>Ações</th>
                                         </tr>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php foreach($horaInfo as $hora):?>
-                                        <tr>
-                                            <td><?php echo $hora['nome_completo']?></td>
-                                            <td><?php echo $hora['dia_semana']?></td>
-                                            <td><?php echo $hora['comeco_espediente']?></td>
-                                            <td><?php echo $hora['fim_espediente']?></td>
-                                            <td><button class="btn btn-danger ml-1">Excluir</button><button class="ml-1 btn btn-warning">Alterar</button></td>
-                                        </tr>
+                                        <?php foreach ($horaInfo as $hora) : ?>
+                                            <tr>
+                                                <td><?php echo $hora['nome_completo'] ?></td>
+                                                <td><?php echo $hora['dia_semana'] ?></td>
+                                                <td><?php echo $hora['comeco_espediente'] ?></td>
+                                                <td><?php echo $hora['fim_espediente'] ?></td>
+                                                <td><button class="btn btn-danger ml-1">Excluir</button><button class="ml-1 btn btn-warning">Alterar</button></td>
+                                            </tr>
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
@@ -197,9 +206,71 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <!-- insert modal  -->
+
+    <div class="modal fade" id="cad-hora-modal" tabindex="-1" aria-labelledby="cad-hora-modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content form-style">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title" id="exampleModalLabel">Novo Horario</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-cad-horario">
+                        <div class="mb-3">
+                            <label for="nome" class="col-form-label">Especialista:</label>
+                            <select class="form-control" id="especialista">
+                                <option value="0"></option>
+                                <?php
+                                    foreach($espInfo as $esp) {
+                                        echo "<option value='". $esp['id_especialista']."'>".$esp['nome_completo']."</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nome" class="col-form-label">Dia da Semana:</label>
+                            <select class="form-control" id="especialista">
+                                <!-- <option value="0"></option> -->
+                                <?php
+                            
+                                for ($i = 0; $i <= 7; $i++) {
+
+                                    if ($_SESSION['value_diaSemana'] == $diaSemana[$i]) {
+
+                                        echo "<option selected value='".$diaSemanaValue[$i]."'>".$diaSemana[$i]."</option>";
+                                        unset($_SESSION['value_diaSemana']);
+
+                                    } else {
+
+                                        echo "<option value='".$diaSemanaValue[$i]."'>".$diaSemana[$i]."</option>";
+
+                                    }
+                                }
+                            
+                            ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nome" class="col-form-label">Começo Espediente:</label>
+                            <input type="time" class="form-control" id="comeco-espediente">
+                        </div>
+                        <div class="mb-3">
+                            <label for="nome" class="col-form-label">Fim Espediente:</label>
+                            <input type="time" class="form-control" id="fim-espediente">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -235,16 +306,16 @@
     <script src="assets/js/demo/datatables-demo.js"></script>
 
     <script>
-         var $rows = $('#table tr ');
-            $('#search').keyup(function() {
-                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-                
-                $rows.show().filter(function() {
-                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                    return !~text.indexOf(val);
-                }).hide();
-            });
-        </script>
+        var $rows = $('#table tr ');
+        $('#search').keyup(function() {
+            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+            $rows.show().filter(function() {
+                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                return !~text.indexOf(val);
+            }).hide();
+        });
+    </script>
 
 </body>
 
