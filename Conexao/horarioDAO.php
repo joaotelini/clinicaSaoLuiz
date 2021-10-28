@@ -23,6 +23,17 @@
                 print $e->getMessage();
             }
         }
+        public function Listar(){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("SELECT * FROM horario INNER JOIN especialista ON horario.id_especialista = especialista.id_especialista");
+                $sql->execute();
+                $horaInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
+                return $horaInfo;
+            }catch(PDOException $e){
+                print $e->getMessage();
+            }
+        }
     }
 
 ?>

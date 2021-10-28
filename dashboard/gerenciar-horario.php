@@ -1,3 +1,9 @@
+<?php
+    include_once '../Conexao/horarioDAO.php';
+    
+    $horaDao = new HorarioDAO();
+    $horaInfo = $horaDao->Listar();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -159,19 +165,15 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <?php foreach($horaInfo as $hora):?>
                                         <tr>
-                                            <td>João Pedro Silva</td>
-                                            <td>Segunda-Feira</td>
-                                            <td>13:15</td>
-                                            <td>19:30</td>
-                                            <td>Editar, Apagar</td>
-                                            
+                                            <td><?php echo $hora['nome_completo']?></td>
+                                            <td><?php echo $hora['dia_semana']?></td>
+                                            <td><?php echo $hora['comeco_espediente']?></td>
+                                            <td><?php echo $hora['fim_espediente']?></td>
+                                            <td><button class="btn btn-danger ml-1">Excluir</button><button class="ml-1 btn btn-warning">Alterar</button></td>
                                         </tr>
-                                            <td>João Pedro Telini</td>
-                                            <td>Terça-Feira</td>
-                                            <td>07:15</td>
-                                            <td>21:30</td>
-                                            <td>Editar, Apagar</td>
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
