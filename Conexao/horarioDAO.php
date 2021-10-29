@@ -26,7 +26,7 @@
         public function Listar(){
             try{
                 $pdo = Conexao::getInstance();
-                $sql = $pdo->prepare("SELECT * FROM horario INNER JOIN especialista ON horario.id_especialista = especialista.id_especialista");
+                $sql = $pdo->prepare("SELECT * FROM horario INNER JOIN especialista ON horario.id_especialista = especialista.id_especialista ORDER BY especialista.id_especialista DESC");
                 $sql->execute();
                 $horaInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
                 return $horaInfo;

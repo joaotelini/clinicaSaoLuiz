@@ -216,6 +216,7 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body">
+                    <div id="message-result"></div>
                     <form id="form-cad-horario">
                         <div class="mb-3">
                             <label for="nome" class="col-form-label">Especialista:</label>
@@ -230,7 +231,7 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                         </div>
                         <div class="mb-3">
                             <label for="nome" class="col-form-label">Dia da Semana:</label>
-                            <select class="form-control" id="especialista">
+                            <select class="form-control" id="dia-semana">
                                 <!-- <option value="0"></option> -->
                                 <?php
                             
@@ -263,7 +264,7 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Cadastrar</button>
+                    <button type="button" id="btn-cad-horario" class="btn btn-success">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -304,6 +305,7 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
 
     <!-- Page level custom scripts -->
     <script src="assets/js/demo/datatables-demo.js"></script>
+    <script src="./assets/js/horario.js"></script>
 
     <script>
         var $rows = $('#table tr ');
