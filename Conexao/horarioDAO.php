@@ -34,6 +34,21 @@
                 print $e->getMessage();
             }
         }
+        public function Excluir($id){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("DELETE FROM horario WHERE id_horario = ?");
+                $sql->execute(array($id));
+                
+                if ($sql->rowCount() == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }catch (PDOException $e){
+                print $e->getMessage();
+            }
+        }
     }
 
 ?>

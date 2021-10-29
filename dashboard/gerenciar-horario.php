@@ -26,7 +26,9 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
@@ -134,12 +136,14 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <div id="message-success"></div>
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gerenciar os Horários</h1>
 
                     <div class="d-flex justify-content-between align-items-center">
-                        <button type="button" class="btn btn-success mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#cad-hora-modal">
+                        <button type="button" class="btn btn-success mt-2 mb-2" data-bs-toggle="modal"
+                            data-bs-target="#cad-hora-modal">
                             Novo Horário +
                         </button>
                     </div>
@@ -175,13 +179,15 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                                     </tfoot>
                                     <tbody>
                                         <?php foreach ($horaInfo as $hora) : ?>
-                                            <tr>
-                                                <td><?php echo $hora['nome_completo'] ?></td>
-                                                <td><?php echo $hora['dia_semana'] ?></td>
-                                                <td><?php echo $hora['comeco_espediente'] ?></td>
-                                                <td><?php echo $hora['fim_espediente'] ?></td>
-                                                <td><button class="btn btn-danger ml-1">Excluir</button><button class="ml-1 btn btn-warning">Alterar</button></td>
-                                            </tr>
+                                        <tr>
+                                            <td><?php echo $hora['nome_completo'] ?></td>
+                                            <td><?php echo $hora['dia_semana'] ?></td>
+                                            <td><?php echo $hora['comeco_espediente'] ?></td>
+                                            <td><?php echo $hora['fim_espediente'] ?></td>
+                                            <td><button id="btn-delete" data-id="<?php echo $hora['id_horario']?>"
+                                                    class="btn btn-danger ml-1">Excluir</button><button
+                                                    class="ml-1 btn btn-warning">Alterar</button></td>
+                                        </tr>
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
@@ -270,8 +276,30 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
         </div>
     </div>
 
+    <!-- delete modal  -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir Hoário</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body form-style">
+                    Tem certeza de que deseja excluir esse horário?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                        id="confirm-delete">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -308,15 +336,15 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
     <script src="./assets/js/horario.js"></script>
 
     <script>
-        var $rows = $('#table tr ');
-        $('#search').keyup(function() {
-            var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+    var $rows = $('#table tr ');
+    $('#search').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
 
-            $rows.show().filter(function() {
-                var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                return !~text.indexOf(val);
-            }).hide();
-        });
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+    });
     </script>
 
 </body>

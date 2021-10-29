@@ -25,9 +25,54 @@ $(document).ready(function (){
                 data: {especialista: esp, dia_semana: dia, comeco_espediente: comeco, fim_espediente: fim},
                 dataType: 'json'
             }).done(function (result){
-                console.log(result);
+                if (result == "Erro! verifique os campos"){
+                    $('#message-result').empty();
+                    $('#message-result').prepend('<div class="alert alert-danger" role="alert">'+ result +'</div>');
+                } else {
+                    $('#message-success').empty();
+                    $('#message-success').prepend('<div class="alert alert-success" role="alert">'+ result +'</div>');
+                    $("#form-cad-horario").trigger("reset");
+                    $("#cad-hora-modal").modal('hide');
+                    setTimeout(() => {
+                        $("#message-success").fadeOut("Slow");
+                    }, 1500);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1500);
+                }
             })
         }
         
+    });
+
+    $('#btn-delete').click(function (){
+        let id = $(this).attr('data-id');
+        
+        $('#deleteModal').modal('show');
+        $('#confirm-delete').click(function (){
+            $.ajax({
+                url: '../Controller/excluir-horario.php',
+                method: 'POST',
+                data: {id: id},
+                dataType: 'json'
+            }).done(function (result){
+                if (result){
+                    $('#message-success').empty();
+                    $("#message-success").prepend("<div class='alert alert-danger' role='alert'>Horário excluido com sucesso!</div>");
+                    setTimeout(() => {
+                      $("#message-success").fadeOut("Slow");
+                    }, 1500);
+                    setTimeout(() => {
+                      location.reload();
+                    }, 1500);
+                  } else {
+                    $('#message-success').empty();
+                    $("#message-success").prepend("<div class='alert alert-danger' role='alert'>Erro!, existem dados ligados a esse horário</div>");
+                    setTimeout(() => {
+                      $("#message-success").fadeOut("Slow");
+                    }, 1500);
+                  }
+            })
+        });
     });
 });
