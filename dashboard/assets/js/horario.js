@@ -64,7 +64,7 @@ $(document).ready(function (){
                     }, 1500);
                     setTimeout(() => {
                       location.reload();
-                    }, 1500);
+                    }, 1500); 
                   } else {
                     $('#message-success').empty();
                     $("#message-success").prepend("<div class='alert alert-danger' role='alert'>Erro!, existem dados ligados a esse horário</div>");
@@ -75,4 +75,66 @@ $(document).ready(function (){
             })
         });
     });
+
+    let updateModal = document.getElementById('updateModal')
+      updateModal.addEventListener('show.bs.modal', function (event) {
+      let button = event.relatedTarget
+      let recipientEspecialista = button.getAttribute('data-bs-especialista');
+      let recipientDia = button.getAttribute('data-bs-dia');
+      let recipientComeco = button.getAttribute('data-bs-comeco');
+      let recipientFim = button.getAttribute('data-bs-fim');
+      let id = button.getAttribute('data-bs-id');
+
+      let update = $(this);
+
+      update.find('#recipient-especialista').val(recipientEspecialista);
+      update.find('#recipient-dia').val(recipientDia);
+      update.find('#recipient-comeco').val(recipientComeco);
+      update.find('#recipient-fim').val(recipientFim);
+
+      $('#update-hora-confirm').click(function (){
+        let esp = $('#recipient-especialista').val();
+        let dia = $('#recipient-dia').val();
+        let comeco = $('#recipient-comeco').val();
+        let fim = $('#recipient-fim').val();
+
+        let res = validaCamposUpdate(esp, dia, comeco, fim);
+
+        if (res){
+          $.ajax({
+            url: '../Controller/alterar-horario.php',
+            method: 'POST',
+            data: {id: id, especialista: esp, dia_semana: dia, comeco: comeco, fim: fim},
+            dataType: 'json'
+          }).done(function (result){
+            console.log(result);
+            if (result == "Erro! Verifique os campos"){
+              $('#message-result-update').empty();
+              $('#message-result-update').prepend('<div class="alert alert-danger" role="alert">'+ result +'</div>');
+            } else {
+              $('#updateModal').modal('hide');
+              $('#message-success').empty();
+              $("#message-success").prepend("<div class='alert alert-success' role='alert'>"+ result +"</div>");
+              setTimeout(() => {
+                $("#message-success").fadeOut("Slow");
+              }, 1500);
+              setTimeout(() => {
+                location.reload();
+              }, 1500);
+            }
+          });
+        }
+      });
+    });
+
+    function validaCamposUpdate(esp, dia, comeco, fim){
+        if (esp == "" || dia == "" || comeco == "" || fim == "" || esp == 0 || dia == 0){
+            $('#message-result-update').empty();
+            $('#message-result-update').prepend('<div class="alert alert-danger" role="alert">Preencha todos os campos!</div>');
+            return false;
+        } else {
+            $('#message-result-update').empty();
+            return true;
+        }
+    }
 });

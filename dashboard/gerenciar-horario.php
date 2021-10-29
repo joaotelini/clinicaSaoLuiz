@@ -181,12 +181,17 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                                         <?php foreach ($horaInfo as $hora) : ?>
                                         <tr>
                                             <td><?php echo $hora['nome_completo'] ?></td>
-                                            <td><?php echo $hora['dia_semana'] ?></td>
+                                            <td><?php echo $diaSemana[$hora['dia_semana']] ?></td>
                                             <td><?php echo $hora['comeco_espediente'] ?></td>
                                             <td><?php echo $hora['fim_espediente'] ?></td>
                                             <td><button id="btn-delete" data-id="<?php echo $hora['id_horario']?>"
-                                                    class="btn btn-danger ml-1">Excluir</button><button
-                                                    class="ml-1 btn btn-warning">Alterar</button></td>
+                                                    class="btn btn-danger ml-1">Excluir</button><button type="button" class="btn btn-warning ml-1" data-bs-toggle="modal"
+                                                    data-bs-target="#updateModal"
+                                                    data-bs-especialista="<?php echo $hora['id_especialista']?>"
+                                                    data-bs-dia="<?php echo $hora['dia_semana']?>"
+                                                    data-bs-comeco="<?php echo $hora['comeco_espediente']?>"
+                                                    data-bs-fim="<?php echo $hora['fim_espediente']?>"
+                                                    data-bs-id="<?php echo $hora['id_horario']?>">Alterar</button></td>
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>
@@ -292,6 +297,71 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
                         id="confirm-delete">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- update modal  -->
+
+
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-warning form-style">
+                    <h5 class="modal-title" id="exampleModalLabel">Alterar Serviço</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body form-style">
+                    <div id="message-result-update"></div>
+                    <form id="form-update-servico">
+                        <div class="mb-3">
+                            <label for="recipient-especialista" class="col-form-label">Especialista:</label>
+                            <select class="form-control" id="recipient-especialista">
+                                <option value="0"></option>
+                                <?php
+                                    foreach($espInfo as $esp){
+                                        echo "<option value='".$esp['id_especialista']."'>".$esp['nome_completo'].".</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dia-semana" class="col-form-label">Dia da Semana:</label>
+                            <select class="form-control" id="recipient-dia">
+                                <!-- <option value="0"></option> -->
+                                <?php
+                            
+                                for ($i = 0; $i <= 7; $i++) {
+
+                                    if ($_SESSION['value_diaSemana'] == $diaSemana[$i]) {
+
+                                        echo "<option selected value='".$diaSemanaValue[$i]."'>".$diaSemana[$i]."</option>";
+                                        unset($_SESSION['value_diaSemana']);
+
+                                    } else {
+
+                                        echo "<option value='".$diaSemanaValue[$i]."'>".$diaSemana[$i]."</option>";
+
+                                    }
+                                }
+                            
+                            ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-comeco-espediente" class="col-form-label">Começo Espediente:</label>
+                            <input type="time" class="form-control" id="recipient-comeco">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-fim-espediente" class="col-form-label">Fim Espediente:</label>
+                            <input type="time" class="form-control" id="recipient-fim">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-warning" id="update-hora-confirm">Alterar</button>
                 </div>
             </div>
         </div>
