@@ -13,7 +13,11 @@
                     $sql = $pdo->prepare("INSERT INTO `paciente` VALUE (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                     $sql->execute(array($pac->getNome(), $pac->getRg(), $pac->getCpf(), $pac->getEmail(), md5($pac->getSenha()), $pac->getTelefone(), $pac->getDataNascimento(), $pac->getLogradouro(), $pac->getNumero(), $pac->getCep()));
 
-                    return true;
+                    if ($sql->rowCount() == 1){
+                        return true;
+                    } else {
+                        return false;
+                    }
 
                 } else {
                     return false;
@@ -42,7 +46,7 @@
         }
         public function Listar() {
             $pdo = Conexao::getInstance();
-            $sql = $pdo->prepare("SELECT * FROM paciente");
+            $sql = $pdo->prepare("SELECT * FROM paciente ORDER BY id_paciente DESC");
             $sql->execute();
             $pacienteInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
             if ($pacienteInfo)

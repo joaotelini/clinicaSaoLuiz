@@ -130,6 +130,7 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <div id="message-success"></div>
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gerenciar os Pacientes</h1>
@@ -242,6 +243,7 @@
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body form-style">
+                    <div id="message-result"></div>
                     <form id="form-cad-pac">
                         <div class="mb-3">
                             <label for="nome" class="col-form-label">Nome Conpleto:</label>
@@ -287,7 +289,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Cadastrar</button>
+                    <button type="button" class="btn btn-success" id="btn-cad-pac">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -341,6 +343,7 @@
         }).hide();
     });
     </script>
+    <script src="./assets/js/paciente.js"></script>
 
 </body>
 
