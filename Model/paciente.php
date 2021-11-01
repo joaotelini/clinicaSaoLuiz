@@ -88,7 +88,11 @@
         }
 
         public function setTelefone($telefone) {
-            $this->telefone = $telefone;
+            if (validaTelefone($telefone) == true) {
+                $this->telefone = $telefone;
+            } else {
+                return false;
+            }
         } 
 
         // ===============rg=====================

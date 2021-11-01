@@ -62,6 +62,12 @@
 		$_SESSION['vazio_telefone'] = "Campo Telefone é Obrigatório";
 		header('location: ../clinica/cadastro.php');
 
+	} else if (validaTelefone($telefone) == false) {
+
+		$_SESSION['invalido_telefone'] = "Telefone Inválido";
+		$_SESSION['value_telefone'] = $_POST['telefone'];
+		header('location: ../clinica/cadastro.php');
+
 	} else {
 		$_SESSION['value_telefone'] = $_POST['telefone'];
 	}
