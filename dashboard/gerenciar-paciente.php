@@ -26,9 +26,11 @@
 
     <!-- Custom styles for this template -->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/main.css">
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="#">
 
 </head>
 
@@ -132,6 +134,11 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gerenciar os Pacientes</h1>
 
+                    <button type="button" class="btn btn-success mt-2 mb-2" data-bs-toggle="modal"
+                        data-bs-target="#cad-pac-modal">
+                        Novo Paciente +
+                    </button>
+
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                         <input type="text" id="search" placeholder="Pesquisar">
@@ -153,7 +160,7 @@
                                             <th>Logradouro</th>
                                             <th>Numero</th>
                                             <th>CEP</th>
-                                            <th>Ações</th>                                           
+                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -167,30 +174,40 @@
                                             <th>Logradouro</th>
                                             <th>Numero</th>
                                             <th>CEP</th>
-                                            <th>Ações</th>      
+                                            <th>Ações</th>
                                         </tr>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php foreach($pacInfo as $dep):?>
-                                            <tr>
-                                                <th><?php echo $dep['nome_completo']?></th>
-                                                <th><?php echo $dep['rg']?></th> 
-                                                <th><?php echo $dep['cpf']?></th>
-                                                <th><?php echo $dep['email']?></th>
-                                                <th><?php echo $dep['telefone']?></th>
-                                                <th><?php echo $dep['data_nascimento']?></th>
-                                                <th><?php echo $dep['logradouro']?></th>
-                                                <th><?php echo $dep['numero']?></th>
-                                                <th><?php echo $dep['cep']?></th>
-                                                <th><a href="../Controller/excluiPaciente.php?id=<?php echo $dep['id_paciente']?>"
-                                                        data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
-                                                        data-id="<?php echo $dep['id_paciente']?>"
-                                                        class="btn btn-danger">Excluir</a> <button type="button"
-                                                        class="btn btn-warning" data-bs-toggle="modal"
-                                                        data-bs-target="#updateModal" data-bs-id="<?php echo $dep['id_paciente']?>" data-bs-nome="<?php echo $dep['nome_completo']?>" data-bs-descricao="<?php echo $dep['rg']?>" data-bs-nome="<?php echo $dep['cpf']?>" data-bs-nome="<?php echo $dep['email']?>" data-bs-nome="<?php echo $dep['telefone']?>" data-bs-nome="<?php echo $dep['data_nascimento']?>" data-bs-nome="<?php echo $dep['logradouro']?>" data-bs-nome="<?php echo $dep['numero']?>" data-bs-nome="<?php echo $dep['cep']?>">Alterar</button>
-                                                </th>
-                                            </tr>                                         
+                                        <tr>
+                                            <th><?php echo $dep['nome_completo']?></th>
+                                            <th><?php echo $dep['rg']?></th>
+                                            <th><?php echo $dep['cpf']?></th>
+                                            <th><?php echo $dep['email']?></th>
+                                            <th><?php echo $dep['telefone']?></th>
+                                            <th><?php echo $dep['data_nascimento']?></th>
+                                            <th><?php echo $dep['logradouro']?></th>
+                                            <th><?php echo $dep['numero']?></th>
+                                            <th><?php echo $dep['cep']?></th>
+                                            <th><a href="../Controller/excluiPaciente.php?id=<?php echo $dep['id_paciente']?>"
+                                                    data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
+                                                    data-id="<?php echo $dep['id_paciente']?>"
+                                                    class="btn btn-danger">Excluir</a> <button type="button"
+                                                    class="btn btn-warning" data-bs-toggle="modal"
+                                                    data-bs-target="#updateModal"
+                                                    data-bs-id="<?php echo $dep['id_paciente']?>"
+                                                    data-bs-nome="<?php echo $dep['nome_completo']?>"
+                                                    data-bs-descricao="<?php echo $dep['rg']?>"
+                                                    data-bs-nome="<?php echo $dep['cpf']?>"
+                                                    data-bs-nome="<?php echo $dep['email']?>"
+                                                    data-bs-nome="<?php echo $dep['telefone']?>"
+                                                    data-bs-nome="<?php echo $dep['data_nascimento']?>"
+                                                    data-bs-nome="<?php echo $dep['logradouro']?>"
+                                                    data-bs-nome="<?php echo $dep['numero']?>"
+                                                    data-bs-nome="<?php echo $dep['cep']?>">Alterar</button>
+                                            </th>
+                                        </tr>
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
@@ -214,6 +231,67 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+
+    <!-- insert modal  -->
+
+    <div class="modal fade" id="cad-pac-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content form-style">
+                <div class="modal-header  bg-success ">
+                    <h5 class="modal-title" id="exampleModalLabel">Novo Paciente</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body form-style">
+                    <form id="form-cad-pac">
+                        <div class="mb-3">
+                            <label for="nome" class="col-form-label">Nome Conpleto:</label>
+                            <input type="text" class="form-control" id="nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cpf" class="col-form-label">CPF:</label>
+                            <input type="text" class="form-control" id="cpf">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="col-form-label">E-mail:</label>
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="senha" class="col-form-label">Senha:</label>
+                            <input type="password" class="form-control" id="senha">
+                        </div>
+                        <div class="mb-3">
+                            <label for="telefone" class="col-form-label">Telefone:</label>
+                            <input type="text" class="form-control" id="telefone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="rg" class="col-form-label">Rg:</label>
+                            <input type="text" class="form-control" id="rg">
+                        </div>
+                        <div class="mb-3">
+                            <label for="data-nascimento" class="col-form-label">Data de Nascimento:</label>
+                            <input type="date" class="form-control" id="data">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cep" class="col-form-label">CEP:</label>
+                            <input type="number" class="form-control" id="cep">
+                        </div>
+                        <div class="mb-3">
+                            <label for="logradouro" class="col-form-label">Logradouro:</label>
+                            <input type="text" class="form-control" id="logradouro">
+                        </div>
+                        <div class="mb-3">
+                            <label for="numero" class="col-form-label">Numero:</label>
+                            <input type="number" class="form-control" id="numero">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -253,16 +331,16 @@
     <script src="assets/js/demo/datatables-demo.js"></script>
 
     <script>
-         var $rows = $('#table tr ');
-            $('#search').keyup(function() {
-                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-                
-                $rows.show().filter(function() {
-                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                    return !~text.indexOf(val);
-                }).hide();
-            });
-        </script>
+    var $rows = $('#table tr ');
+    $('#search').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+    });
+    </script>
 
 </body>
 
