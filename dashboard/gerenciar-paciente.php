@@ -161,7 +161,6 @@
                                             <th>Logradouro</th>
                                             <th>Numero</th>
                                             <th>CEP</th>
-                                            <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -175,7 +174,6 @@
                                             <th>Logradouro</th>
                                             <th>Numero</th>
                                             <th>CEP</th>
-                                            <th>Ações</th>
                                         </tr>
                                         </tr>
                                     </tfoot>
@@ -191,23 +189,6 @@
                                             <th><?php echo $dep['logradouro']?></th>
                                             <th><?php echo $dep['numero']?></th>
                                             <th><?php echo $dep['cep']?></th>
-                                            <th><a href="../Controller/excluiPaciente.php?id=<?php echo $dep['id_paciente']?>"
-                                                    data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
-                                                    data-id="<?php echo $dep['id_paciente']?>"
-                                                    class="btn btn-danger">Excluir</a> <button type="button"
-                                                    class="btn btn-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#updateModal"
-                                                    data-bs-id="<?php echo $dep['id_paciente']?>"
-                                                    data-bs-nome="<?php echo $dep['nome_completo']?>"
-                                                    data-bs-descricao="<?php echo $dep['rg']?>"
-                                                    data-bs-nome="<?php echo $dep['cpf']?>"
-                                                    data-bs-nome="<?php echo $dep['email']?>"
-                                                    data-bs-nome="<?php echo $dep['telefone']?>"
-                                                    data-bs-nome="<?php echo $dep['data_nascimento']?>"
-                                                    data-bs-nome="<?php echo $dep['logradouro']?>"
-                                                    data-bs-nome="<?php echo $dep['numero']?>"
-                                                    data-bs-nome="<?php echo $dep['cep']?>">Alterar</button>
-                                            </th>
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>
@@ -294,6 +275,9 @@
             </div>
         </div>
     </div>
+
+    <!-- delete modal  -->
+    
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

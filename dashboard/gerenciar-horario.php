@@ -162,8 +162,8 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                                         <tr>
                                             <th>Nome do Especialista</th>
                                             <th>Dia da Semana</th>
-                                            <th>Começo Espediente</th>
-                                            <th>Fim Espediente</th>
+                                            <th>Começo Expediente</th>
+                                            <th>Fim Expediente</th>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
@@ -171,8 +171,8 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                                         <tr>
                                             <th>Nome do Especialista</th>
                                             <th>Dia da Semana</th>
-                                            <th>Começo Espediente</th>
-                                            <th>Fim Espediente</th>
+                                            <th>Começo Expediente</th>
+                                            <th>Fim Expediente</th>
                                             <th>Ações</th>
                                         </tr>
                                         </tr>
@@ -264,11 +264,11 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="nome" class="col-form-label">Começo Espediente:</label>
+                            <label for="nome" class="col-form-label">Começo Expediente:</label>
                             <input type="time" class="form-control" id="comeco-espediente">
                         </div>
                         <div class="mb-3">
-                            <label for="nome" class="col-form-label">Fim Espediente:</label>
+                            <label for="nome" class="col-form-label">Fim Expediente:</label>
                             <input type="time" class="form-control" id="fim-espediente">
                         </div>
                     </form>
@@ -309,7 +309,7 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-warning form-style">
-                    <h5 class="modal-title" id="exampleModalLabel">Alterar Serviço</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Alterar Horário</h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body form-style">
@@ -350,11 +350,11 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-comeco-espediente" class="col-form-label">Começo Espediente:</label>
+                            <label for="recipient-comeco-espediente" class="col-form-label">Começo Expediente:</label>
                             <input type="time" class="form-control" id="recipient-comeco">
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-fim-espediente" class="col-form-label">Fim Espediente:</label>
+                            <label for="recipient-fim-espediente" class="col-form-label">Fim Expediente:</label>
                             <input type="time" class="form-control" id="recipient-fim">
                         </div>
                     </form>

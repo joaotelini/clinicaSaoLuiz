@@ -4,6 +4,7 @@
     include_once '../Conexao/conexao.php';
     include_once '../Conexao/pacienteDAO.php';
     include_once '../Conexao/consultaDAO.php';
+    include_once '../Conexao/servicoDAO.php';
 
     $cpf = preg_replace( '/[^0-9]/is', '', $_POST['cpf']);
     $departamento = $_POST['departamento'];
@@ -12,8 +13,13 @@
     $data = $_POST['data'];
     $horarioInicio = $_POST['horario'];
 
-    $timestamp = strtotime($horarioInicio) + 60*15;
-    $horarioFim = strftime('%H:%M:%S', $timestamp);
+    $serDao = new ServicoDAO();
+    $serInfo = $serDao->pegaDuracao($servico);
+
+    foreach($serInfo as $ser){
+        $timestamp = strtotime($horarioInicio) + 60*$ser['duracao'];
+        $horarioFim = strftime('%H:%M:%S', $timestamp);
+    }
 
     $pacDao = new PacienteDAO();
     $pacInfo = $pacDao->verificaCpf($cpf);

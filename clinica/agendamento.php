@@ -115,7 +115,7 @@
 
       <div class="col-md-6" id="servico">
       <label for="servico" class="form-label">Serviço:</label>
-        <select name="servico"  class="form-control" id="selectServico">
+        <select name="servico" onchange="verData()"  class="form-control" id="selectServico">
           <option value="0"></option>
         </select>
         <div id="message_servico"></div>
@@ -123,7 +123,7 @@
 
       <div class="col-md-6" id="data">
       <label for="data" class="form-label">Data:</label>
-        <input class="form-control" onchange="verData(this.value)" type="date" name="data" id="inputData">
+        <input class="form-control" onchange="verData()" type="date" name="data" id="inputData">
         <div id="message_date"></div>
       </div>
 
@@ -189,14 +189,15 @@
     <script src="assets/js/script.js"></script>
 
     <script>
-      function verData(d) {
-
+      function verData() {
+          let d = document.getElementById('inputData');
           let esp = document.getElementById('selectEspecialista');
+          let servico = document.getElementById('selectServico');
 
           $.ajax({
             url: '../Controller/verData.php',
             method: 'POST',
-            data: {data: d, especialista: esp.value},
+            data: {data: d.value, especialista: esp.value},
             dataType: 'json'
           }).done(function (result) {
             if (result.length > 0) {
@@ -212,15 +213,15 @@
             }
           });
 
-          listHorario(d, esp.value);
+          listHorario(d.value, esp.value, servico.value);
 
       }
 
-      function listHorario(data, especialista){
+      function listHorario(data, especialista, servico){
             $.ajax({
               url: '../Controller/verHorario.php',
               method: 'POST',
-              data: {data: data, especialista: especialista},
+              data: {data: data, especialista: especialista, servico: servico},
               dataType: 'json'
             }).done(function (result){
                 // console.log(result);

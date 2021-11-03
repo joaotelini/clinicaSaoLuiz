@@ -63,6 +63,17 @@
                 print $e->getMessage();
             }
         }
+        public function pegaDuracao($id){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("SELECT * FROM servico WHERE id_servico = ?");
+                $sql->execute(array($id));
+                $serInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
+                return $serInfo;
+            }catch(PDOException $e){
+                print $e->getMessage();
+            }
+        }
     }
 
 ?>
