@@ -28,10 +28,11 @@
         $paciente = $pac['id_paciente'];
     }
 
+
     $con = new Consulta($servico, $horarioInicio, $horarioFim, $especialista, $paciente, $data, $departamento);
     $conDao = new ConsultaDAO();
 
-    $horaIn = $conDao->verificaHorario($data, $horarioInicio);
+    $horaIn = $conDao->verificaHorario($data, $horarioInicio, $horarioFim);
 
     // echo json_encode($horaIn);
     if ($paciente) {

@@ -256,10 +256,11 @@
 
           function verHorario(horario) {
               let data = document.getElementById('inputData');
+              let servico = document.getElementById('selectServico');
               $.ajax({
                 url: '../Controller/verificaHorario.php',
                 method: 'POST',
-                data: {horario: horario, data: data.value},
+                data: {horario: horario, data: data.value, servico: servico.value},
                 dataType: 'json'
               }).done(function (result){
                 if (result == "Horário Indispovível") {
