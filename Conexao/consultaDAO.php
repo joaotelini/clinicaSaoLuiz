@@ -20,11 +20,11 @@
                 print $e->getMessage();
             }
         }
-        public function verificaHorario($data, $horaInicio, $horaFim){
+        public function verificaHorario($data, $horaInicio, $horaFim, $especialista){
             try{
 
                 $pdo = Conexao::getInstance();
-                $sql = $pdo->prepare("SELECT * FROM consulta WHERE data_consulta = '$data'");
+                $sql = $pdo->prepare("SELECT * FROM consulta WHERE data_consulta = '$data' AND id_especialista = '$especialista'");
                 $sql->execute();
 
                 $conInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -33,9 +33,6 @@
                     if (($horaInicio >= $con['hora_inicio'] && $horaInicio < $con['hora_fim']) || $horaFim >= $con['hora_inicio'] && $horaFim < $con['hora_fim']){
                         return "Horário Indispovível";
                     } 
-                    // else if ($horaInicio >= $con['hora_inicio'] && $horaFim <=$con['hora_fim']){
-                    //     return "Horário Indispovível";
-                    // }
                 }
 
             }catch (PDOException $e) {

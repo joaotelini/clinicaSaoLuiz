@@ -6,6 +6,7 @@
     $horario = $_POST['horario'];
     $data = $_POST['data'];
     $servico = $_POST['servico'];
+    $especialista = $_POST['especialista'];
 
     $serDao = new ServicoDAO();
     $serInfo = $serDao->pegaDuracao($servico);
@@ -17,7 +18,7 @@
 
 
     $conDao = new ConsultaDAO();
-    $horaResult = $conDao->verificaHorario($data, $horario, $horarioFim);
+    $horaResult = $conDao->verificaHorario($data, $horario, $horarioFim, $especialista);
 
     if ($horaResult) {
         echo json_encode($horaResult);

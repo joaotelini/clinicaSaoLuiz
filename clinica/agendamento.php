@@ -257,10 +257,11 @@
           function verHorario(horario) {
               let data = document.getElementById('inputData');
               let servico = document.getElementById('selectServico');
+              let esp = document.getElementById('selectEspecialista');
               $.ajax({
                 url: '../Controller/verificaHorario.php',
                 method: 'POST',
-                data: {horario: horario, data: data.value, servico: servico.value},
+                data: {horario: horario, data: data.value, servico: servico.value, especialista: esp.value},
                 dataType: 'json'
               }).done(function (result){
                 if (result == "Horário Indispovível") {

@@ -32,7 +32,7 @@
     $con = new Consulta($servico, $horarioInicio, $horarioFim, $especialista, $paciente, $data, $departamento);
     $conDao = new ConsultaDAO();
 
-    $horaIn = $conDao->verificaHorario($data, $horarioInicio, $horarioFim);
+    $horaIn = $conDao->verificaHorario($data, $horarioInicio, $horarioFim, $especialista);
 
     // echo json_encode($horaIn);
     if ($paciente) {

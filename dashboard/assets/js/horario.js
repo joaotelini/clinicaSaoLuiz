@@ -45,7 +45,7 @@ $(document).ready(function (){
         
     });
 
-    $('#btn-delete').click(function (){
+    $('a[data-confirm]').click(function (){
         let id = $(this).attr('data-id');
         
         $('#deleteModal').modal('show');

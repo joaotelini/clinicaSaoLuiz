@@ -184,8 +184,9 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                                             <td><?php echo $diaSemana[$hora['dia_semana']] ?></td>
                                             <td><?php echo $hora['comeco_espediente'] ?></td>
                                             <td><?php echo $hora['fim_espediente'] ?></td>
-                                            <td><button id="btn-delete" data-id="<?php echo $hora['id_horario']?>"
-                                                    class="btn btn-danger ml-1">Excluir</button><button type="button" class="btn btn-warning ml-1" data-bs-toggle="modal"
+                                            <td><a data-id="<?php echo $hora['id_horario']?>"
+                                                    data-confirm="Tem Certeza de que deseja excluir o item selecionado?"
+                                                    class="btn btn-danger">Excluir</a><button type="button" class="btn btn-warning ml-1" data-bs-toggle="modal"
                                                     data-bs-target="#updateModal"
                                                     data-bs-especialista="<?php echo $hora['id_especialista']?>"
                                                     data-bs-dia="<?php echo $hora['dia_semana']?>"
