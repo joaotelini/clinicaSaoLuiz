@@ -30,9 +30,13 @@
                 $conInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
                 
                 foreach($conInfo as $con){
-                    if (($horaInicio >= $con['hora_inicio'] && $horaInicio < $con['hora_fim']) || $horaFim >= $con['hora_inicio'] && $horaFim < $con['hora_fim']){
+                    if ($horaInicio >= $con['hora_inicio'] && $horaInicio < $con['hora_fim']){
                         return "Horário Indispovível";
-                    } 
+                    } else if ($horaFim > $con['hora_inicio'] && $horaFim <= $con['hora_fim']){
+                        return "Horário Indispovível";
+                    } else if ($con['hora_inicio'] >= $horaInicio && $con['hora_inicio'] < $horaFim){
+                        return "Horário Indispovível";
+                    }
                 }
 
             }catch (PDOException $e) {
