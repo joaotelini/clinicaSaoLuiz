@@ -43,4 +43,19 @@
                 print $e->getMessage();
             }
         }
+        public function listar($id){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("SELECT * FROM consulta
+                INNER JOIN paciente ON consulta.id_paciente = paciente.id_paciente
+                INNER JOIN servico ON consulta.id_servico = servico.id_servico
+                INNER JOIN especialista ON consulta.id_especialista = especialista.id_especialista
+                WHERE consulta.id_departamento = $id");
+                $sql->execute();
+                $conInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
+                return $conInfo;
+            }catch(PDOException $e){
+                print $e->getMessage();
+            }
+        }
     }

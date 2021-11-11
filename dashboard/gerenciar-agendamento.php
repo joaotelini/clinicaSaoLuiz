@@ -1,3 +1,9 @@
+<?php
+    include_once '../Conexao/departamentoDAO.php';
+
+    $depDao = new DepartamentoDAO();
+    $depInfo = $depDao->Listar();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -21,6 +27,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
 	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link rel="shortcut icon" href="#">
+
 
 </head>
 
@@ -122,6 +130,14 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Agendamentos</h1>
+
+                    <div id="botoes_dep">
+                        <?php
+                            foreach($depInfo as $dep) {
+                                echo "<a eventclick='click' data-id='".$dep['id_departamento']."' class='btn btn-primary mr-2 mt-2 mb-2'>".$dep['nome']."</a>";
+                            }
+                        ?>
+                    </div>
                             <div class="table-responsive">
                             <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
@@ -264,6 +280,7 @@
                 }).hide();
             });
      </script>
+     <script src="./assets/js/agendamento.js"></script>
 
 </body>
 </html>
