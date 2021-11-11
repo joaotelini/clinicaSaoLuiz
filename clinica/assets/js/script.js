@@ -12,7 +12,7 @@ function listarDepartamento(idD) {
             $('#selectEspecialista').prepend("<option value='0'></option");
             for (let i = 0; i < result.length; i++) {
                 
-                $('#selectEspecialista').prepend("<option value='"+ result[i].id_especialista +"'>"+ result[i].nome_completo +"</option");
+                $('#selectEspecialista').prepend("<option value='"+ result[i].id_especialista +"'>"+ result[i].nome_especialista +"</option");
             }
 
         } else {

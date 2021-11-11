@@ -182,7 +182,7 @@
                                     <tbody>
                                         <?php foreach($espInfo as $esp):?>
                                         <tr>
-                                            <th><?php echo $esp['nome_completo']?></th>
+                                            <th><?php echo $esp['nome_especialista']?></th>
                                             <th><?php echo $esp['nome']?></th>
                                             <th><?php echo $esp['email']?></th>
                                             <th><?php echo $esp['telefone']?></th>
@@ -193,7 +193,7 @@
                                                     class="btn btn-danger">Excluir</a>
                                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal"
-                                                    data-bs-nome="<?php echo $esp['nome_completo']?>"
+                                                    data-bs-nome="<?php echo $esp['nome_especialista']?>"
                                                     data-bs-crm="<?php echo $esp['conselho_regional']?>"
                                                     data-bs-cpf="<?php echo $esp['cpf']?>"
                                                     data-bs-email="<?php echo $esp['email']?>"

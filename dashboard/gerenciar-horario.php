@@ -180,7 +180,7 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                                     <tbody>
                                         <?php foreach ($horaInfo as $hora) : ?>
                                         <tr>
-                                            <td><?php echo $hora['nome_completo'] ?></td>
+                                            <td><?php echo $hora['nome_especialista'] ?></td>
                                             <td><?php echo $diaSemana[$hora['dia_semana']] ?></td>
                                             <td><?php echo $hora['comeco_espediente'] ?></td>
                                             <td><?php echo $hora['fim_espediente'] ?></td>
@@ -236,7 +236,7 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                                 <option value="0"></option>
                                 <?php
                                     foreach($espInfo as $esp) {
-                                        echo "<option value='". $esp['id_especialista']."'>".$esp['nome_completo']."</option>";
+                                        echo "<option value='". $esp['id_especialista']."'>".$esp['nome_especialista']."</option>";
                                     }
                                 ?>
                             </select>
@@ -322,7 +322,7 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
                                 <option value="0"></option>
                                 <?php
                                     foreach($espInfo as $esp){
-                                        echo "<option value='".$esp['id_especialista']."'>".$esp['nome_completo'].".</option>";
+                                        echo "<option value='".$esp['id_especialista']."'>".$esp['nome_especialista'].".</option>";
                                     }
                                 ?>
                             </select>

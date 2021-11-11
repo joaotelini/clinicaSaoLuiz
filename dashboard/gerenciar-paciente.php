@@ -180,7 +180,7 @@
                                     <tbody>
                                         <?php foreach($pacInfo as $dep):?>
                                         <tr>
-                                            <th><?php echo $dep['nome_completo']?></th>
+                                            <th><?php echo $dep['nome_paciente']?></th>
                                             <th><?php echo $dep['rg']?></th>
                                             <th><?php echo $dep['cpf']?></th>
                                             <th><?php echo $dep['email']?></th>
