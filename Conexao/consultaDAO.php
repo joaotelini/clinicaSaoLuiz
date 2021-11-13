@@ -50,7 +50,7 @@
                 INNER JOIN paciente ON consulta.id_paciente = paciente.id_paciente
                 INNER JOIN servico ON consulta.id_servico = servico.id_servico
                 INNER JOIN especialista ON consulta.id_especialista = especialista.id_especialista
-                WHERE consulta.id_departamento = $id");
+                WHERE consulta.id_departamento = $id ORDER BY consulta.hora_inicio DESC");
                 $sql->execute();
                 $conInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
                 return $conInfo;

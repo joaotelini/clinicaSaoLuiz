@@ -6,6 +6,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
 
     <meta charset="utf-8">
@@ -15,7 +16,9 @@
 
     <!-- Custom fonts for this template -->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
@@ -24,9 +27,9 @@
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <link rel="shortcut icon" href="#">
 
 
@@ -138,82 +141,41 @@
                             }
                         ?>
                     </div>
-                            <div class="table-responsive">
-                            <div class="form-group input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                                <input type="text" id="search" placeholder="Pesquisar">
-                            </div>
+                    <div class="table-responsive">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                            <input type="text" id="search" placeholder="Pesquisar">
+                        </div>
 
-                            <table id="table" class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Profissional</th>
-                                        <th>Consulta</th>
-                                        <th>Paciente</th>
-                                        <th>Data-Hora</th>
-                                        <th>Valor</th>
-                                        <th>Status</th>
-                                        <th>Ações</th>
-                                    </tr>
+                        <table id="table" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Profissional</th>
+                                    <th>Serviço</th>
+                                    <th>Paciente</th>
+                                    <th>Data-Hora</th>
+                                    <th>Valor</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
 
-                                </thead>
+                            </thead>
 
-                                <tfoot>
-                                    <tr>
-                                        <th>Profissional</th>
-                                        <th>Consulta</th>
-                                        <th>Paciente</th>
-                                        <th>Data-Hora</th>
-                                        <th>Valor</th>
-                                        <th>Status</th>
-                                        <th>Ações</th>   
-                                    </tr>
-                                </tfoot>
+                            <tfoot>
+                                <tr>
+                                    <th>Profissional</th>
+                                    <th>Serviço</th>
+                                    <th>Paciente</th>
+                                    <th>Data-Hora</th>
+                                    <th>Valor</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </tfoot>
 
-                                <tbody>
-                                    <tr>
-                                        <td>Breno Stringuetti</td>
-                                        <td>Moldagem do Aparelho Bucal</td>
-                                        <td>Lucio Paris</td>
-                                        <td>2021/04/25; 12:30</td>
-                                        <td>35,00</td>
-                                        <td>Pendente</td>
-                                        <td>Realizada, Atrasada, Pendente</td>
-                                    </tr>
-                                
-                                    <tr>
-                                        <td>João Pedro Domingues Telini</td>
-                                        <td>Retorno de Consulta</td>
-                                        <td>Mariana Fuini</td>
-                                        <td>2021/07/30; 13:30</td>  
-                                        <td>10,00</td>  
-                                        <td>Pedente</td>
-                                        <td>Realizada, Atrasada, Pendente</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>João Pedro da Silva Rocha</td>
-                                        <td>Orientação nutricional</td>
-                                        <td>José Júnior</td>
-                                        <td>2022/03/20; 20:30</td>
-                                        <td>25,00</td>
-                                        <td>Atrasada</td>
-                                        <td>Realizada, Atrasada, Pendente</td>                                            
-                                            
-                                    </tr>
-
-                                    <tr>
-                                        <td>Esdras Rafael Moraes</td>
-                                        <td>Retorno de consulta</td>
-                                        <td>Lucio Paris</td>
-                                        <td>2021/04/25; 15:00</td>
-                                        <td>35,00</td>
-                                        <td>Realizada</td>
-                                        <td>Realizada, Atrasada, Pendente</td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
+                            <tbody id="table-agend">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -252,6 +214,26 @@
         </div>
     </div>
 
+    <!-- change status modal -->
+
+    <div class="modal fade" id="status-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Bootstrap core JavaScript-->
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -270,17 +252,18 @@
     <script src="assets/js/demo/datatables-demo.js"></script>
 
     <script>
-         var $rows = $('#table tr ');
-            $('#search').keyup(function() {
-                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-                
-                $rows.show().filter(function() {
-                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-                    return !~text.indexOf(val);
-                }).hide();
-            });
-     </script>
-     <script src="./assets/js/agendamento.js"></script>
+    var $rows = $('#table tr ');
+    $('#search').keyup(function() {
+        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+        $rows.show().filter(function() {
+            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+            return !~text.indexOf(val);
+        }).hide();
+    });
+    </script>
+    <script src="./assets/js/agendamento.js"></script>
 
 </body>
+
 </html>
