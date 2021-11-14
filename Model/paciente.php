@@ -13,8 +13,9 @@
         private $logradouro;
         private $numero;
         private $cep;
+        private $sexo;
 
-        public function __construct($nome, $rg, $cpf, $email, $senha, $telefone, $dataNascimento, $logradouro, $numero, $cep){
+        public function __construct($nome, $rg, $cpf, $email, $senha, $telefone, $dataNascimento, $logradouro, $numero, $cep, $sexo){
             $this->setNome($nome);
             $this->setRg($rg);
             $this->setCpf($cpf);
@@ -25,6 +26,7 @@
             $this->setLogradouro($logradouro);
             $this->setNumero($numero);
             $this->setCep($cep);
+            $this->setSexo($sexo);
         }
         // ===========id=============
 
@@ -145,6 +147,14 @@
                 $this->cep = $cep;
             }
             return false;
+        }
+
+        public function getSexo(){
+            return $this->sexo;
+        }
+
+        public function setSexo($sexo){
+            $this->sexo = $sexo;
         }
 
     }

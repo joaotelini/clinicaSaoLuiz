@@ -1,6 +1,4 @@
-<?php
-  session_start();
-?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,7 +17,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-  <link href="https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbHlXMnJLa1lPVEMyZVV4SW9kRGkwOXBwUlVQQXxBQ3Jtc0tubnFCUEE4dE4xaUp3UzN0ZFZ6UXlBREtGNFg1NmpGVzVUQVA5TFdmRTJ0MVhaSHh0UkZpcTgwTmFPeVdiX2hDbzNfUktWajBkSVNvZUhvODdrcmE5RGlwdHFYa1QtdjJ1T3YzNGFXLXY4cXBNMFNmaw&q=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto" rel="stylesheet">
+  <!-- <link href="https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbHlXMnJLa1lPVEMyZVV4SW9kRGkwOXBwUlVQQXxBQ3Jtc0tubnFCUEE4dE4xaUp3UzN0ZFZ6UXlBREtGNFg1NmpGVzVUQVA5TFdmRTJ0MVhaSHh0UkZpcTgwTmFPeVdiX2hDbzNfUktWajBkSVNvZUhvODdrcmE5RGlwdHFYa1QtdjJ1T3YzNGFXLXY4cXBNMFNmaw&q=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DRoboto" rel="stylesheet"> -->
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -34,112 +32,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- Busca CEP
-  <script>
-    
-    function limpa_formulário_cep() {
-            //Limpa valores do formulário de cep.
-            document.getElementById('rua').value=("");
-            document.getElementById('bairro').value=("");
-            document.getElementById('cidade').value=("");
-            document.getElementById('uf').value=("");
-            // document.getElementById('ibge').value=("");
-    }
 
-    function meu_callback(conteudo) {
-        if (!("erro" in conteudo)) {
-            //Atualiza os campos com os valores.
-            document.getElementById('rua').value=(conteudo.logradouro);
-            document.getElementById('bairro').value=(conteudo.bairro);
-            document.getElementById('cidade').value=(conteudo.localidade);
-            document.getElementById('uf').value=(conteudo.uf);
-            // document.getElementById('ibge').value=(conteudo.ibge);
-        } //end if.
-        else {
-            //CEP não Encontrado.
-            limpa_formulário_cep();
-            alert("CEP não encontrado.");
-        }
-    }
-        
-    function pesquisacep(valor) {
-
-        //Nova variável "cep" somente com dígitos.
-        var cep = valor.replace(/\D/g, '');
-
-        //Verifica se campo cep possui valor informado.
-        if (cep != "") {
-
-            //Expressão regular para validar o CEP.
-            var validacep = /^[0-9]{8}$/;
-
-            //Valida o formato do CEP.
-            if(validacep.test(cep)) {
-
-                //Preenche os campos com "..." enquanto consulta webservice.
-                document.getElementById('rua').value="...";
-                document.getElementById('bairro').value="...";
-                document.getElementById('cidade').value="...";
-                document.getElementById('uf').value="...";
-                // document.getElementById('ibge').value="...";
-
-                //Cria um elemento javascript.
-                var script = document.createElement('script');
-
-                //Sincroniza com o callback.
-                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
-
-                //Insere script no documento e carrega o conteúdo.
-                document.body.appendChild(script);
-
-            } //end if.
-            else {
-                //cep é inválido.
-                limpa_formulário_cep();
-                alert("Formato de CEP inválido.");
-            }
-        } //end if.
-        else {
-            //cep sem valor, limpa formulário.
-            limpa_formulário_cep();
-        }
-    };
-
-    </script> -->
-
-    <!-- /*!
-      *	Gerador e Validador de CPF v1.0.0
-      *	https://github.com/tiagoporto/gerador-validador-cpf
-      *	Copyright (c) 2014-2015 Tiago Porto (http://www.tiagoporto.com)
-      *	Released under the MIT license
-    */
-  //   function CPF(){"user_strict";function r(r){for(var t=null,n=0;9>n;++n)t+=r.toString().charAt(n)*(10-n);var i=t%11;return i=2>i?0:11-i}function t(r){for(var t=null,n=0;10>n;++n)t+=r.toString().charAt(n)*(11-n);var i=t%11;return i=2>i?0:11-i}var n="CPF Inválido",i="CPF Válido";this.gera=function(){for(var n="",i=0;9>i;++i)n+=Math.floor(9*Math.random())+"";var o=r(n),a=n+"-"+o+t(n+""+o);return a},this.valida=function(o){for(var a=o.replace(/\D/g,""),u=a.substring(0,9),f=a.substring(9,11),v=0;10>v;v++)if(""+u+f==""+v+v+v+v+v+v+v+v+v+v+v)return n;var c=r(u),e=t(u+""+c);return f.toString()===c.toString()+e.toString()?i:n}}
-
-
-
-  //   var CPF = new CPF();
-  //   document.write(CPF.valida("123.456.789-00"));
-
-  //   document.write("<br> Utilizando o proprio gerador da lib<br><br><br>");
-  //   for(var i =0;i<40;i++) {
-  //     var temp_cpf = CPF.gera();
-  //     document.write(temp_cpf+" = "+CPF.valida(temp_cpf)+"<br>");
-  //   }
-
-  //   $("#input").keypress(function(){
-  //   $("#resposta").html(CPF.valida($(this).val()));
-  //   });
-
-  //   $("#input").blur(function(){
-  //     $("#resposta").html(CPF.valida($(this).val()));
-  //   }); -->
-
-  <!-- =======================================================
-  * Template Name: Medilab - v4.1.0
-  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -152,13 +45,7 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-        <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">Sobre</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#services">Serviços</a></li> -->
-          <li><a class="nav-link scrollto" href="#departments">Departamentos</a></li>
-          <li><a class="nav-link scrollto" href="#doctors">Funcionários</a></li>  
-          <li><a class="nav-link scrollto" href="#contact">Contato</a></li>
-          <li><a class="nav-link scrollto" href="cadastro.php">Cadastre-se</a></li>
+        <li><a class="nav-link scrollto active" href="./index.php">Home</a></li>
           <li><a class="nav-link scrollto" href="agendamento.php">Realizar Agendamento</a></li>
            <!--Deixei sem destaque pq nao ficava responsivo-->
         </ul>
@@ -178,211 +65,76 @@
           <h2>Cadastro</h2>
         </div>
 
+        
       </div>
     </section><!-- End Breadcrumbs Section -->
-
-    <div class="container">
-    <form method="post" action="../Controller/pacienteCadastrar.php" class="row g-3">
+    
+    <div class="container mt-3">
+      <div id="message-result"></div>
+    <form id="form-cad-paciente" class="row g-3">
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Nome Completo:</label>
-        <input type="text" name="nome" class="form-control" id="inputEmail4"
-         <?php
-          if(!empty($_SESSION['value_nome'])){
-            echo "value='". $_SESSION['value_nome']."'";
-            unset($_SESSION['value_nome']);
-          }
-        ?>>
-        <?php
-          if(!empty($_SESSION['vazio_nome'])){
-            echo " <p style='color: red;'>". $_SESSION['vazio_nome']."</p>";
-            unset($_SESSION['vazio_nome']);
-          }
-        ?>
+        <input type="text" name="nome" class="form-control" id="nome">
       </div>
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">CPF:</label>
-        <input type="text" name="cpf" data-id="NrCpf" class="form-control" id="NrCpf" maxlength="14"
-        <?php
-          if(!empty($_SESSION['value_cpf'])){
-            echo "value='". $_SESSION['value_cpf']."'";
-            unset($_SESSION['value_cpf']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_cpf'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_cpf']."</p>";
-            unset($_SESSION['vazio_cpf']);
-          }
-        ?>
-        <?php
-          if (!empty($_SESSION['invalido_cpf'])) {
-            echo "<p style='color: red;'>". $_SESSION['invalido_cpf']."</p>";
-            unset($_SESSION['invalido_cpf']);
-          }
-        ?>
+        <input type="text" name="cpf" data-id="NrCpf" class="form-control" id="cpf" maxlength="14">
       </div>
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Email:</label>
-        <input type="text" name="email" class="form-control" id="inputEmail4"
-        <?php
-          if(!empty($_SESSION['value_email'])){
-            echo "value='". $_SESSION['value_email']."'";
-            unset($_SESSION['value_email']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_email'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_email']."</p>";
-            unset($_SESSION['vazio_email']);
-          }
-        ?>
+        <input type="text" name="email" class="form-control" id="email">
       </div>
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Senha:</label>
-        <input type="password" name="senha" class="form-control" id="inputEmail4"
-        <?php
-          if(!empty($_SESSION['value_senha'])){
-            echo "value='". $_SESSION['value_senha']."'";
-            unset($_SESSION['value_senha']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_senha'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_senha']."</p>";
-            unset($_SESSION['vazio_senha']);
-          }
-        ?>
+        <input type="password" name="senha" class="form-control" id="senha">
       </div>
 
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">Telefone/Celular:</label>
-        <input type="text" name="telefone" class="form-control" id="inputEmail4"
-        <?php
-          if(!empty($_SESSION['value_telefone'])){
-            echo "value='". $_SESSION['value_telefone']."'";
-            unset($_SESSION['value_telefone']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_telefone'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_telefone']."</p>";
-            unset($_SESSION['vazio_telefone']);
-          }
-
-          if (!empty($_SESSION['invalido_telefone'])) {
-            echo "<p style='color: red;'>". $_SESSION['invalido_telefone']."</p>";
-            unset($_SESSION['invalido_telefone']);
-          }
-        ?>
-
+        <input type="text" name="telefone" class="form-control" id="telefone">
       </div>
       
       <div class="col-md-6">
         <label for="inputEmail4" class="form-label">RG:</label>
-        <input type="text" name="rg" class="form-control" id="inputEmail4"
-        <?php
-          if(!empty($_SESSION['value_rg'])){
-            echo "value='". $_SESSION['value_rg']."'";
-            unset($_SESSION['value_rg']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_rg'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_rg']."</p>";
-            unset($_SESSION['vazio_rg']);
-          }
-        ?>
+        <input type="text" name="rg" class="form-control" id="rg">
       </div>
 
       <div class="col-md-6">
         <label for="inputPassword4" class="form-label">Data de Nascimento:</label>
-        <input type="date" name="dataNascimento" class="form-control" id="inputPassword4"
-        <?php
-          if(!empty($_SESSION['value_dataNascimento'])){
-            echo "value='". $_SESSION['value_dataNascimento']."'";
-            unset($_SESSION['value_dataNascimento']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_dataNascimento'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_dataNascimento']."</p>";
-            unset($_SESSION['vazio_dataNascimento']);
-          }
-        ?>
+        <input type="date" name="data" class="form-control" id="data">
       </div>
 
       <div class="col-md-6">
         <label for="inputAddress" class="form-label">CEP:</label>
-        <input type="text" name="cep" class="form-control" id="cep"
-        <?php
-          if (!empty($_SESSION['value_cep'])) {
-            echo "value='". $_SESSION['value_cep']."'";
-            unset($_SESSION['value_cep']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_cep'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_cep']."</p>";
-            unset($_SESSION['vazio_cep']);
-          }
-        ?>
-        <?php
-          if (!empty($_SESSION['invalido_cep'])) {
-            echo "<p style='color: red;'>". $_SESSION['invalido_cep']."</p>";
-            unset($_SESSION['invalido_cep']);
-          }
-        ?>
+        <input type="text" name="cep" class="form-control" id="cep">
       </div>
 
       <div class="col-6">
         <label for="inputAddress2" class="form-label">Logradouro</label>
-        <input type="text" name="logradouro" class="form-control"
-        <?php
-          if(!empty($_SESSION['value_logradouro'])){
-            echo "value='". $_SESSION['value_logradouro']."'";
-            unset($_SESSION['value_logradouro']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_logradouro'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_logradouro']."</p>";
-            unset($_SESSION['vazio_logradouro']);
-          }
-        ?>
+        <input type="text" name="logradouro" class="form-control" id="logradouro">
       </div>
 
       <div class="col-md-6">
         <label for="inputState" class="form-label">Número</label>
-        <input type="number" name="numero" class="form-control"
-        <?php
-          if(!empty($_SESSION['value_numero'])){
-            echo "value='". $_SESSION['value_numero']."'";
-            unset($_SESSION['value_numero']);
-          }
-        ?>
-        >
-        <?php
-          if (!empty($_SESSION['vazio_numero'])) {
-            echo "<p style='color: red;'>". $_SESSION['vazio_numero']."</p>";
-            unset($_SESSION['vazio_numero']);
-          }
-        ?>
+        <input type="number" name="numero" class="form-control" id="numero">
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputState" class="form-label">Sexo</label>
+        <select class="form-control" id="sexo">
+          <option value="0"></option>
+          <option value="M">Masculino</option>
+          <option value="F">Feminino</option>
+          <option value="O">Outro</option>
+        </select>
       </div>
 
       <div class="col-12">
-        <button type="submit" name="action" class="btn btn-primary">Cadastrar</button>
+        <button type="button" id="btn-cadastro-paciente" class="btn btn-success">Cadastrar</button>
         <p class="pCadastro">Já tem uma conta? Clique <a href="login.html">aqui</a> para fazer o Login.</p>
       </div>
     </form>
@@ -433,14 +185,8 @@
   
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-    <?php
-      if (!empty($_SESSION['cadastro_sucesso'])) {
-        echo "<script>alert('".$_SESSION['cadastro_sucesso']."');
-          location.reload();
-        </script>";
-        unset($_SESSION['cadastro_sucesso']);
-      }
-    ?>
+    <script src="./assets/js/paciente.js"></script>
+
     
   </body>
   </html>

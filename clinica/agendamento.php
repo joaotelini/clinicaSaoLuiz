@@ -53,14 +53,8 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-        <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">Sobre</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#services">Serviços</a></li> -->
-          <li><a class="nav-link scrollto" href="#departments">Departamentos</a></li>
-          <li><a class="nav-link scrollto" href="#doctors">Funcionários</a></li>  
-          <li><a class="nav-link scrollto" href="#contact">Contato</a></li>
+        <li><a class="nav-link scrollto active" href="./index.php">Home</a></li>
           <li><a class="nav-link scrollto" href="cadastro.php">Cadastre-se</a></li>
-          <li><a class="nav-link scrollto" href="agendamento.php">Realizar Agendamento</a></li>
            <!--Deixei sem destaque pq nao ficava responsivo-->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
