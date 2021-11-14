@@ -209,12 +209,12 @@ session_start();
 
                         <div class="form-group input-group ml-4">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                            <input type="text" id="search" placeholder="Pesquisar">
+                            <input class="form-control" type="text" id="search" placeholder="Pesquisar">
                         </div>
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="table" width="100%" cellspacing="0">
+                                <table class="table table-hover" id="table" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Nome do Departamento</th>

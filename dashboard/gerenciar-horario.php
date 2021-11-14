@@ -150,14 +150,14 @@ $diaSemanaValue = array(0, 1, 2, 3, 4, 5, 6, 7);
 
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                        <input type="text" id="search" placeholder="Pesquisar">
+                        <input class="form-control" type="text" id="search" placeholder="Pesquisar">
                     </div>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="table" width="100%" cellspacing="0">
+                                <table class="table table-hover" id="table" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>Nome do Especialista</th>

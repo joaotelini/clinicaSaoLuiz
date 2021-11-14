@@ -149,7 +149,7 @@
 
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                        <input type="text" id="search" placeholder="Pesquisar">
+                        <input class="form-control" type="text" id="search" placeholder="Pesquisar">
                     </div>
 
                     <!-- DataTales Example -->

@@ -135,22 +135,16 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Agendamentos</h1>
 
-                    <!-- <div id="botoes_dep">
-                        <?php
-                            foreach($depInfo as $dep) {
-                                echo "<a eventclick='click' data-id='".$dep['id_departamento']."' class='btn btn-primary mr-2 mt-2 mb-2'>".$dep['nome']."</a>";
-                            }
-                        ?>
-                    </div> -->
                     <div class="table-responsive">
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                             <input class="form-control" type="text" id="search" placeholder="Pesquisar">
                         </div>
-                        <div class="form-group input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                        <div>
+                            <span class="input-group-addon"></span>
                             <input class="form-control" type="date" id="data-consulta" >
                         </div>
+
 
                         <table id="table" class="table table-hover">
                             <thead>
@@ -179,6 +173,7 @@
                             </tfoot>
 
                             <tbody id="table-agend">
+                                
                             </tbody>
                         </table>
                     </div>
