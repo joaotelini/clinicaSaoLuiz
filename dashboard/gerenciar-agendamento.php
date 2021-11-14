@@ -25,6 +25,7 @@
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/main.css">
 
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -215,21 +216,24 @@
     </div>
 
     <!-- change status modal -->
-
-    <div class="modal fade" id="status-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="status-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header bg-info form-style">
+                    <h5 class="modal-title" id="exampleModalLabel">Mudar Status</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
-                <div class="modal-body">
-                    ...
+                <div class="modal-body form-style">
+                    <select name="selectStatus" id="select-status" class="form-control">
+                        <option value="Em Atendimento">Em Atendimento</option>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Realizada">Realizada</option>
+                        <option value="Faltou">Faltou</option>
+                    </select>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="confirmStatus" class="btn btn-success">Salvar</button>
                 </div>
             </div>
         </div>

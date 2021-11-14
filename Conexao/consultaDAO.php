@@ -58,4 +58,18 @@
                 print $e->getMessage();
             }
         }
+        public function alterarStatus($id, $status){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("UPDATE consulta SET status_consulta = ? WHERE id_consulta = ?");
+                $sql->execute(array($status, $id));
+                if ($sql->rowCount() == 1){
+                    return true;
+                } else {
+                    return false;
+                }
+            }catch(PDOException $e){
+                print $e->getMessage();
+            }
+        }
     }
