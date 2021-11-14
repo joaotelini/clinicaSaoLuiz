@@ -1,17 +1,17 @@
 $(document).ready(function (){
-    $('a[eventclick]').click(function (){
-        let id = (this).getAttribute('data-id');
+    // $('a[eventclick]').click(function (){
+    //     let id = (this).getAttribute('data-id');
 
-        listarConsulta(id);
+    //     listarConsulta(id);
         
-    });
+    // });
 
     let statusModal = document.getElementById('status-modal')
     statusModal.addEventListener('show.bs.modal', function (event) {
         let button = event.relatedTarget
         let recipientStatus = button.getAttribute('data-bs-status');
         let id = button.getAttribute('data-bs-id-consulta');
-        let departamento = button.getAttribute('data-bs-departamento');
+        let data = $('#data-consulta').val();
 
         let status = $(this);
 
@@ -26,19 +26,25 @@ $(document).ready(function (){
                 dataType: 'json'
             }).done(function (result){
                 $('#status-modal').modal('hide');
-                listarConsulta(departamento);
+                listarConsulta(data);
             })
         });
     });
+
+    $('#data-consulta').change(function (){
+        let data = $(this).val();
+        listarConsulta(data);
+    })
     
-    function listarConsulta(id){
+    function listarConsulta(data){
         $.ajax({
             url: '../Controller/listar-agendamento.php',
             method: 'POST',
-            data: {id: id},
+            data: {data: data},
             dataType: 'json'
         }).done(function (result){
             $('#table-agend').empty();
+            console.log(result);
             for (let i = 0; i < result.length; i++){
 
                 let date = changeDate(result[i].data_consulta);
@@ -47,11 +53,14 @@ $(document).ready(function (){
             }
         }); 
     }
-    
+
     function changeDate(date){
         let data_americana = date;
         let data_brasileira = data_americana.split('-').reverse().join('/');
 
         return data_brasileira;
     }
+
+    listarConsulta();
+
 });

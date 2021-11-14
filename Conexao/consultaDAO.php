@@ -8,7 +8,7 @@
                 if ((!empty($con->getIdServico())) && (!empty($con->getHoraInicio())) && (!empty($con->getHoraFim())) && (!empty($con->getIdEspecialista())) && (!empty($con->getIdPaciente())) && (!empty($con->getDataConsulta())) && (!empty($con->getIdDepartamento()))){
 
                     $pdo = Conexao::getInstance();
-                    $sql = $pdo->prepare("INSERT INTO consulta VALUES (default, ?, ?, ?, ?, ?, ?, ?)");
+                    $sql = $pdo->prepare("INSERT INTO consulta VALUES (default, ?, ?, ?, ?, ?, ?, ?, default)");
                     $sql->execute(array($con->getIdDepartamento(), $con->getIdServico(), $con->getIdEspecialista(), $con->getIdPaciente(), $con->getDataConsulta(), $con->getHoraInicio(), $con->getHoraFim()));
 
                     return true;
@@ -43,14 +43,14 @@
                 print $e->getMessage();
             }
         }
-        public function listar($id){
+        public function listar($data){
             try{
                 $pdo = Conexao::getInstance();
                 $sql = $pdo->prepare("SELECT * FROM consulta
                 INNER JOIN paciente ON consulta.id_paciente = paciente.id_paciente
                 INNER JOIN servico ON consulta.id_servico = servico.id_servico
                 INNER JOIN especialista ON consulta.id_especialista = especialista.id_especialista
-                WHERE consulta.id_departamento = $id ORDER BY consulta.hora_inicio DESC");
+                WHERE consulta.data_consulta = '$data' ORDER BY consulta.hora_inicio DESC");
                 $sql->execute();
                 $conInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
                 return $conInfo;
