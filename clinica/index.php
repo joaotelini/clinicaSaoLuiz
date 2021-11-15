@@ -59,7 +59,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">Clinica São Luiz</a></h1>
+      <h1 class="logo me-auto"><a href="index.php">Clinica São Luiz</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       <!-- Tirei pq nao ficava responsivo -->
@@ -74,6 +74,7 @@
           <li><a class="nav-link scrollto" href="#contact">Contato</a></li>
           <li><a class="nav-link scrollto" href="cadastro.php">Cadastre-se</a></li>
           <li><a class="nav-link scrollto" href="agendamento.php">Realizar Agendamento</a></li>
+          <li><a class="nav-link scrollto" href="./login.php">Login</a></li>
            <!--Deixei sem destaque pq nao ficava responsivo-->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

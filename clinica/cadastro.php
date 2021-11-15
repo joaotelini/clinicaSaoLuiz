@@ -47,6 +47,7 @@
         <ul>
         <li><a class="nav-link scrollto active" href="./index.php">Home</a></li>
           <li><a class="nav-link scrollto" href="agendamento.php">Realizar Agendamento</a></li>
+          <li><a class="nav-link scrollto" href="./login.php">Login</a></li>
            <!--Deixei sem destaque pq nao ficava responsivo-->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -135,7 +136,7 @@
 
       <div class="col-12">
         <button type="button" id="btn-cadastro-paciente" class="btn btn-success">Cadastrar</button>
-        <p class="pCadastro">Já tem uma conta? Clique <a href="login.html">aqui</a> para fazer o Login.</p>
+        <p class="pCadastro">Já tem uma conta? Clique <a href="login.php">aqui</a> para fazer o Login.</p>
       </div>
     </form>
   </div>
