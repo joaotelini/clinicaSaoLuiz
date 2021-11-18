@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 11-Nov-2021 às 14:07
--- Versão do servidor: 5.7.31
--- versão do PHP: 7.3.21
+-- Host: 127.0.0.1
+-- Tempo de geração: 18-Nov-2021 às 23:21
+-- Versão do servidor: 10.4.14-MariaDB
+-- versão do PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,14 +27,12 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `atendente`
 --
 
-DROP TABLE IF EXISTS `atendente`;
-CREATE TABLE IF NOT EXISTS `atendente` (
-  `id_atendente` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `atendente` (
+  `id_atendente` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `cpf` bigint(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `senha` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_atendente`)
+  `senha` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -43,9 +41,8 @@ CREATE TABLE IF NOT EXISTS `atendente` (
 -- Estrutura da tabela `consulta`
 --
 
-DROP TABLE IF EXISTS `consulta`;
-CREATE TABLE IF NOT EXISTS `consulta` (
-  `id_consulta` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `consulta` (
+  `id_consulta` int(11) NOT NULL,
   `id_departamento` int(11) NOT NULL,
   `id_servico` int(11) NOT NULL,
   `id_especialista` int(11) NOT NULL,
@@ -53,19 +50,28 @@ CREATE TABLE IF NOT EXISTS `consulta` (
   `data_consulta` date NOT NULL,
   `hora_inicio` time NOT NULL,
   `hora_fim` time NOT NULL,
-  PRIMARY KEY (`id_consulta`),
-  KEY `id_departamento` (`id_departamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
+  `status_consulta` varchar(100) NOT NULL DEFAULT 'Pendente'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `consulta`
 --
 
-INSERT INTO `consulta` (`id_consulta`, `id_departamento`, `id_servico`, `id_especialista`, `id_paciente`, `data_consulta`, `hora_inicio`, `hora_fim`) VALUES
-(37, 72, 17, 75, 64, '2021-11-15', '11:00:00', '12:00:00'),
-(38, 72, 14, 75, 64, '2021-11-15', '12:00:00', '12:20:00'),
-(39, 72, 14, 75, 64, '2021-11-15', '15:20:00', '15:40:00'),
-(40, 72, 17, 75, 64, '2021-11-15', '16:00:00', '17:00:00');
+INSERT INTO `consulta` (`id_consulta`, `id_departamento`, `id_servico`, `id_especialista`, `id_paciente`, `data_consulta`, `hora_inicio`, `hora_fim`, `status_consulta`) VALUES
+(37, 72, 17, 75, 64, '2021-11-15', '11:00:00', '12:00:00', 'Realizada'),
+(38, 72, 14, 75, 64, '2021-11-15', '12:00:00', '12:20:00', 'Pendente'),
+(39, 72, 14, 75, 64, '2021-11-15', '15:20:00', '15:40:00', 'Pendente'),
+(40, 72, 17, 75, 64, '2021-11-15', '16:00:00', '17:00:00', 'Pendente'),
+(41, 72, 16, 73, 60, '2021-11-30', '09:00:00', '09:30:00', 'Em Atendimento'),
+(42, 72, 16, 75, 60, '2021-11-30', '11:30:00', '12:00:00', 'Pendente'),
+(43, 72, 17, 75, 60, '2021-11-29', '10:00:00', '11:00:00', 'Pendente'),
+(44, 72, 14, 75, 60, '2021-11-29', '11:20:00', '11:40:00', 'Pendente'),
+(45, 72, 15, 75, 60, '2021-11-29', '12:45:00', '13:30:00', 'Pendente'),
+(46, 73, 18, 72, 60, '2021-11-29', '08:30:00', '08:45:00', 'Pendente'),
+(47, 73, 18, 72, 60, '2021-11-29', '09:00:00', '09:15:00', 'Pendente'),
+(48, 72, 16, 73, 64, '2021-11-14', '16:00:00', '16:30:00', 'Pendente'),
+(49, 72, 16, 73, 64, '2021-11-14', '12:00:00', '12:30:00', 'Pendente'),
+(50, 72, 17, 73, 62, '2021-11-14', '17:00:00', '18:00:00', 'Pendente');
 
 -- --------------------------------------------------------
 
@@ -73,13 +79,11 @@ INSERT INTO `consulta` (`id_consulta`, `id_departamento`, `id_servico`, `id_espe
 -- Estrutura da tabela `departamento`
 --
 
-DROP TABLE IF EXISTS `departamento`;
-CREATE TABLE IF NOT EXISTS `departamento` (
-  `id_departamento` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `departamento` (
+  `id_departamento` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
-  `descricao` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_departamento`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4;
+  `descricao` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `departamento`
@@ -96,17 +100,15 @@ INSERT INTO `departamento` (`id_departamento`, `nome`, `descricao`) VALUES
 -- Estrutura da tabela `especialista`
 --
 
-DROP TABLE IF EXISTS `especialista`;
-CREATE TABLE IF NOT EXISTS `especialista` (
-  `id_especialista` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `especialista` (
+  `id_especialista` int(11) NOT NULL,
   `nome_especialista` varchar(255) DEFAULT NULL,
   `conselho_regional` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `id_departamento` int(11) NOT NULL,
   `telefone` bigint(20) NOT NULL,
-  `cpf` bigint(15) NOT NULL,
-  PRIMARY KEY (`id_especialista`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4;
+  `cpf` bigint(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `especialista`
@@ -124,15 +126,13 @@ INSERT INTO `especialista` (`id_especialista`, `nome_especialista`, `conselho_re
 -- Estrutura da tabela `horario`
 --
 
-DROP TABLE IF EXISTS `horario`;
-CREATE TABLE IF NOT EXISTS `horario` (
-  `id_horario` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `horario` (
+  `id_horario` int(11) NOT NULL,
   `id_especialista` int(11) NOT NULL,
   `dia_semana` int(11) NOT NULL,
   `comeco_espediente` time NOT NULL,
-  `fim_espediente` time NOT NULL,
-  PRIMARY KEY (`id_horario`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
+  `fim_espediente` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `horario`
@@ -144,7 +144,9 @@ INSERT INTO `horario` (`id_horario`, `id_especialista`, `dia_semana`, `comeco_es
 (43, 75, 3, '08:00:00', '18:00:00'),
 (44, 73, 1, '08:00:00', '18:00:00'),
 (45, 73, 2, '08:00:00', '18:00:00'),
-(46, 73, 3, '08:00:00', '18:00:00');
+(46, 73, 3, '08:00:00', '18:00:00'),
+(47, 72, 1, '08:00:00', '18:00:00'),
+(48, 73, 7, '08:00:00', '18:00:00');
 
 -- --------------------------------------------------------
 
@@ -152,8 +154,7 @@ INSERT INTO `horario` (`id_horario`, `id_especialista`, `dia_semana`, `comeco_es
 -- Estrutura da tabela `horario_especialista`
 --
 
-DROP TABLE IF EXISTS `horario_especialista`;
-CREATE TABLE IF NOT EXISTS `horario_especialista` (
+CREATE TABLE `horario_especialista` (
   `id_especialista` int(11) NOT NULL,
   `id_horario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -164,9 +165,8 @@ CREATE TABLE IF NOT EXISTS `horario_especialista` (
 -- Estrutura da tabela `paciente`
 --
 
-DROP TABLE IF EXISTS `paciente`;
-CREATE TABLE IF NOT EXISTS `paciente` (
-  `id_paciente` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `paciente` (
+  `id_paciente` int(11) NOT NULL,
   `nome_paciente` varchar(255) NOT NULL,
   `rg` bigint(255) NOT NULL,
   `cpf` bigint(255) NOT NULL,
@@ -177,20 +177,20 @@ CREATE TABLE IF NOT EXISTS `paciente` (
   `logradouro` varchar(255) NOT NULL,
   `numero` int(11) NOT NULL,
   `cep` int(11) NOT NULL,
-  PRIMARY KEY (`id_paciente`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4;
+  `sexo_paciente` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `paciente`
 --
 
-INSERT INTO `paciente` (`id_paciente`, `nome_paciente`, `rg`, `cpf`, `email`, `senha`, `telefone`, `data_nascimento`, `logradouro`, `numero`, `cep`) VALUES
-(59, 'João Pedro da Silva Rocha', 838229477, 55535634026, 'joaopedro@gmail.com', 'b24700ad51957db6e2f6d91ddc6e8909', 2147483647, '2000-05-16', 'R. Carolina de Oliveto', 69, 58433121),
-(60, 'Mariana Cecilia', 8493374883, 81772169021, 'marianacecilia@gmail.com', 'c13a9aac28d6309141f062aa7aa85f97', 2147483647, '1996-06-11', 'R. dos Andradas', 420, 64000290),
-(61, 'Luccas Oliveira', 8473374883, 17809741080, 'lucas@gmail.com', '9e72de5c5956aff8941855feb09ff5b9', 1996657384, '2002-07-11', 'R. Francisco Glicério', 666, 77813250),
-(62, 'Juliana Cristina', 839228399, 1590729056, 'juliana@gmail.com', '2b45b7a98fd172bda605cd2cc9597c90', 2147483647, '1993-11-11', 'R. Mariana Peixoto', 37, 12342134),
-(63, 'joao pedro', 1234, 74159626050, 'joao@gmail.com', 'ed2b1f468c5f915f3f1cf75d7068baae', 0, '2021-11-24', '1234', 69, 1234123),
-(64, 'Maria', 35564, 74159626050, 'jobastico2@wr', '32d0b4481908a13480ad7eca300b2655', 1999368333, '2021-11-28', '42213', 1234, 1234123);
+INSERT INTO `paciente` (`id_paciente`, `nome_paciente`, `rg`, `cpf`, `email`, `senha`, `telefone`, `data_nascimento`, `logradouro`, `numero`, `cep`, `sexo_paciente`) VALUES
+(66, 'João Pedro da Silva Rocha', 35564, 74159626050, 'joaopedrodasilva@gmail.com', 'bd688872ef28a394da2235f2d3d24512', 19995569283, '2021-11-08', 'R. Maria Pereira da silva', 69, 77813250, 'M'),
+(67, 'joao pedro', 948339278, 98573533048, 'joasdfasfdao@gmail.com', '27bf375df4b06adaa6ae2864632c96a9', 19995569283, '2021-11-22', 'R. carlinhos maia', 69, 12342134, 'M'),
+(68, 'Maria Luiza', 148001701, 42927268096, 'marialuiza@gmail.com', 'eeab41d760814ea20ff5834c10271589', 19995569283, '1999-02-09', 'R. Padre Ferraz', 420, 77813250, 'F'),
+(69, 'Pedro de Oliveira', 372912023, 73571046056, 'pedro@gmail.com', '484de90d1b78af8f3eb2efdff3f84d66', 199996688763, '2004-10-20', 'R. Padre Amorim', 737, 77813250, 'M'),
+(70, 'joao pedro', 35564, 95564341007, 'souzzaleitte@gmail.com', '42a87fb988bd92077efc9da585d5b150', 19995569283, '2021-11-01', 'R. Pedrinho Machado', 69, 12342134, 'M'),
+(71, 'joao pedro', 35564, 82233240081, 'joasdfasfdao@gmail.com', '2436ebd21173bf073a2a8558f95450b9', 19995569283, '2018-02-13', 'R das Magnólias', 420, 12342134, 'F');
 
 -- --------------------------------------------------------
 
@@ -198,16 +198,14 @@ INSERT INTO `paciente` (`id_paciente`, `nome_paciente`, `rg`, `cpf`, `email`, `s
 -- Estrutura da tabela `servico`
 --
 
-DROP TABLE IF EXISTS `servico`;
-CREATE TABLE IF NOT EXISTS `servico` (
-  `id_servico` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `servico` (
+  `id_servico` int(11) NOT NULL,
   `id_departamento` int(11) NOT NULL,
   `nome_servico` varchar(255) NOT NULL,
   `descricao_servico` varchar(500) NOT NULL,
   `valor` double NOT NULL,
-  `duracao` int(11) NOT NULL,
-  PRIMARY KEY (`id_servico`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
+  `duracao` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `servico`
@@ -217,7 +215,101 @@ INSERT INTO `servico` (`id_servico`, `id_departamento`, `nome_servico`, `descric
 (14, 72, 'Manutenção no aparelho', 'manutenção no aparelho', 100, 20),
 (15, 72, 'Reparo dental', 'reparo dental', 150, 45),
 (16, 72, 'limpeza dental', 'limpeza dental', 75, 30),
-(17, 72, 'servico de 1h', 'serviço com duração de 1h', 149, 60);
+(17, 72, 'servico de 1h', 'serviço com duração de 1h', 149, 60),
+(18, 73, 'exame de rotina', 'exame de rotina ', 50, 15);
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `atendente`
+--
+ALTER TABLE `atendente`
+  ADD PRIMARY KEY (`id_atendente`);
+
+--
+-- Índices para tabela `consulta`
+--
+ALTER TABLE `consulta`
+  ADD PRIMARY KEY (`id_consulta`),
+  ADD KEY `id_departamento` (`id_departamento`);
+
+--
+-- Índices para tabela `departamento`
+--
+ALTER TABLE `departamento`
+  ADD PRIMARY KEY (`id_departamento`);
+
+--
+-- Índices para tabela `especialista`
+--
+ALTER TABLE `especialista`
+  ADD PRIMARY KEY (`id_especialista`);
+
+--
+-- Índices para tabela `horario`
+--
+ALTER TABLE `horario`
+  ADD PRIMARY KEY (`id_horario`);
+
+--
+-- Índices para tabela `paciente`
+--
+ALTER TABLE `paciente`
+  ADD PRIMARY KEY (`id_paciente`);
+
+--
+-- Índices para tabela `servico`
+--
+ALTER TABLE `servico`
+  ADD PRIMARY KEY (`id_servico`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `atendente`
+--
+ALTER TABLE `atendente`
+  MODIFY `id_atendente` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `consulta`
+--
+ALTER TABLE `consulta`
+  MODIFY `id_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT de tabela `departamento`
+--
+ALTER TABLE `departamento`
+  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
+-- AUTO_INCREMENT de tabela `especialista`
+--
+ALTER TABLE `especialista`
+  MODIFY `id_especialista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+
+--
+-- AUTO_INCREMENT de tabela `horario`
+--
+ALTER TABLE `horario`
+  MODIFY `id_horario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+--
+-- AUTO_INCREMENT de tabela `paciente`
+--
+ALTER TABLE `paciente`
+  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
+-- AUTO_INCREMENT de tabela `servico`
+--
+ALTER TABLE `servico`
+  MODIFY `id_servico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Restrições para despejos de tabelas

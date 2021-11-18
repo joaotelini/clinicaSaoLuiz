@@ -77,15 +77,15 @@
         <section class="container-fluid">
             <section class="row justify-content-center">
                 <section class="col-12 col-sm-6 col-md-3">
-                    <form method="POST" action="" class="form-container">
+                    <form method="POST" action="../Controller/login.php" class="form-container">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">E-mail</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                            <input type="password" name="senha" class="form-control" id="exampleInputPassword1">
                         </div>
                         <div class="d-grid gap-2">
                             <button class="btn btn-primary" type="submit">Login</button>
