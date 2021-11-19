@@ -73,7 +73,7 @@
                 <ul>
                     <li><a class="nav-link scrollto" href="./index.php">Home</a></li>
                     <li><a class="nav-link scrollto" href="agendamento.php">Realizar Agendamento</a></li>
-                    <li><a class="nav-link scrollto" href="./login.php">Sair</a></li>
+                    <li><a class="nav-link scrollto" href="../Controller/logout.php">Sair</a></li>
                     <!--Deixei sem destaque pq nao ficava responsivo-->
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
