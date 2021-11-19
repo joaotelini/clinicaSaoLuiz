@@ -29,16 +29,15 @@
             }
         }
 
-        public function Acessar($email, $senha) {
+        public function login($email, $senha) {
             try {
 
                 $pdo = Conexao::getInstance();
-                $sql = $pdo->prepare("SELECT email, senha FROM paciente WHERE email = ? and senha = md5(?)");
+                $sql = $pdo->prepare("SELECT * FROM paciente WHERE email = ? and senha = md5(?)");
                 $sql->execute(array($email, $senha));
 
-                $info = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-                return $info;
+                $pacInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
+                return $pacInfo;
 
             } catch (Exception $e) {
                 print $e->getMessage();

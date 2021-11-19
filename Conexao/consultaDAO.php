@@ -72,4 +72,22 @@
                 print $e->getMessage();
             }
         }
+        public function listarConsultaPaciente($pac){
+            try{
+                $pdo = Conexao::getInstance();
+                $sql = $pdo->prepare("SELECT * FROM consulta
+                INNER JOIN paciente ON consulta.id_paciente = paciente.id_paciente
+                INNER JOIN servico ON consulta.id_servico = servico.id_servico
+                INNER JOIN especialista ON consulta.id_especialista = especialista.id_especialista
+                WHERE consulta.id_paciente = ? ORDER BY consulta.data_consulta DESC");
+
+                $sql->execute(array($pac));
+                $pacInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+                return $pacInfo;
+
+            }catch(PDOException $e){
+                print $e->getMessage();
+            }
+        }
     }
