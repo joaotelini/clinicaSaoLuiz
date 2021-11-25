@@ -101,7 +101,7 @@
 
       <div class="col-md-6" id="especialista">
       <label for="especialista" class="form-label">Especialista:</label>
-        <select name="especialista" class="form-control" id="selectEspecialista">
+        <select name="especialista" onchange="verData()" class="form-control" id="selectEspecialista">
           <option value="0"></option>
         </select>
         <div id="message_especialista"></div>
@@ -194,13 +194,13 @@
             data: {data: d.value, especialista: esp.value},
             dataType: 'json'
           }).done(function (result) {
-            if (result.length > 0) {
+            if (result == "Data Disponível") {
               // return true;
               $('#message_date').empty();
-              $('#message_date').prepend("<div class='alert alert-success mt-3' role='alert'>Data Disponível</div>");
+              $('#message_date').prepend("<div class='alert alert-success mt-3' role='alert'>"+ result +"</div>");
             } else {
               $('#message_date').empty();
-              $('#message_date').prepend("<div class='alert alert-danger mt-3' role='alert'>Data Indisponível</div>");
+              $('#message_date').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
               $('#selectHorario').empty();
               $('#selectHorario').prepend("<option value='0'></option>");
               // return false;
@@ -258,7 +258,7 @@
                 data: {horario: horario, data: data.value, servico: servico.value, especialista: esp.value},
                 dataType: 'json'
               }).done(function (result){
-                if (result == "Horário Indispovível") {
+                if (result == "Horário Indisponível") {
                   $('#message_horario').empty();
                   $('#message_horario').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
                 } else if (result == "Horário Disponível"){
@@ -301,14 +301,17 @@
                 data: {cpf: cpf, departamento: dep, especialista: esp, servico: ser, data: data, horario: hora},
                 dataType: 'json'
               }).done(function (result) {
-                // console.log(result);
+                console.log(result);
                 if (result == "Horário Indispovível"){
                   $('#message_horario').empty();
                   $('#message_horario').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
                 } else if (result == "Erro! Verifique se os dados foram digitados corretamente") {
                   $('#message_erro').empty();
                   $('#message_erro').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
-                } else if (result = "Consulta agendada com sucesso!"){
+                } else if (result == "Data Indisponível"){
+                  $('#message_erro').empty();
+                  $('#message_erro').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
+                } else if (result == "Consulta agendada com sucesso!"){
                   $('#message_erro').empty();
                   $('#message_horario').empty();
                   $('#message_date').empty();

@@ -39,10 +39,14 @@
         if ($horaIn) {
             echo json_encode($horaIn);
         } else {   
-            if ($conDao->Inserir($con) == true) {
-                echo json_encode("Consulta agendada com sucesso!");
+            if ($data > date('Y-m-d')){
+                if ($conDao->Inserir($con) == true) {
+                    echo json_encode("Consulta agendada com sucesso!");
+                } else {
+                    echo json_encode("Erro! Verifique se os dados foram digitados corretamente");
+                }
             } else {
-                echo json_encode("Erro! Verifique se os dados foram digitados corretamente");
+                echo json_encode("Data Indisponível");
             }
         }
 

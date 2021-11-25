@@ -31,11 +31,11 @@
                 
                 foreach($conInfo as $con){
                     if ($horaInicio >= $con['hora_inicio'] && $horaInicio < $con['hora_fim']){
-                        return "Horário Indispovível";
+                        return "Horário Indisponível";
                     } else if ($horaFim > $con['hora_inicio'] && $horaFim <= $con['hora_fim']){
-                        return "Horário Indispovível";
+                        return "Horário Indisponível";
                     } else if ($con['hora_inicio'] >= $horaInicio && $con['hora_inicio'] < $horaFim){
-                        return "Horário Indispovível";
+                        return "Horário Indisponível";
                     }
                 }
 

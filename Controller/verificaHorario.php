@@ -23,5 +23,9 @@
     if ($horaResult) {
         echo json_encode($horaResult);
     } else {
-        echo json_encode("Horário Disponível");
+        if ($data < date('Y-m-d')){
+            echo json_encode("Horário Indisponível");
+        } else {
+            echo json_encode("Horário Disponível");
+        }
     }

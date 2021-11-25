@@ -16,6 +16,13 @@
     $sql->execute();
     $dataInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
     
-    echo json_encode($dataInfo);
+
+    if ($data > date('Y-m-d')){
+        if ($dataInfo){
+            echo json_encode("Data Disponível");
+        }
+    } else {
+        echo json_encode("Data Indisponível");
+    }
 
 ?>

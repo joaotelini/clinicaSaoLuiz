@@ -36,7 +36,7 @@
 							echo json_encode("Erro! verifique os campos");
 						}
 					} else {
-						echo json_encode("Tu é pica mesmo, nasceu no futuro");
+						echo json_encode("Data Inválida");
 					}
 				} else {
 					echo json_encode("CEP Inválido");
