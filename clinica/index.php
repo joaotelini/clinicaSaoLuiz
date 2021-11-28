@@ -10,7 +10,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Clinica São Luiz</title>
+  <title>Clínica São Luiz</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -49,8 +49,6 @@
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
       <div class="contact-info d-flex align-items-center">
-        <!-- <i class="bi bi-envelope"></i> <a href="mailto:contact@example.com">contato@clinicasaoluiz.com</a>
-        <i class="bi bi-phone"></i>+55 (19) 99526-9560 -->
       </div>
     </div>
   </div>
@@ -59,10 +57,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.php">Clinica São Luiz</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      <!-- Tirei pq nao ficava responsivo -->
+      <h1 class="logo me-auto"><a href="index.php">Clínica São Luiz</a></h1>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
@@ -86,7 +81,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
-      <h1>Bem-vindos a Clinica São Luiz</h1>
+      <h1>Bem-vindos a Clínica São Luiz</h1>
       <h2>A sua saúde em primeiro lugar.</h2>
       <a href="#about" class="btn-get-started scrollto">Saiba Mais</a>
     </div>
@@ -144,7 +139,7 @@
 
         <div class="section-title">
           <h2>Departamentos</h2>
-          <p>Aqui estão todos os os atendimentos fornecidos pela Clinica São Luiz:</p>
+          <p>Aqui estão todos os os atendimentos fornecidos pela Clínica São Luiz:</p>
         </div>
 
         <div class="row">
@@ -277,7 +272,6 @@
 
         <div class="section-title">
           <h2>Funcionários</h2>
-          <!-- <p>Funcionarios da clinica sao luiz</p> -->
         </div>
 
         <div class="row">
@@ -590,14 +584,15 @@
 
         <div class="section-title">
           <h2>Contato</h2>
-          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
         </div>
       </div>
 
       <div class="container">
         <div class="row mt-5">
 
-          <div class="col-lg-4">
+        <div class="col-sm-4"></div>  
+        
+        <div class="col-lg-8">
             <div class="info">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
@@ -621,33 +616,6 @@
 
           </div>
 
-          <div class="col-lg-8 mt-5 mt-lg-0">
-
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Nome" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Titulo" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Mensagem" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Carregando</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Sua mensagem foi enviada. Obrigado!</div>
-              </div>
-              <div class="text-center"><button type="submit">Enviar Menssagem</button></div>
-            </form>
-
-          </div>
-
         </div>
 
       </div>
@@ -663,7 +631,7 @@
         <div class="row">
 
           <div class="col-lg-6 col-md-6 footer-contact">
-            <h3>Clinica São Luiz</h3>
+            <h3>Clínica São Luiz</h3>
             <p>
               Rua Rui Barbosa<br>
               Itapira, SP<br>
