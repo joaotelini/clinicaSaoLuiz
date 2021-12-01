@@ -1,6 +1,6 @@
 <?php 
-    // include_once ('');
-    // require_once ('');
+    session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -67,10 +67,17 @@
           <li><a class="nav-link scrollto" href="#departments">Departamentos</a></li>
           <li><a class="nav-link scrollto" href="#doctors">Funcionários</a></li>  
           <li><a class="nav-link scrollto" href="#contact">Contato</a></li>
-          <li><a class="nav-link scrollto" href="cadastro.php">Cadastre-se</a></li>
-          <li><a class="nav-link scrollto" href="agendamento.php">Realizar Agendamento</a></li>
-          <li><a class="nav-link scrollto" href="./login.php">Login</a></li>
-           <!--Deixei sem destaque pq nao ficava responsivo-->
+          
+           <?php
+              if (isset($_SESSION['usuario'])){
+                echo "<li><a class='nav-link scrollto' href='./perfil.php'>Minshas Consultas</a></li>";
+                echo "<li><a class='nav-link scrollto' href='./agendamento.php'>Realizar Agendamento</a></li>";
+                echo "<li><a class='nav-link scrollto' href='../Controller/logout.php'>Sair</a></li>";
+              }else {
+                echo "<li><a class='nav-link scrollto' href='cadastro.php'>Cadastre-se</a></li>
+                <li><a class='nav-link scrollto' href='./login.php'>Login</a></li>";
+              }
+           ?>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

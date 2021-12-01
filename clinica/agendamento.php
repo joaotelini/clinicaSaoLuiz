@@ -1,11 +1,21 @@
 <?php
 
   include_once '../Conexao/departamentoDAO.php';
+  include_once '../Conexao/consultaDAO.php';
+
+  session_start();
 
   $dep = new DepartamentoDAO();
   $depInfo = $dep->Listar();
 
-  session_start();
+
+  if (!empty($_SESSION['usuario'])){
+      $nome = $_SESSION['usuario'][0]['nome_paciente'];
+      $id_paciente = $_SESSION['usuario'][0]['id_paciente'];  
+
+  } else {
+      echo "<script>window.location = 'login.php'</script>";
+  }
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +50,8 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="shortcut icon" href="#">
+
 
 </head>
 
@@ -49,12 +61,13 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">Clinica São Luiz</a></h1>
+      <h1 class="logo me-auto"><a href="./index.php">Clinica São Luiz</a></h1>
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
         <li><a class="nav-link scrollto active" href="./index.php">Home</a></li>
-          <li><a class="nav-link scrollto" href="cadastro.php">Cadastre-se</a></li>
+        <li><a class="nav-link scrollto" href="./perfil.php">Suas Consultas</a></li>
+          <li><a class="nav-link scrollto" href="../Controller/logout.php">Sair</a></li>
            <!--Deixei sem destaque pq nao ficava responsivo-->
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -70,7 +83,9 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Agendamento</h2>
+          <?php
+              echo "<h2>Agendamento para o paciente: ".$_SESSION['usuario'][0]['nome_paciente']."</h2>";
+          ?>
         </div>
 
       </div>
@@ -78,13 +93,13 @@
 
     <div class="container">
       <div id="message_erro"></div>
-    <form method="post" class="row g-3" id="insertAgend">
+    <form method="post" class="row g-3 mt-3 formulario" id="insertAgend" >
 
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
         <label for="cpf_paciente" class="form-label">CPF:</label>
         <input type="text" class="form-control" name="cpf" id="cpf_paciente">
         <div id="message_cpf"></div>
-      </div>
+      </div> -->
 
       <div class="col-md-6">
         <label for="departamento" class="form-label">Departamento:</label>
@@ -130,7 +145,7 @@
       </div>
 
       <div class="col-12">
-        <button type="button" name="realAgend" class="btn btn-success" id="cadAgend">Agendar</button>
+        <button type="button" name="realAgend" class="btn btn-success mb-3" id="cadAgend" cpf-paciente="<?php echo $_SESSION['usuario'][0]['cpf']?>">Agendar</button>
       </div>
     </form>
   </div>
@@ -197,10 +212,10 @@
             if (result == "Data Disponível") {
               // return true;
               $('#message_date').empty();
-              $('#message_date').prepend("<div class='alert alert-success mt-3' role='alert'>"+ result +"</div>");
+              $('#message_date').prepend("<div class='alert alert-success mt-3 alerta' role='alert'>"+ result +"</div>");
             } else {
               $('#message_date').empty();
-              $('#message_date').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
+              $('#message_date').prepend("<div class='alert alert-danger mt-3 alerta' role='alert'>"+ result +"</div>");
               $('#selectHorario').empty();
               $('#selectHorario').prepend("<option value='0'></option>");
               // return false;
@@ -227,27 +242,6 @@
             });
           }
 
-          function verCpf(cpf){
-              let valor;
-              $.ajax({
-                url: '../Controller/verCPF.php',
-                method: 'POST',
-                data: {cpf: cpf},
-                dataType: 'json'
-              }).done(function (result){
-                if (result == "CPF não cadastrado!") {
-                  $('#message_cpf').empty();
-                  $('#message_cpf').prepend("<div class='alert alert-danger mt-3'>"+ result +"</div>");
-                  valor = false;
-  
-                } else {
-                  $('#message_cpf').empty();
-                  valor = true;
-                }
-              });
-              return valor;
-            } 
-
           function verHorario(horario) {
               let data = document.getElementById('inputData');
               let servico = document.getElementById('selectServico');
@@ -260,7 +254,7 @@
               }).done(function (result){
                 if (result == "Horário Indisponível") {
                   $('#message_horario').empty();
-                  $('#message_horario').prepend("<div class='alert alert-danger mt-3' role='alert'>"+ result +"</div>");
+                  $('#message_horario').prepend("<div class='alert alert-danger mt-3 alerta' role='alert'>"+ result +"</div>");
                 } else if (result == "Horário Disponível"){
                   $('#message_horario').empty();
                   $('#message_horario').prepend("<div class='alert alert-success mt-3' role='alert'>"+ result +"</div>");
@@ -284,15 +278,15 @@
         }
 
          $('#cadAgend').click(function (){
-            let cpf = $('#cpf_paciente').val();       
+            let cpf = $('#cadAgend').attr('cpf-paciente');    
             let dep = $('#departamento').val();       
             let esp = $('#selectEspecialista').val();       
             let ser = $('#selectServico').val();       
             let data = $('#inputData').val();       
             let hora = $('#selectHorario').val();    
+            // console.log(cpf);
 
             let verificaCampos = validaCampos(cpf, dep, esp, ser, data, hora);
-            let verificaCpf = verCpf(cpf);
 
             if (verificaCampos){
               $.ajax({
@@ -326,7 +320,7 @@
                 }
               });
             } else {
-              console.log("não funcionando");
+              // console.log("não funcionando");
             }           
          })
     </script>
