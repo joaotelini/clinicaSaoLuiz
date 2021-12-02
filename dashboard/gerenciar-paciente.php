@@ -153,7 +153,6 @@
                                     <thead>
                                         <tr>
                                             <th>Nome</th>
-                                            <th>RG</th>
                                             <th>CPF</th>
                                             <th>Email</th>
                                             <th>Telefone</th>
@@ -166,7 +165,6 @@
                                     <tfoot>
                                         <tr>
                                             <th>Nome</th>
-                                            <th>RG</th>
                                             <th>CPF</th>
                                             <th>Email</th>
                                             <th>Telefone</th>
@@ -181,7 +179,6 @@
                                         <?php foreach($pacInfo as $dep):?>
                                         <tr>
                                             <th><?php echo $dep['nome_paciente']?></th>
-                                            <th><?php echo $dep['rg']?></th>
                                             <th><?php echo $dep['cpf']?></th>
                                             <th><?php echo $dep['email']?></th>
                                             <th><?php echo $dep['telefone']?></th>
@@ -247,10 +244,6 @@
                             <input type="text" class="form-control" id="telefone">
                         </div>
                         <div class="mb-3">
-                            <label for="rg" class="col-form-label">Rg:</label>
-                            <input type="text" class="form-control" id="rg">
-                        </div>
-                        <div class="mb-3">
                             <label for="data-nascimento" class="col-form-label">Data de Nascimento:</label>
                             <input type="date" class="form-control" id="data">
                         </div>
@@ -266,6 +259,15 @@
                             <label for="numero" class="col-form-label">Numero:</label>
                             <input type="number" class="form-control" id="numero">
                         </div>
+                        <div class="mb-3">
+                            <label for="inputState" class="col-form-label">Sexo</label>
+                            <select class="form-control" id="sexo">
+                                <option value="0"></option>
+                                <option value="M">Masculino</option>
+                                <option value="F">Feminino</option>
+                                <option value="O">Outro</option>
+                            </select>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -277,7 +279,7 @@
     </div>
 
     <!-- delete modal  -->
-    
+
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

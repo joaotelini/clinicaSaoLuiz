@@ -32,6 +32,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <link rel="shortcut icon" href="#">
+    <!-- <link rel="stylesheet" herf="./assets/css/main.css"> -->
 
 
 </head>
@@ -135,11 +136,25 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Agendamentos</h1>
 
+                    <section class="section-cards">
+                        <div class="cards bg-primary">
+                            <p>10</p>
+                            <h3>Consultas de Hoje</h3>
+                        </div>
+                        <div class="cards bg-success">
+                            <p>7</p>
+                            <h3>Consultas Realizadas</h3>
+                        </div>
+                        <div class="cards bg-danger">
+                            <p>3</p>
+                            <h3>Faltas</h3>
+                        </div>
+                    </section>
                     <div class="table-responsive">
-                        <div class="form-group input-group">
+                        <!-- <div class="form-group input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                             <input class="form-control" type="text" id="search" placeholder="Pesquisar">
-                        </div>
+                        </div> -->
                         <div>
                             <span class="input-group-addon"></span>
                             <input class="form-control" type="date" id="data-consulta" >

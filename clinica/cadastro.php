@@ -98,11 +98,6 @@
         <label for="inputEmail4" class="form-label">Telefone/Celular:</label>
         <input type="text" name="telefone" class="form-control" id="telefone">
       </div>
-      
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">RG:</label>
-        <input type="text" name="rg" class="form-control" id="rg">
-      </div>
 
       <div class="col-md-6">
         <label for="inputPassword4" class="form-label">Data de Nascimento:</label>

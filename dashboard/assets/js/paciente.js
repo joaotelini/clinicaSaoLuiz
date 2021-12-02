@@ -1,6 +1,6 @@
 $(document).ready(function (){
-    function verificaCampos(nome, cpf, email, senha, tele, rg, data, cep, logra, num){
-        if (nome == "" || cpf == "" || email == "" || senha == "" || tele == "" || rg == "" || data == "" || cep == "" || logra == "" || num == ""){
+    function verificaCampos(nome, cpf, email, senha, tele, sexo, data, cep, logra, num){
+        if (nome == "" || cpf == "" || email == "" || senha == "" || tele == "" || sexo == "" || data == "" || cep == "" || logra == "" || num == ""){
             $('#message-result').empty();
             $('#message-result').prepend('<div class="alert alert-danger" role="alert">Preencha todos os campos!</div>');
             return false;
@@ -16,25 +16,23 @@ $(document).ready(function (){
         let email = $('#email').val();
         let senha = $('#senha').val();
         let tele = $('#telefone').val();
-        let rg = $('#rg').val();
+        let sexo = $('#sexo').val();
         let data = $('#data').val();
         let cep = $('#cep').val();
         let logra = $('#logradouro').val();
         let num = $('#numero').val();
 
-        let res = verificaCampos(nome, cpf, email, senha, tele, rg, data, cep, logra, num);
+        let res = verificaCampos(nome, cpf, email, senha, tele, sexo, data, cep, logra, num);
 
         if (res){
             $.ajax({
                 url: '../Controller/cadastrar-paciente.php',
                 method: 'POST',
-                data: {nome: nome, cpf: cpf, email: email, senha: senha, telefone: tele, rg: rg, data: data, cep: cep, logradouro: logra, numero: num},
+                data: {nome: nome, cpf: cpf, email: email, senha: senha, telefone: tele, sexo: sexo, data: data, cep: cep, logradouro: logra, numero: num},
                 dataType: 'json'
             }).done(function (result){
-                if (result == "Erro! verifique os campos"){
-                    $('#message-result').empty();
-                    $('#message-result').prepend('<div class="alert alert-danger" role="alert">'+ result +'</div>');
-                } else {
+                console.log(result);
+                if (result == "Paciente cadastrado com successo"){
                     $('#message-success').empty();
                     $('#message-success').prepend('<div class="alert alert-success" role="alert">'+ result +'</div>');
                     $("#form-cad-pac").trigger("reset");
@@ -45,6 +43,9 @@ $(document).ready(function (){
                     setTimeout(() => {
                         location.reload();
                     }, 1500);
+                } else {
+                    $('#message-result').empty();
+                    $('#message-result').prepend('<div class="alert alert-danger" role="alert">'+ result +'</div>');
                 }
             });
         } else {

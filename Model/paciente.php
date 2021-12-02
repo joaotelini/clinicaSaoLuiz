@@ -4,7 +4,6 @@
     class Paciente {
         private $id;
         private $nome;
-        private $rg;
         private $cpf;
         private $email;
         private $senha;
@@ -15,9 +14,8 @@
         private $cep;
         private $sexo;
 
-        public function __construct($nome, $rg, $cpf, $email, $senha, $telefone, $dataNascimento, $logradouro, $numero, $cep, $sexo){
+        public function __construct($nome, $cpf, $email, $senha, $telefone, $dataNascimento, $logradouro, $numero, $cep, $sexo){
             $this->setNome($nome);
-            $this->setRg($rg);
             $this->setCpf($cpf);
             $this->setEmail($email);
             $this->setSenha($senha);
@@ -96,16 +94,6 @@
                 return false;
             }
         } 
-
-        // ===============rg=====================
-
-        public function getRg() {
-            return $this->rg;
-        }
-
-        public function setRg($rg) {
-            $this->rg = $rg;
-        }
 
         //===============dataNascimento================
         

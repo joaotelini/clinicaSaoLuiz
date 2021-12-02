@@ -9,7 +9,27 @@
     box-shadow: 0px 0px 10px 0px #000;
 }
 
-body{
-    background-color: #000;
-
-} 
+.cards{
+    display: inline-block;
+    /* background-color: #1977cc; */
+    border-radius: 10px;
+    padding: 10px 10px 0px 10px;
+    margin-bottom: 3vh;
+    color: white;
+    box-sizing: border-box;
+    height: 15vh;
+    width: 30vh;
+    
+}
+.section-cards{
+    width: 100%;
+}
+.cards h3 {
+    font-size: 1rem;
+    margin-top: -2vh;
+    margin-left: 2vh;
+}
+.cards p {
+    margin-left: 15px;
+    font-size: 2rem;
+}

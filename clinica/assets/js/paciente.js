@@ -6,19 +6,18 @@ $(document).ready(function (){
         let email = $('#email').val();
         let senha = $('#senha').val();
         let telefone = $('#telefone').val();
-        let rg = $('#rg').val();
         let data = $('#data').val();
         let cep = $('#cep').val();
         let logradouro = $('#logradouro').val();
         let numero = $('#numero').val();
         let sexo = $('#sexo').val();
 
-        let res = verificaCampos(nome, cpf, email, senha, telefone, rg, data, cep, logradouro, numero, sexo);
+        let res = verificaCampos(nome, cpf, email, senha, telefone, data, cep, logradouro, numero, sexo);
         if (res){
             $.ajax({
                 url: '../Controller/cadastrar-paciente.php',
                 method: 'POST',
-                data: {nome: nome, cpf: cpf, email: email, senha: senha, telefone: telefone, rg: rg, data: data, cep: cep, logradouro: logradouro, numero: numero, sexo: sexo},
+                data: {nome: nome, cpf: cpf, email: email, senha: senha, telefone: telefone, data: data, cep: cep, logradouro: logradouro, numero: numero, sexo: sexo},
                 dataType: 'json'
             }).done(function (result){
                 if (result == "Paciente cadastrado com successo"){
@@ -43,8 +42,8 @@ $(document).ready(function (){
         }
     })
 
-    function verificaCampos(nome, cpf, email, senha, telefone, rg, data, cep, logradouro, numero, sexo){
-        if (nome == "" || cpf == "" || email == "" || senha == "" || telefone == "" || rg == "" || data == "" || cep == "" || logradouro == "" || numero == "" || sexo == ""){
+    function verificaCampos(nome, cpf, email, senha, telefone, data, cep, logradouro, numero, sexo){
+        if (nome == "" || cpf == "" || email == "" || senha == "" || telefone == "" || data == "" || cep == "" || logradouro == "" || numero == "" || sexo == ""){
             $('#message-result').empty();
             $('#message-result').prepend('<div mt-2 class="alert alert-danger" role="alert"> Preencha todos os campos </div>')
             window.location.href = "#main";
