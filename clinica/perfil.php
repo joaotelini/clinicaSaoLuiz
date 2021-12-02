@@ -83,42 +83,52 @@
     </header>
 
     <section class="breadcrumbs">
-      <div class="container">
+        <div class="container">
 
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Suas Consultas</h2>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>Suas Consultas</h2>
+            </div>
+
         </div>
-
-      </div>
     </section>
 
     <main class='container'>
 
         <section class="container-fluid mb-5">
             <section class="row justify-content-center">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Médico</th>
-                                <th scope="col">Serviço</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">Horário</th>
-                                <th scope="col">valor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach($pacInfo as $pac):?>
-                            <tr>
-                                <th><?php echo $pac['nome_especialista']?></th>
-                                <td><?php echo $pac['nome_servico']?></td>
-                                <td><?php echo $pac['data_consulta']?></td>
-                                <td><?php echo $pac['hora_inicio']?></td>
-                                <td><?php echo "R$".$pac['valor'].",00"?></td>
-                            </tr>
-                            <?php endforeach?>
-                        </tbody>
-                    </table>
-                </section>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Médico</th>
+                            <th scope="col">Serviço</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Horário</th>
+                            <th scope="col">valor</th>
+                            <th scope="col">status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($pacInfo as $pac):?>
+                        <tr>
+                            <th><?php echo $pac['nome_especialista']?></th>
+                            <td><?php echo $pac['nome_servico']?></td>
+                            <td>
+                            <?php echo date('d/m/Y', strtotime($pac['data_consulta'])); ?>
+                            </td>
+                            <td><?php echo $pac['hora_inicio']?></td>
+                            <td><?php echo "R$".$pac['valor'].",00"?></td>
+                            <td><?php if ($pac['status_consulta'] == "Faltou"){
+                                        echo "<p style='color: red;'>".$pac['status_consulta']."</p>";
+                                    } else {
+                                        echo "<p style='color: green;'>".$pac['status_consulta']."</p>";
+                                    }
+                                    ?>
+                            </td>
+                        </tr>
+                        <?php endforeach?>
+                    </tbody>
+                </table>
+            </section>
         </section>
 
     </main>

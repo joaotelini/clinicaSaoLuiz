@@ -25,7 +25,7 @@ $(document).ready(function (){
                     $('#message-result').empty();
                     $('#message-result').prepend('<div class="alert alert-success" role="alert">Você foi cadastrado com sucesso</div>');
                     $("#form-cad-paciente").trigger("reset");
-                    window.location.href = "#main";
+                    window.location.href = "../clinica/login.php";
 
                     setTimeout(() => {
                         $("#message-result").fadeOut("Slow");
