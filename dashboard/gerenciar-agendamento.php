@@ -137,16 +137,24 @@
                     <h1 class="h3 mb-2 text-gray-800">Agendamentos</h1>
 
                     <section class="section-cards">
-                        <div class="cards bg-primary">
-                            <p>10</p>
-                            <h3>Consultas de Hoje</h3>
+                        <div class="cards bg-primary" id="con-hoje">
+                            <p>0</p>
+                            <h3>Número de Consultas</h3>
                         </div>
-                        <div class="cards bg-success">
-                            <p>7</p>
-                            <h3>Consultas Realizadas</h3>
+                        <div class="cards bg-warning" id="con-espera">
+                            <p>0</p>
+                            <h3>Em Espera</h3>
                         </div>
-                        <div class="cards bg-danger">
-                            <p>3</p>
+                        <div class="cards bg-info" id="con-atend">
+                            <p>0</p>
+                            <h3>Em Atendimento</h3>
+                        </div>
+                        <div class="cards bg-success" id="con-real">
+                            <p>0</p>
+                            <h3>Realizadas</h3>
+                        </div>
+                        <div class="cards bg-danger" id="falta">
+                            <p>0</p>
                             <h3>Faltas</h3>
                         </div>
                     </section>
@@ -240,7 +248,7 @@
                 <div class="modal-body form-style">
                     <select name="selectStatus" id="select-status" class="form-control">
                         <option value="Em Atendimento">Em Atendimento</option>
-                        <option value="Pendente">Espera</option>
+                        <option value="Espera">Espera</option>
                         <option value="Realizada">Realizada</option>
                         <option value="Faltou">Faltou</option>
                     </select>

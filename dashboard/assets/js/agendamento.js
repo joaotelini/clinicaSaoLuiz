@@ -44,12 +44,44 @@ $(document).ready(function (){
             dataType: 'json'
         }).done(function (result){
             $('#table-agend').empty();
-            console.log(result);
+            // console.log(result);
+            let totCon = result.length;
+            let totFaltas = 0;
+            let totReal = 0;
+            let totAtend = 0;
+            let totEspera = 0;
+
             for (let i = 0; i < result.length; i++){
 
                 let date = changeDate(result[i].data_consulta);
 
                 $('#table-agend').prepend('<tr> <td> '+ result[i].nome_especialista +' </td> <td>'+ result[i].nome_servico +'</td> <td>'+ result[i].nome_paciente +'</td> <td>'+ date +'; '+ result[i].hora_inicio +'</td> <td>R$'+ result[i].valor +',00</td> <td>'+ result[i].status_consulta +'</td> <td><a class="btn btn-info" data-bs-status="'+ result[i].status_consulta +'" data-bs-id-consulta="'+ result[i].id_consulta +'" data-bs-toggle="modal" data-bs-target="#status-modal" data-bs-departamento="'+ result[i].id_departamento +'" data-bs-whatever="@mdo">Mudar Status</a></td> </tr>');
+
+                
+                if (result[i].status_consulta == "Faltou"){
+                    totFaltas = totFaltas + 1;
+                }
+                if (result[i].status_consulta == "Realizada"){
+                    totReal = totReal + 1;
+                }
+                if (result[i].status_consulta == "Em Atendimento"){
+                    totAtend = totAtend + 1;
+                }
+                if (result[i].status_consulta == "Espera"){
+                    totEspera = totEspera + 1;
+                }
+                $('#con-hoje').empty();
+                $('#con-hoje').prepend('<p>'+ totCon +'</p><h3>Número de Consultas</h3>');
+                $('#con-real').empty();
+                $('#con-real').prepend('<p>'+ totReal +'</p><h3>Realizadas</h3>');
+                $('#con-atend').empty();
+                $('#con-atend').prepend('<p>'+ totAtend +'</p><h3>Em Atendimento</h3>');
+                $('#falta').empty();
+                $('#falta').prepend('<p>'+ totFaltas +'</p><h3>Faltas</h3>');
+                $('#con-espera').empty();
+                $('#con-espera').prepend('<p>'+ totEspera +'</p><h3>Em Espera</h3>');
+                
+
             }
         }); 
     }

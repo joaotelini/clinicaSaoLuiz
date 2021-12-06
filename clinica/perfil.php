@@ -119,8 +119,10 @@
                             <td><?php echo "R$".$pac['valor'].",00"?></td>
                             <td><?php if ($pac['status_consulta'] == "Faltou"){
                                         echo "<p style='color: red;'>".$pac['status_consulta']."</p>";
-                                    } else {
+                                    } else if ($pac['status_consulta'] == "Realizada") {
                                         echo "<p style='color: green;'>".$pac['status_consulta']."</p>";
+                                    } else {
+                                        echo "<p style='color: blue;'>".$pac['status_consulta']."</p>";
                                     }
                                     ?>
                             </td>

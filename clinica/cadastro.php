@@ -46,7 +46,7 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
         <li><a class="nav-link scrollto active" href="./index.php">Home</a></li>
-          <li><a class="nav-link scrollto" href="agendamento.php">Realizar Agendamento</a></li>
+          <!-- <li><a class="nav-link scrollto" href="agendamento.php">Realizar Agendamento</a></li> -->
           <li><a class="nav-link scrollto" href="./login.php">Login</a></li>
            <!--Deixei sem destaque pq nao ficava responsivo-->
         </ul>

@@ -79,7 +79,7 @@
                 INNER JOIN paciente ON consulta.id_paciente = paciente.id_paciente
                 INNER JOIN servico ON consulta.id_servico = servico.id_servico
                 INNER JOIN especialista ON consulta.id_especialista = especialista.id_especialista
-                WHERE consulta.id_paciente = ? AND consulta.status_consulta != 'Realizada' ORDER BY consulta.data_consulta ASC");
+                WHERE consulta.id_paciente = ? ORDER BY consulta.data_consulta ASC");
 
                 $sql->execute(array($pac));
                 $pacInfo = $sql->fetchAll(PDO::FETCH_ASSOC);
