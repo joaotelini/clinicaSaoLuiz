@@ -240,7 +240,7 @@
                 <div class="modal-body form-style">
                     <select name="selectStatus" id="select-status" class="form-control">
                         <option value="Em Atendimento">Em Atendimento</option>
-                        <option value="Pendente">Pendente</option>
+                        <option value="Pendente">Espera</option>
                         <option value="Realizada">Realizada</option>
                         <option value="Faltou">Faltou</option>
                     </select>
