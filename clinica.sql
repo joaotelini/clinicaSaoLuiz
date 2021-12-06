@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Nov-2021 às 23:21
--- Versão do servidor: 10.4.14-MariaDB
--- versão do PHP: 7.4.11
+-- Tempo de geração: 06-Dez-2021 às 16:21
+-- Versão do servidor: 10.4.22-MariaDB
+-- versão do PHP: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,7 +50,7 @@ CREATE TABLE `consulta` (
   `data_consulta` date NOT NULL,
   `hora_inicio` time NOT NULL,
   `hora_fim` time NOT NULL,
-  `status_consulta` varchar(100) NOT NULL DEFAULT 'Pendente'
+  `status_consulta` varchar(255) NOT NULL DEFAULT 'Espera'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -58,20 +58,21 @@ CREATE TABLE `consulta` (
 --
 
 INSERT INTO `consulta` (`id_consulta`, `id_departamento`, `id_servico`, `id_especialista`, `id_paciente`, `data_consulta`, `hora_inicio`, `hora_fim`, `status_consulta`) VALUES
-(37, 72, 17, 75, 64, '2021-11-15', '11:00:00', '12:00:00', 'Realizada'),
-(38, 72, 14, 75, 64, '2021-11-15', '12:00:00', '12:20:00', 'Pendente'),
-(39, 72, 14, 75, 64, '2021-11-15', '15:20:00', '15:40:00', 'Pendente'),
-(40, 72, 17, 75, 64, '2021-11-15', '16:00:00', '17:00:00', 'Pendente'),
-(41, 72, 16, 73, 60, '2021-11-30', '09:00:00', '09:30:00', 'Em Atendimento'),
-(42, 72, 16, 75, 60, '2021-11-30', '11:30:00', '12:00:00', 'Pendente'),
-(43, 72, 17, 75, 60, '2021-11-29', '10:00:00', '11:00:00', 'Pendente'),
-(44, 72, 14, 75, 60, '2021-11-29', '11:20:00', '11:40:00', 'Pendente'),
-(45, 72, 15, 75, 60, '2021-11-29', '12:45:00', '13:30:00', 'Pendente'),
-(46, 73, 18, 72, 60, '2021-11-29', '08:30:00', '08:45:00', 'Pendente'),
-(47, 73, 18, 72, 60, '2021-11-29', '09:00:00', '09:15:00', 'Pendente'),
-(48, 72, 16, 73, 64, '2021-11-14', '16:00:00', '16:30:00', 'Pendente'),
-(49, 72, 16, 73, 64, '2021-11-14', '12:00:00', '12:30:00', 'Pendente'),
-(50, 72, 17, 73, 62, '2021-11-14', '17:00:00', '18:00:00', 'Pendente');
+(37, 72, 17, 75, 64, '2021-11-15', '11:00:00', '12:00:00', 'Espera'),
+(38, 72, 14, 75, 64, '2021-11-15', '12:00:00', '12:20:00', 'Espera'),
+(39, 72, 14, 75, 64, '2021-11-15', '15:20:00', '15:40:00', 'Espera'),
+(40, 72, 17, 75, 64, '2021-11-15', '16:00:00', '17:00:00', 'Espera'),
+(41, 72, 16, 73, 60, '2021-11-30', '09:00:00', '09:30:00', 'Espera'),
+(42, 72, 16, 75, 60, '2021-11-30', '11:30:00', '12:00:00', 'Espera'),
+(43, 72, 17, 75, 60, '2021-11-29', '10:00:00', '11:00:00', 'Espera'),
+(44, 72, 14, 75, 60, '2021-11-29', '11:20:00', '11:40:00', 'Espera'),
+(45, 72, 15, 75, 60, '2021-11-29', '12:45:00', '13:30:00', 'Espera'),
+(46, 73, 18, 72, 60, '2021-11-29', '08:30:00', '08:45:00', 'Espera'),
+(47, 73, 18, 72, 60, '2021-11-29', '09:00:00', '09:15:00', 'Espera'),
+(48, 72, 16, 73, 64, '2021-11-14', '16:00:00', '16:30:00', 'Espera'),
+(49, 72, 16, 73, 64, '2021-11-14', '12:00:00', '12:30:00', 'Espera'),
+(50, 72, 17, 73, 62, '2021-11-14', '17:00:00', '18:00:00', 'Espera'),
+(51, 72, 15, 73, 72, '2021-12-22', '13:15:00', '14:00:00', 'Espera');
 
 -- --------------------------------------------------------
 
@@ -168,7 +169,6 @@ CREATE TABLE `horario_especialista` (
 CREATE TABLE `paciente` (
   `id_paciente` int(11) NOT NULL,
   `nome_paciente` varchar(255) NOT NULL,
-  `rg` bigint(255) NOT NULL,
   `cpf` bigint(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
@@ -184,13 +184,14 @@ CREATE TABLE `paciente` (
 -- Extraindo dados da tabela `paciente`
 --
 
-INSERT INTO `paciente` (`id_paciente`, `nome_paciente`, `rg`, `cpf`, `email`, `senha`, `telefone`, `data_nascimento`, `logradouro`, `numero`, `cep`, `sexo_paciente`) VALUES
-(66, 'João Pedro da Silva Rocha', 35564, 74159626050, 'joaopedrodasilva@gmail.com', 'bd688872ef28a394da2235f2d3d24512', 19995569283, '2021-11-08', 'R. Maria Pereira da silva', 69, 77813250, 'M'),
-(67, 'joao pedro', 948339278, 98573533048, 'joasdfasfdao@gmail.com', '27bf375df4b06adaa6ae2864632c96a9', 19995569283, '2021-11-22', 'R. carlinhos maia', 69, 12342134, 'M'),
-(68, 'Maria Luiza', 148001701, 42927268096, 'marialuiza@gmail.com', 'eeab41d760814ea20ff5834c10271589', 19995569283, '1999-02-09', 'R. Padre Ferraz', 420, 77813250, 'F'),
-(69, 'Pedro de Oliveira', 372912023, 73571046056, 'pedro@gmail.com', '484de90d1b78af8f3eb2efdff3f84d66', 199996688763, '2004-10-20', 'R. Padre Amorim', 737, 77813250, 'M'),
-(70, 'joao pedro', 35564, 95564341007, 'souzzaleitte@gmail.com', '42a87fb988bd92077efc9da585d5b150', 19995569283, '2021-11-01', 'R. Pedrinho Machado', 69, 12342134, 'M'),
-(71, 'joao pedro', 35564, 82233240081, 'joasdfasfdao@gmail.com', '2436ebd21173bf073a2a8558f95450b9', 19995569283, '2018-02-13', 'R das Magnólias', 420, 12342134, 'F');
+INSERT INTO `paciente` (`id_paciente`, `nome_paciente`, `cpf`, `email`, `senha`, `telefone`, `data_nascimento`, `logradouro`, `numero`, `cep`, `sexo_paciente`) VALUES
+(66, 'João Pedro da Silva Rocha', 74159626050, 'joaopedrodasilva@gmail.com', 'bd688872ef28a394da2235f2d3d24512', 19995569283, '2021-11-08', 'R. Maria Pereira da silva', 69, 77813250, 'M'),
+(67, 'joao pedro', 98573533048, 'joasdfasfdao@gmail.com', '27bf375df4b06adaa6ae2864632c96a9', 19995569283, '2021-11-22', 'R. carlinhos maia', 69, 12342134, 'M'),
+(68, 'Maria Luiza', 42927268096, 'marialuiza@gmail.com', 'eeab41d760814ea20ff5834c10271589', 19995569283, '1999-02-09', 'R. Padre Ferraz', 420, 77813250, 'F'),
+(69, 'Pedro de Oliveira', 73571046056, 'pedro@gmail.com', '484de90d1b78af8f3eb2efdff3f84d66', 199996688763, '2004-10-20', 'R. Padre Amorim', 737, 77813250, 'M'),
+(70, 'joao pedro', 95564341007, 'souzzaleitte@gmail.com', '42a87fb988bd92077efc9da585d5b150', 19995569283, '2021-11-01', 'R. Pedrinho Machado', 69, 12342134, 'M'),
+(71, 'joao pedro', 82233240081, 'joasdfasfdao@gmail.com', '2436ebd21173bf073a2a8558f95450b9', 19995569283, '2018-02-13', 'R das Magnólias', 420, 12342134, 'F'),
+(72, 'gustavo', 81022409034, 'joao@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, '2021-11-29', 'R. não sei', 69, 124323, 'M');
 
 -- --------------------------------------------------------
 
@@ -279,7 +280,7 @@ ALTER TABLE `atendente`
 -- AUTO_INCREMENT de tabela `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `id_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT de tabela `departamento`
@@ -303,7 +304,7 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT de tabela `servico`
