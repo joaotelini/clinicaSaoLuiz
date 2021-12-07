@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06-Dez-2021 às 16:21
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.0.13
+-- Tempo de geração: 07-Dez-2021 às 18:50
+-- Versão do servidor: 10.4.14-MariaDB
+-- versão do PHP: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,21 +58,18 @@ CREATE TABLE `consulta` (
 --
 
 INSERT INTO `consulta` (`id_consulta`, `id_departamento`, `id_servico`, `id_especialista`, `id_paciente`, `data_consulta`, `hora_inicio`, `hora_fim`, `status_consulta`) VALUES
-(37, 72, 17, 75, 64, '2021-11-15', '11:00:00', '12:00:00', 'Espera'),
-(38, 72, 14, 75, 64, '2021-11-15', '12:00:00', '12:20:00', 'Espera'),
-(39, 72, 14, 75, 64, '2021-11-15', '15:20:00', '15:40:00', 'Espera'),
-(40, 72, 17, 75, 64, '2021-11-15', '16:00:00', '17:00:00', 'Espera'),
-(41, 72, 16, 73, 60, '2021-11-30', '09:00:00', '09:30:00', 'Espera'),
-(42, 72, 16, 75, 60, '2021-11-30', '11:30:00', '12:00:00', 'Espera'),
-(43, 72, 17, 75, 60, '2021-11-29', '10:00:00', '11:00:00', 'Espera'),
-(44, 72, 14, 75, 60, '2021-11-29', '11:20:00', '11:40:00', 'Espera'),
-(45, 72, 15, 75, 60, '2021-11-29', '12:45:00', '13:30:00', 'Espera'),
-(46, 73, 18, 72, 60, '2021-11-29', '08:30:00', '08:45:00', 'Espera'),
-(47, 73, 18, 72, 60, '2021-11-29', '09:00:00', '09:15:00', 'Espera'),
-(48, 72, 16, 73, 64, '2021-11-14', '16:00:00', '16:30:00', 'Espera'),
-(49, 72, 16, 73, 64, '2021-11-14', '12:00:00', '12:30:00', 'Espera'),
-(50, 72, 17, 73, 62, '2021-11-14', '17:00:00', '18:00:00', 'Espera'),
-(51, 72, 15, 73, 72, '2021-12-22', '13:15:00', '14:00:00', 'Espera');
+(52, 75, 21, 78, 73, '2021-12-27', '12:00:00', '12:45:00', 'Espera'),
+(53, 75, 20, 76, 74, '2021-12-08', '08:00:00', '09:00:00', 'Espera'),
+(54, 76, 23, 79, 75, '2021-12-08', '08:20:00', '08:40:00', 'Espera'),
+(55, 77, 24, 86, 76, '2021-12-08', '09:00:00', '09:20:00', 'Espera'),
+(56, 75, 20, 76, 77, '2021-12-08', '09:00:00', '10:00:00', 'Espera'),
+(57, 76, 23, 79, 78, '2021-12-08', '10:40:00', '11:00:00', 'Espera'),
+(58, 77, 24, 86, 79, '2021-12-08', '10:00:00', '10:20:00', 'Espera'),
+(59, 75, 20, 76, 80, '2021-12-08', '10:00:00', '11:00:00', 'Espera'),
+(60, 75, 19, 76, 80, '2021-12-08', '11:00:00', '11:45:00', 'Espera'),
+(61, 77, 24, 86, 81, '2021-12-08', '13:20:00', '13:40:00', 'Espera'),
+(62, 78, 22, 82, 82, '2021-12-08', '09:15:00', '09:30:00', 'Espera'),
+(63, 75, 21, 77, 82, '2021-12-07', '08:15:00', '09:00:00', 'Realizada');
 
 -- --------------------------------------------------------
 
@@ -91,9 +88,10 @@ CREATE TABLE `departamento` (
 --
 
 INSERT INTO `departamento` (`id_departamento`, `nome`, `descricao`) VALUES
-(71, 'Pediatria', 'Cuida de Criança'),
-(72, 'Odontologia', 'cuida dos dentes'),
-(73, 'Cardiologia', 'Cuida do meu coração');
+(75, 'Odontologia', 'O profissional formado em Odontologia é responsável pela saúde bucal das pessoas. Ele atua na prevenção, diagnóstico e tratamento de problemas relacionados à mordida, gengiva e dentes. O dentista realiza tratamentos estéticos e também intervenções relacio'),
+(76, 'Cardiologia', 'A cardiologia em si é definida como um ramo da medicina responsável por estudar, cuidar e tratar o coração e os vasos sanguíneos. Ou seja, é uma das especialidades da medicina que cuida do coração e do sistema circulatório. A cardiologia é principalmente '),
+(77, 'Ortopedia', 'A ortopedia ou traumato-ortopedia é a especialidade médica encarregada de tratar lesões, traumas e algumas deformidades que refletem no aparelho locomotor de um indivíduo, como tendões, ossos, ligamentos e articulações. Esta área também está relacionada à'),
+(78, 'Dermatologia', 'A Dermatologia é uma especialidade médica cuja área de conhecimento se concentra no diagnóstico, prevenção e tratamento de doenças e afecções relacionadas à pele, pelos, mucosas, cabelo e unhas. É também especialidade indicada para atuação em procedimento');
 
 -- --------------------------------------------------------
 
@@ -116,10 +114,17 @@ CREATE TABLE `especialista` (
 --
 
 INSERT INTO `especialista` (`id_especialista`, `nome_especialista`, `conselho_regional`, `email`, `id_departamento`, `telefone`, `cpf`) VALUES
-(72, 'Maria Oliveira', '532498576', 'mariaoliveira@gmail.com', 73, 1999966385673, 96155250065),
-(73, 'João Pedro Domigues Telini', '4563464356', 'joaopedrodomingues@gmail.com', 72, 19996637485, 4179644045),
-(74, 'Pamela de Carvalho', '439876345', 'pamela@gmail.com', 71, 1999467736, 35398602071),
-(75, 'Juliana Soares', '4356435643', 'juliana@gmail.com', 72, 1993647485, 3192088001);
+(76, 'Lucas de Oliveira', '837281', 'lucasoliveira@gmail.com', 75, 19999999999, 43236035099),
+(77, 'Mariana Vitória Gonsalves ', '547543', 'marianavitoria@gmail.com', 75, 19993377583, 93096723079),
+(78, 'Paula da Silva Gomes', '543466', 'paulasilva@gmail.com', 75, 19994489384, 56609681040),
+(79, 'Juliano Machado Souza', '883392', 'julianomachado@gmail.com', 76, 1999887777, 94757855079),
+(80, 'Paola Oliveira', '367883', 'paolaoliveira@gmail.com', 76, 19993388494, 91003994008),
+(81, 'Renato Castilho da Silva', '837483', 'renatocastinho@gmail.com', 76, 19995568899, 8689933018),
+(82, 'Juliana Adriano', '878392', 'julianaadriano@gmail.com', 78, 19997788374, 65093220051),
+(83, 'José Carlos da Silva', '788374', 'josecarlos@gmail.com', 78, 19995568899, 61360067078),
+(84, 'Paulo Carvalho de Andrada', '739483', 'paulocarvalhodeandrada@gmail.com', 78, 19989473848, 15697272014),
+(85, 'Matheus de Oliveira', '839283', 'matheusdeoliveira@gmail.com', 77, 1989447847, 96036662033),
+(86, 'Pedro Henrique Pereira', '839983', 'pedrohenrique@gmail.com', 77, 19973857382, 44440236006);
 
 -- --------------------------------------------------------
 
@@ -140,25 +145,45 @@ CREATE TABLE `horario` (
 --
 
 INSERT INTO `horario` (`id_horario`, `id_especialista`, `dia_semana`, `comeco_espediente`, `fim_espediente`) VALUES
-(41, 75, 1, '09:00:00', '19:00:00'),
-(42, 75, 2, '08:00:00', '18:00:00'),
-(43, 75, 3, '08:00:00', '18:00:00'),
-(44, 73, 1, '08:00:00', '18:00:00'),
-(45, 73, 2, '08:00:00', '18:00:00'),
-(46, 73, 3, '08:00:00', '18:00:00'),
-(47, 72, 1, '08:00:00', '18:00:00'),
-(48, 73, 7, '08:00:00', '18:00:00');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `horario_especialista`
---
-
-CREATE TABLE `horario_especialista` (
-  `id_especialista` int(11) NOT NULL,
-  `id_horario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(49, 76, 1, '08:00:00', '18:00:00'),
+(50, 76, 3, '08:00:00', '18:00:00'),
+(51, 76, 5, '08:00:00', '18:00:00'),
+(52, 77, 2, '06:00:00', '16:00:00'),
+(53, 77, 4, '08:00:00', '18:00:00'),
+(54, 77, 6, '09:00:00', '20:00:00'),
+(55, 78, 1, '09:00:00', '18:00:00'),
+(56, 78, 4, '08:00:00', '18:00:00'),
+(57, 78, 7, '08:00:00', '18:00:00'),
+(58, 79, 1, '08:00:00', '18:00:00'),
+(59, 79, 3, '08:00:00', '18:00:00'),
+(60, 79, 6, '08:00:00', '18:00:00'),
+(61, 80, 2, '08:00:00', '18:00:00'),
+(62, 80, 4, '08:00:00', '18:00:00'),
+(63, 80, 5, '08:00:00', '18:00:00'),
+(64, 81, 1, '08:00:00', '18:00:00'),
+(65, 81, 7, '08:00:00', '18:00:00'),
+(66, 81, 3, '08:00:00', '18:00:00'),
+(67, 82, 1, '08:00:00', '18:00:00'),
+(68, 82, 4, '08:00:00', '18:00:00'),
+(69, 82, 7, '08:00:00', '18:00:00'),
+(70, 82, 5, '08:00:00', '18:00:00'),
+(71, 83, 2, '08:00:00', '18:00:00'),
+(72, 83, 4, '08:00:00', '18:00:00'),
+(73, 83, 1, '08:00:00', '18:00:00'),
+(74, 83, 7, '08:00:00', '18:00:00'),
+(75, 84, 1, '08:00:00', '18:00:00'),
+(76, 84, 4, '08:00:00', '18:00:00'),
+(77, 84, 6, '08:00:00', '18:00:00'),
+(78, 85, 7, '08:00:00', '18:00:00'),
+(79, 85, 5, '08:00:00', '18:00:00'),
+(80, 85, 6, '08:00:00', '18:00:00'),
+(82, 85, 2, '08:00:00', '18:00:00'),
+(83, 86, 1, '08:00:00', '18:00:00'),
+(84, 86, 2, '08:00:00', '18:00:00'),
+(85, 86, 3, '08:00:00', '18:00:00'),
+(86, 86, 5, '08:00:00', '18:00:00'),
+(87, 86, 7, '08:00:00', '18:00:00'),
+(88, 82, 3, '08:00:00', '18:00:00');
 
 -- --------------------------------------------------------
 
@@ -185,13 +210,16 @@ CREATE TABLE `paciente` (
 --
 
 INSERT INTO `paciente` (`id_paciente`, `nome_paciente`, `cpf`, `email`, `senha`, `telefone`, `data_nascimento`, `logradouro`, `numero`, `cep`, `sexo_paciente`) VALUES
-(66, 'João Pedro da Silva Rocha', 74159626050, 'joaopedrodasilva@gmail.com', 'bd688872ef28a394da2235f2d3d24512', 19995569283, '2021-11-08', 'R. Maria Pereira da silva', 69, 77813250, 'M'),
-(67, 'joao pedro', 98573533048, 'joasdfasfdao@gmail.com', '27bf375df4b06adaa6ae2864632c96a9', 19995569283, '2021-11-22', 'R. carlinhos maia', 69, 12342134, 'M'),
-(68, 'Maria Luiza', 42927268096, 'marialuiza@gmail.com', 'eeab41d760814ea20ff5834c10271589', 19995569283, '1999-02-09', 'R. Padre Ferraz', 420, 77813250, 'F'),
-(69, 'Pedro de Oliveira', 73571046056, 'pedro@gmail.com', '484de90d1b78af8f3eb2efdff3f84d66', 199996688763, '2004-10-20', 'R. Padre Amorim', 737, 77813250, 'M'),
-(70, 'joao pedro', 95564341007, 'souzzaleitte@gmail.com', '42a87fb988bd92077efc9da585d5b150', 19995569283, '2021-11-01', 'R. Pedrinho Machado', 69, 12342134, 'M'),
-(71, 'joao pedro', 82233240081, 'joasdfasfdao@gmail.com', '2436ebd21173bf073a2a8558f95450b9', 19995569283, '2018-02-13', 'R das Magnólias', 420, 12342134, 'F'),
-(72, 'gustavo', 81022409034, 'joao@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, '2021-11-29', 'R. não sei', 69, 124323, 'M');
+(73, 'João Pedro da Silva Rocha', 97868886005, 'joaopedro@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 19995568295, '1997-07-14', 'R. dos Andradas', 420, 77813250, 'M'),
+(74, 'Maria Luiza da Silva', 94501298006, 'marialuiza@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 19997384736, '1999-07-12', 'R. Carolina de Oliveira', 69, 1234123, 'M'),
+(75, 'Juliana Cristina', 29393958025, 'juliana@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 19883392839, '1990-07-09', 'R. ABC', 83, 77813250, 'F'),
+(76, 'Luca Bettini', 68092745021, 'lucasbetini@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 19989745674, '2012-03-20', 'R. carlinhos maia', 231, 77813250, 'M'),
+(77, 'Paola Caroline da Silva', 72875141090, 'paola@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 19989743848, '1999-08-16', 'R. pedro piva', 47, 1234123, 'F'),
+(78, 'Tales de Oliveira', 59481616096, 'tales@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 19997783982, '1997-07-23', 'R def', 45, 12342134, 'M'),
+(79, 'Bruno Marcelo da Silva', 71841917060, 'burno@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 19997485746, '2008-06-25', 'R. carlinhos maia', 69, 1234123, 'M'),
+(80, 'Poliana Camargo', 11867678047, 'poliana@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 19998746374, '1999-10-12', 'R. carlinhos maia', 123, 12342134, 'M'),
+(81, 'David Castilho Pereira', 93201934011, 'david@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 19995578839, '1999-07-07', 'R das Tupipas', 32, 1234123, 'M'),
+(82, 'Felipe Rodrigues da Silva', 41756203032, 'felipe@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 19995578893, '2000-08-08', 'R. das hortencias', 1234, 1234123, 'M');
 
 -- --------------------------------------------------------
 
@@ -213,11 +241,12 @@ CREATE TABLE `servico` (
 --
 
 INSERT INTO `servico` (`id_servico`, `id_departamento`, `nome_servico`, `descricao_servico`, `valor`, `duracao`) VALUES
-(14, 72, 'Manutenção no aparelho', 'manutenção no aparelho', 100, 20),
-(15, 72, 'Reparo dental', 'reparo dental', 150, 45),
-(16, 72, 'limpeza dental', 'limpeza dental', 75, 30),
-(17, 72, 'servico de 1h', 'serviço com duração de 1h', 149, 60),
-(18, 73, 'exame de rotina', 'exame de rotina ', 50, 15);
+(19, 75, 'limpeza geral', 'limpeza geral na boca e dentes', 100, 45),
+(20, 75, 'reparo dental', 'reparo dental', 150, 60),
+(21, 75, 'Clareamento ', 'clareamento dental', 100, 45),
+(22, 78, 'exame ', 'exame ', 25, 15),
+(23, 76, 'exame geral', 'exame de rotina', 50, 20),
+(24, 77, 'exame geral', 'exame geral', 50, 20);
 
 --
 -- Índices para tabelas despejadas
@@ -280,37 +309,37 @@ ALTER TABLE `atendente`
 -- AUTO_INCREMENT de tabela `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `id_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de tabela `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id_departamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT de tabela `especialista`
 --
 ALTER TABLE `especialista`
-  MODIFY `id_especialista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id_especialista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de tabela `horario`
 --
 ALTER TABLE `horario`
-  MODIFY `id_horario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_horario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT de tabela `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id_paciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT de tabela `servico`
 --
 ALTER TABLE `servico`
-  MODIFY `id_servico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_servico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restrições para despejos de tabelas

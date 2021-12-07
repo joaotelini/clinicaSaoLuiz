@@ -17,7 +17,7 @@ $(document).ready(function (){
 
         status.find('#select-status').val(recipientStatus);
 
-        $('#confirmStatus').click(function (){
+        $('#confirmStatus').one("click", function (){
             let status = $('#select-status').val();
             $.ajax({
                 url: '../Controller/mudar-status.php',
@@ -27,6 +27,8 @@ $(document).ready(function (){
             }).done(function (result){
                 $('#status-modal').modal('hide');
                 listarConsulta(data);
+                console.log(recipientStatus);
+
             })
         });
     });

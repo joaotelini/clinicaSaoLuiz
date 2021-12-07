@@ -39,7 +39,7 @@
         if ($horaIn) {
             echo json_encode($horaIn);
         } else {   
-            if ($data > date('Y-m-d')){
+            if ($data >= date('Y-m-d')){
                 if ($conDao->Inserir($con) == true) {
                     echo json_encode("Consulta agendada com sucesso!");
                 } else {
